@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const feedbackSchema = mongoose.Schema(
   {
-    username: {
+    about: {
       type: String,
       required: [true, "Please add a name"],
     },

@@ -186,13 +186,20 @@ const Profile = (props) => {
 </div>
   
               <div className="flex justify-end mt-7">
+              <button
+                  onClick={onSubmit}
+                  type="button"
+                  className="transition mr-auto w-[25%] rounded-[100px] duration-200 bg-[#2E4960] hover:bg-[#2E4960] focus:bg-[#2E4960] focus:shadow-sm focus:ring-4 focus:ring-opacity-50 text-white py-2.5 text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                >
+                  <span className="inline-block mr-2">Delete</span>
+                </button>
 
                 <button
                   onClick={onSubmit}
                   type="button"
                   className="transition w-[25%] rounded-[100px] duration-200 bg-[#2E4960] hover:bg-[#2E4960] focus:bg-[#2E4960] focus:shadow-sm focus:ring-4 focus:ring-opacity-50 text-white py-2.5 text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
                 >
-                  <span className="inline-block mr-2">update details</span>
+                  <span className="inline-block mr-2">Update profile</span>
                 </button>
               </div>
             </div>

@@ -10,20 +10,20 @@ function PortalHandler() {
     switch (role) {
       case "customer":
         return <CustomerPortal />;
-    //   case "driver":
-    //     return <DriverPortal />;
-    //   case "accountant":
-    //     return <AccountantPortal />;
-    //   case "humanResourcesManager":
-    //     return <HumanResourcesManagerPortal />;
-    //   case "salesOfficer":
-    //     return <SalesOfficerPortal />;
-    //   case "systemAdminstrator":
-    //     return <SystemAdministratorPortal />;
-    //   case "stockController":
-    //     return <StockControllerPortal />;
-    //   case "customerServiceManager":
-    //     return <CustomerServiceManagerPortal />;
+      // case "driver":
+      //   return <DriverPortal />;
+      // case "accountant":
+      //   return <AccountantPortal />;
+      // case "humanResourcesManager":
+      //   return <HumanResourcesManagerPortal />;
+      // case "salesOfficer":
+      //   return <SalesOfficerPortal />;
+      // case "systemAdminstrator":
+      //   return <SystemAdministratorPortal />;
+      // case "stockController":
+      //   return <StockControllerPortal />;
+      // case "customerServiceManager":
+      //   return <CustomerServiceManagerPortal />;
       default:
         return <CustomerPortal />;
     }
