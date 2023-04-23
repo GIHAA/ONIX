@@ -10,9 +10,9 @@ function Home () {
   return (
     <>
         <Header />
-{
+{/* {
   user ? (<></>) : (<>Pleaselogin</>)
-}
+} */}
       <div
         style={{ backgroundImage: `url(${bg})` }}
         name="home"

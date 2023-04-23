@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CustomerPortal from "./customer/CustomerPortal";
 import Home from "./Home";
+import HumanResourcesManagerPortal from "./humanResource/HumanResourcePortal";
 
 function PortalHandler() {
   const { user } = useSelector((state) => state.auth);
@@ -14,8 +15,8 @@ function PortalHandler() {
       //   return <DriverPortal />;
       // case "accountant":
       //   return <AccountantPortal />;
-      // case "humanResourcesManager":
-      //   return <HumanResourcesManagerPortal />;
+      case "humanResourcesManager":
+        return <HumanResourcesManagerPortal />;
       // case "salesOfficer":
       //   return <SalesOfficerPortal />;
       // case "systemAdminstrator":

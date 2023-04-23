@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Quatation from "./components/customer/Quatation";
 import Feedback from "./components/customer/Feedback";
+import User from "./components/humanResource/Users";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
 
           <Route path="/quotation" element={<Quatation />} />
           <Route path="/feedback" element={<Feedback />} />
+
+          <Route path="/users" element={<User />} />
+          <Route path="/admin" element={<PortalHadler />} />
         </Routes>
 
       </Router>

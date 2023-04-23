@@ -13,6 +13,7 @@ const feedbackSchema = mongoose.Schema(
     reply: {
       type: String,
       required: [false],
+      default : "no reply"
     },
   },
   {

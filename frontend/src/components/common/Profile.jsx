@@ -98,7 +98,12 @@ const Profile = (props) => {
               <h3 className="text-center mb-5 mt-5 text-[22px] font-bold">
                 Update profile
               </h3> */}
-    <div className="flex">
+               <label className=" w-[150px] font-semibold text-sm text-gray-600 pb-5 ">
+                    Account Type  : {user.role}
+                  </label>
+                 
+    <div className="flex mt-6">
+      
                   <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
                     Name  :
                   </label>

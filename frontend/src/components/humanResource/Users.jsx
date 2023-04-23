@@ -10,12 +10,13 @@ import editImg from "../../assets/edit.png";
 import deleteImg from "../../assets/delete.png";
 
 
-const Feedback = () => {
+const Users = () => {
 
     const [ data , setData ] = useState([])
     const [ formData , setFormData ] = useState({
-        about : "",
-        details : "",
+        name : "",
+        email : "",
+        role : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -24,7 +25,7 @@ const Feedback = () => {
 
     useEffect(()=>{
 
-        axios.get("http://localhost:8080/api/feedback/")
+        axios.get("http://localhost:8080/api/users/")
         .then((res) => {
             setData(res.data)
         })
@@ -43,8 +44,8 @@ const Feedback = () => {
 
     const onEdit = (id) => {
         const res = axios.put(`http://localhost:8080/api/feedback/${id}`, formData)
-        toast.success("Feedback updated successfully")
-        
+        toast.success("Users updated successfully")
+        setShowEditModal(false)
         setTimeout(function() {
           refreshPage()
           setFormData({})
@@ -53,7 +54,7 @@ const Feedback = () => {
 
     const onDelete = (id) => {
         const res = axios.delete(`http://localhost:8080/api/feedback/${id}`)
-          toast.success("Feedback deleted successfully")
+          toast.success("Users deleted successfully")
 
         
         setTimeout(function() {
@@ -64,7 +65,7 @@ const Feedback = () => {
 
     const onSubmit = () => {
         const res = axios.post("http://localhost:8080/api/feedback/", formData).then((res) => {
-          toast.success("Feedback added successfully")
+          toast.success("Users added successfully")
         }).catch(err => alert(err))
       
         
@@ -90,16 +91,16 @@ const Feedback = () => {
                 <PHeader />
 
 
-                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Feedback </h1>
+                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Users </h1>
 
                 <button onClick={() => setShowCreateModal(true)} className="ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
                 <table className=" mx-auto mt-[50px] w-[850px] h-[300px] ml-[150px]  ">
 
 <thead className=" bg-[#2E4960] text-white sticky top-0">
     <tr>
-    <th className="p-3">name</th>
-    <th className="p-3">Description</th>
-    <th className="p-3">Reply</th>
+    <th className="p-3">Name</th>
+    <th className="p-3">Email</th>
+    <th className="p-3">Role</th>
     {/* <th className="p-3">category</th>
     <th className="p-3">qty</th> */}
     <th className="p-3">action</th>
@@ -112,9 +113,9 @@ const Feedback = () => {
 
                         <>
                         <tr className="hover:bg-[#efeeee] border-[2px]">
-                          <td className="p-3">{item.about}</td>
-                          <td className="p-3 w-[350px]">{item.details}</td>
-                          <td className="p-3 w-[150px]">{item.reply}</td>
+                          <td className="p-3 w-[350px]">{item.name}</td>
+                          <td className="p-3 w-[350px]">{item.email}</td>
+                          <td className="p-3 w-[150px]">{item.role}</td>
                           {/* <td className="p-3 w-[250px]">{item.category}</td>
                           <td className="p-3">{item.qty}</td> */}
                         
@@ -161,7 +162,7 @@ const Feedback = () => {
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Add New Feedback
+              Add New Users
             </h2>
             
             
@@ -189,16 +190,16 @@ const Feedback = () => {
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Edit Feedback
+              Edit Users
             </h2>
             
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add about</label>
-              <input  id="about" name="about" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
+              <input  id="name" name="name" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Desciption</label>
-              <input  id="details" name="details" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Email</label>
+              <input  id="email" name="email" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
 <div className="flex">
@@ -216,4 +217,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback;
+export default Users;
