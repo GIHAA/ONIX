@@ -44,7 +44,7 @@ let user;
       role: role
     })
   }else{
-  let user = await User.create({
+   user = await User.create({
     name,
     email,
     address,
@@ -54,6 +54,7 @@ let user;
   })
   }
 
+  console.log(user)
   if (user) {
     res.status(201).json({
       _id: user.id,
@@ -158,6 +159,14 @@ const deleteUser = asyncHandler(async (req, res) => {
   
 })
 
+const deleteadmin = asyncHandler(async (req, res) => {
+  const id = req.params.id
+  const user  = await User .findByIdAndDelete(id)
+
+  user ? res.status(201).json(user ) : res.status(400).json({message : "Error"})
+
+})
+
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET || "213131", {
     expiresIn: '30d',
@@ -169,5 +178,6 @@ module.exports = {
   loginUser,
   viewUsers,
   updateUser,
-  deleteUser
+  deleteUser,
+  deleteadmin
 }

@@ -6,7 +6,8 @@ const {
   loginUser,
   updateUser,
   deleteUser,
-  viewUsers
+  viewUsers,
+  deleteadmin
 } = require('../controllers/userController')
 const { protect , userProtect , adminProtect} = require('../middleware/authMiddleware')
 
@@ -14,7 +15,8 @@ router.get('/', viewUsers)
 router.post('/',registerUser)
 router.post('/login', loginUser)
 router.put('/:id', updateUser)
-router.delete('/',protect, userProtect, deleteUser)
+router.delete('/', deleteUser)
+router.delete('/:id', deleteadmin)
 
 
 

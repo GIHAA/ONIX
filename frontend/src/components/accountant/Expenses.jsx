@@ -13,59 +13,21 @@ import deleteImg from "../../assets/delete.png";
 const Users = () => {
 
     const [ data , setData ] = useState([])
-    const [image, setImage] = useState("");
     const [ formData , setFormData ] = useState({
-        name : "",
-        email : "",
-        role : "",
+      invoiceno : "",
+      description : "",
+      date : new Date,
+      Remarks : "",
+      Amount : 0,
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
-    const { about, details } = formData;
-
-    const convertToBase64 = (e) => {
-      console.log(e);
-      var reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = () => {
-        const imgElement = document.createElement("img");
-        imgElement.src = reader.result;
-        imgElement.onload = () => {
-          const canvas = document.createElement("canvas");
-          const MAX_WIDTH = 630;
-          const MAX_HEIGHT = 630;
-          let width = imgElement.width;
-          let height = imgElement.height;
-  
-          if (width > height) {
-            if (width > MAX_WIDTH) {
-              height *= MAX_WIDTH / width;
-              width = MAX_WIDTH;
-            }
-          } else {
-            if (height > MAX_HEIGHT) {
-              width *= MAX_HEIGHT / height;
-              height = MAX_HEIGHT;
-            }
-          }
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(imgElement, 0, 0, width, height);
-          const dataURL = canvas.toDataURL(e.target.files[0].type, 0.5);
-          setImage(dataURL);
-        };
-      };
-      reader.onerror = (error) => {
-        console.log("Error: ", error);
-      };
-      setFormData({ ...formData, image: image });
-    };
+    const { invoiceno, description,  date , Remarks, Amount } = formData;
 
     useEffect(()=>{
 
-        axios.get("http://localhost:8080/api/users/")
+        axios.get("http://localhost:8080/api/expenses/")
         .then((res) => {
             setData(res.data)
         })
@@ -76,14 +38,16 @@ const Users = () => {
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
     const refreshPage = () => {
-      axios.get("http://localhost:8080/api/users/")
+      axios.get("http://localhost:8080/api/expenses/")
       .then((res) => {
           setData(res.data)
       })
     }
 
     const onEdit = (id) => {
-        const res = axios.put(`http://localhost:8080/api/users/${id}`, formData)
+
+      alert(JSON.stringify(formData))
+        const res = axios.put(`http://localhost:8080/api/expenses/${id}`, formData)
         toast.success("Users updated successfully")
         setShowEditModal(false)
         setTimeout(function() {
@@ -93,7 +57,7 @@ const Users = () => {
     }
 
     const onDelete = (id) => {
-        const res = axios.delete(`http://localhost:8080/api/users/${id}`)
+        const res = axios.delete(`http://localhost:8080/api/expenses/${id}`)
           toast.success("Users deleted successfully")
 
         
@@ -105,8 +69,7 @@ const Users = () => {
 
     const onSubmit = () => {
 
-
-        const res = axios.post("http://localhost:8080/api/users/", formData).then((res) => {
+        const res = axios.post("http://localhost:8080/api/expenses/", formData).then((res) => {
           toast.success("Users added successfully")
         }).catch(err => alert(err))
       
@@ -133,17 +96,19 @@ const Users = () => {
                 <PHeader />
 
 
-                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Users </h1>
+                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Expenses management </h1>
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">
-                  <table className=" mx-auto mt-[50px] w-[850px] h-[300px] ml-[150px]  ">
+                  <table className=" mx-auto  w-[850px] h-[300px] ml-[150px]  ">
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
       <tr>
-      <th className="p-3">Name</th>
-      <th className="p-3">Email</th>
-      <th className="p-3">Role</th>
+      <th className="p-3">Invoice no</th>
+      <th className="p-3">Description</th>
+      <th className="p-3">Date</th>
+      <th className="p-3">Remarks</th>
+      <th className="p-3">Amount </th>
       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
       <th className="p-3">action</th>
@@ -156,9 +121,11 @@ const Users = () => {
   
                           <>
                           <tr className="hover:bg-[#efeeee] border-[2px]">
-                            <td className="p-3 w-[350px]">{item.name}</td>
-                            <td className="p-3 w-[350px]">{item.email}</td>
-                            <td className="p-3 w-[150px]">{item.role}</td>
+                            <td className="p-3 w-[350px]">{item.invoiceno}</td>
+                            <td className="p-3 w-[350px]">{item.description}</td>
+                            <td className="p-3 w-[150px]">{new Date(item.date).toLocaleDateString()}</td>
+                            <td className="p-3 w-[150px]">{item.Remarks}</td>
+                            <td className="p-3 w-[150px]">{item.Amount }</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
                             <td className="p-3">{item.qty}</td> */}
                           
@@ -203,41 +170,29 @@ const Users = () => {
       </div>
 
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-8">
+        <div className="fixed inset-0 z-50  overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white w-[500px] rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Add New Users
+              Add Expenses
             </h2>
             
-            
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
-              <input  id="name" name="name" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+            <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="invoiceno">Invoice No</label>
+<input type="text" id="invoiceno" name="invoiceno" value={invoiceno} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="description">Description</label>
+<input type="text" id="description" name="description" value={description} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Date">Date</label>
+<input type="date" id="Date" name="Date" value={Date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Remarks">Remarks</label>
+<input type="text" id="Remarks" name="Remarks" value={Remarks} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Amount">Amount</label>
+<input type="number" id="Amount" name="Amount" value={Amount} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 
-              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Email</label>
-              <input  id="email" name="email" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-             
-              
-              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Password</label>
-              <input  id="password" name="password" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
- 
 
-              <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
-  <option value="customer">Customer</option>
-  <option value="driver">Driver</option>
-  <option value="accountant">Accountant</option>
-  <option value="humanResourcesManager">Human Resources Manager</option>
-  <option value="salesOfficer">Sales Officer</option>
-  <option value="systemAdminstrator">System Administrator</option>
-  <option value="stockController">Stock Controller</option>
-  <option value="customerServiceManager">Customer Service Manager</option>
-</select>
-{/* <input
-                className="w-full h-full py-6 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
-                accept="image/*"
-                type="file"
-                onChange={convertToBase64}
-              /> */}
 <div className="flex">
                 <button className="" onClick={() => setShowCreateModal(false)}>
                   Close
@@ -254,30 +209,26 @@ const Users = () => {
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Edit Users
+              Edit Expenses
             </h2>
             
-            
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
-              <input  id="name" name="name" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+            <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="invoiceno">Invoice No</label>
+<input type="text" id="invoiceno" name="invoiceno" value={invoiceno} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="description">Description</label>
+<input type="text" id="description" name="description" value={description} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Date">Date</label>
+<input type="date" id="Date" name="Date" value={Date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Remarks">Remarks</label>
+<input type="text" id="Remarks" name="Remarks" value={Remarks} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Amount">Amount</label>
+<input type="number" id="Amount" name="Amount" value={Amount} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 
-              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Email</label>
-              <input  id="email" name="email" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-
-              <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
-  <option value="customer">Customer</option>
-  <option value="driver">Driver</option>
-  <option value="accountant">Accountant</option>
-  <option value="humanResourcesManager">Human Resources Manager</option>
-  <option value="salesOfficer">Sales Officer</option>
-  <option value="systemAdminstrator">System Administrator</option>
-  <option value="stockController">Stock Controller</option>
-  <option value="customerServiceManager">Customer Service Manager</option>
-</select>
 <div className="flex">
-
-
                 <button className="" onClick={() => setShowEditModal(false)}>
                   Close
                 </button>

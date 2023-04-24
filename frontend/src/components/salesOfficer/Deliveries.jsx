@@ -227,7 +227,7 @@ const Users = () => {
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
 <input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-               <select name="status" onChange={onChange} defaultValue="ongoing">
+               <select name="status" onChange={onChange} defaultValue="ongoing" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="ongoing">ongoing</option>
   <option value="processing">processing</option>
   <option value="canceled">canceled</option>

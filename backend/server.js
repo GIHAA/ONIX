@@ -15,11 +15,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/users', require('./routes/userRoutes'))
-// app.use('/api/order', require('./routes/orderRoutes'))
 app.use('/api/feedback', require('./routes/feedBackRoutes'))
 app.use('/api/suppliers', require('./routes/suppliersRoutes'))
 app.use('/api/deliveries', require('./routes/deliveriesRoutes'))
 app.use('/api/order', require('./routes/orderRoutes'))
-
+app.use('/api/expenses', require('./routes/expensesRoutes'))
+app.use('/api/stock', require('./routes/stockRoutes'))
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

@@ -15,7 +15,6 @@ const Profile = (props) => {
       const user = {};
     };
     
-    const [bookings, setbookings] = useState([]);
   
     const [formData, setFormData] = useState({
       name: "",
@@ -27,7 +26,7 @@ const Profile = (props) => {
       _id: user._id,
     });
   
-    const { name, email, address, phone, password, password2, confirmpassword } =
+    const { name, email, address, phone, password, password2, confirmpassword,} =
       formData;
   
     const navigate = useNavigate();
@@ -45,8 +44,9 @@ const Profile = (props) => {
         toast.error("Please enter your password to confirm changes");
       }
       else{
-      
-        const response = updateUser(formData)
+        
+        const formDataID = { ...formData, _id: user._id} 
+        const response = updateUser(formDataID)
           .then(() => {
             toast.success("Profile updated successfully");
   
@@ -57,7 +57,7 @@ const Profile = (props) => {
             dispatch(login({ email , password }));
   
             //dispatch(reset());
-            navigate("/user");
+            navigate("/");
           })
           .catch((err) => {
             toast.error("An error occurred while updating profile");
@@ -191,13 +191,13 @@ const Profile = (props) => {
 </div>
   
               <div className="flex justify-end mt-7">
-              <button
+              {/* <button
                   onClick={onSubmit}
                   type="button"
                   className="transition mr-auto w-[25%] rounded-[100px] duration-200 bg-[#2E4960] hover:bg-[#2E4960] focus:bg-[#2E4960] focus:shadow-sm focus:ring-4 focus:ring-opacity-50 text-white py-2.5 text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
                 >
                   <span className="inline-block mr-2">Delete</span>
-                </button>
+                </button> */}
 
                 <button
                   onClick={onSubmit}

@@ -12,6 +12,9 @@ import User from "./components/humanResource/Users";
 import Suppliers from "./components/stockController/Suppliers";
 import Deliveries from "./components/salesOfficer/Deliveries";
 import Orders from "./components/salesOfficer/Orders";
+import Stock from "./components/stockController/Stock";
+import Expenses from "./components/accountant/Expenses";
+
 
 function App() {
   return (
@@ -30,9 +33,12 @@ function App() {
           <Route path="/admin" element={<PortalHadler />} />
 
           <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/stock" element={<Stock />} />
 
           <Route path="/deliveries" element={<Deliveries />} />
           <Route path="/orders" element={<Orders />} />
+
+          <Route path="/expenses" element={<Expenses />} />
         </Routes>
 
       </Router>
