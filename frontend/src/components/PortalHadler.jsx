@@ -3,6 +3,9 @@ import { useSelector } from "react-redux";
 import CustomerPortal from "./customer/CustomerPortal";
 import Home from "./Home";
 import HumanResourcesManagerPortal from "./humanResource/HumanResourcePortal";
+import StockControllerPortal from "./stockController/StockControllerPortal";
+import SalesOfficerPortal from "./salesOfficer/SalesOfficerPortal";
+
 
 function PortalHandler() {
   const { user } = useSelector((state) => state.auth);
@@ -12,19 +15,17 @@ function PortalHandler() {
       case "customer":
         return <CustomerPortal />;
       // case "driver":
-      //   return <DriverPortal />;
+      //   return <DriverPortal />; // optional
       // case "accountant":
       //   return <AccountantPortal />;
       case "humanResourcesManager":
         return <HumanResourcesManagerPortal />;
-      // case "salesOfficer":
-      //   return <SalesOfficerPortal />;
-      // case "systemAdminstrator":
-      //   return <SystemAdministratorPortal />;
-      // case "stockController":
-      //   return <StockControllerPortal />;
+      case "salesOfficer":
+        return <SalesOfficerPortal />;
+      case "stockController":
+        return <StockControllerPortal />;
       // case "customerServiceManager":
-      //   return <CustomerServiceManagerPortal />;
+      //   return <CustomerServiceManagerPortal />; // optional
       default:
         return <CustomerPortal />;
     }

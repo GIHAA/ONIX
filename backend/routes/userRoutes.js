@@ -13,7 +13,7 @@ const { protect , userProtect , adminProtect} = require('../middleware/authMiddl
 router.get('/', viewUsers)
 router.post('/',registerUser)
 router.post('/login', loginUser)
-router.post('/update',protect, userProtect, updateUser)
+router.put('/:id', updateUser)
 router.delete('/',protect, userProtect, deleteUser)
 
 

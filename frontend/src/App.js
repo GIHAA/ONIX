@@ -9,6 +9,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import Quatation from "./components/customer/Quatation";
 import Feedback from "./components/customer/Feedback";
 import User from "./components/humanResource/Users";
+import Suppliers from "./components/stockController/Suppliers";
+import Deliveries from "./components/salesOfficer/Deliveries";
+import Orders from "./components/salesOfficer/Orders";
 
 function App() {
   return (
@@ -25,6 +28,11 @@ function App() {
 
           <Route path="/users" element={<User />} />
           <Route path="/admin" element={<PortalHadler />} />
+
+          <Route path="/suppliers" element={<Suppliers />} />
+
+          <Route path="/deliveries" element={<Deliveries />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
 
       </Router>

@@ -96,7 +96,7 @@ function Home() {
           </div>
          <p className="pl-1"> Don't have an account?</p>
           <button className="rounded-full w-[150px] bg-primary text-white group border-2 bg-[#001233]  px-6 py-3 my-2 flex items-center  hover:border-[#000]">
-              <Link to='/por' smooth={true} duration={500}>
+              <Link to='/register' smooth={true} duration={500}>
                 Register Now
               </Link>
             </button>

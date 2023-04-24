@@ -108,7 +108,7 @@ function Home () {
     }
 
     if (isSuccess || user) {
-      navigate("/portalhadler");
+      navigate("/");
     }
 
     dispatch(reset());

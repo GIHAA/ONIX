@@ -6,23 +6,39 @@ const OrderSchema = mongoose.Schema(
         type: String,
         required: [true, 'Please add a name'],
     },
-    cus_id: {
-        type: String,
-        required: [true, 'Please add a cus_id'],
+    date: {
+        type: Date,
+        required: true,
     },
-    price: {
+    phone: {
         type: String,
         required: [true, 'Please add an price'],
         unique: true,
     },
-    details: {
+    location: {
         type: String,
         required: [true, 'Please add a details'],
     },
-    status: {
+    items : {
         type: String,
-        enum: ['pending', 'processing', 'completed' , 'canceled' ],
-        default: 'pending',
+        required: [true, 'Please add a items'],
+    },
+    noi : {
+        type : Number,
+        required : [true, 'Please add a totalunit'],
+    },
+    reason : {
+        type : String,
+        required : [true, 'Please add a reason'],
+    },
+    status: {
+      type: String,
+      enum: ['ready' , 'pending' ],
+    },
+    type: {
+        type: String,
+        enum: ['online', 'physical' ],
+        default: 'physical',
     },
   },
   {

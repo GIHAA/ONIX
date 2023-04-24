@@ -12,7 +12,7 @@ const viewUsers = asyncHandler(async (req, res) => {
 
 //register user
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, address , phone ,  password  , image} = req.body
+  const { name, email, address , phone ,  password  , image , role} = req.body
 
   if (!name || !email || !password) {
     res.status(400)
@@ -32,7 +32,19 @@ const registerUser = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt)
 
   // Create user
-  const user = await User.create({
+let user;
+  if(role){
+     user = await User.create({
+      name,
+      email,
+      address,
+      phone,
+      password: hashedPassword,
+      image: image,
+      role: role
+    })
+  }else{
+  let user = await User.create({
     name,
     email,
     address,
@@ -40,6 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
     image: image
   })
+  }
 
   if (user) {
     res.status(201).json({
@@ -94,41 +107,25 @@ const getMe = asyncHandler(async (req, res) => {
 //update user
 const updateUser = asyncHandler(async (req, res) => {
 
-  const user = await User.findOne({ _id: req.body._id})
+  const id = req.params.id;
+  const { name , email, role } = req.body;
 
-  
-  if (user ) {
-    const salt = await bcrypt.genSalt(10)
+  // Wait for the Feedback model to find the document by ID
+  const user = await User.findOne({ _id: id });
 
-    if(req.body.password){
-      const hashedPassword = await bcrypt.hash(req.body.password, salt)
-      user.password = hashedPassword
-    }
+  if (user) {
+    // Update the feedback document with new values
+    user.name = name || user.name;
+    user.email = email || user.email;
+    user.role = role || user.role;
 
-    user.name = req.body.name || user.name
-    user.email = req.body.email || user.email
-    user.role = req.body.role || user.role
-    user.password =  user.password
-    user.address = req.body.address || user.address
-    user.phone = req.body.phone || user.phone
+    // Save the updated document and wait for it to complete
+    await user.save();
 
-    const updatedUser = await user.save()
-
-    res.json({
-      _id: updatedUser.id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      address: updatedUser.address,
-      phone: updatedUser.phone,
-      token: generateToken(updatedUser._id),
-      role: updatedUser.role
-    })
-    
+    res.status(201).json(user);
   } else {
-    res.status(400)
-    throw new Error('update failed')
+    res.status(400).json({ message: "Error" });
   }
-
 })
 
 
