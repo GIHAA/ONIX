@@ -27,6 +27,7 @@ const Users = () => {
     
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showOrderModal, setShowOrderModal] = useState(false);
     const [ id , setId ] = useState("")
     const {name, date , phone , location , items , noi , reason , status , type } = formData;
 
@@ -156,6 +157,13 @@ const Users = () => {
                           
                             <td className="p-3">
                             <div className="flex ml-12">
+
+                            <button className="flex px-5 py-1 mr-5 bg-[#001233] text-white font-semibold hover:bg-[#760d0d] rounded-xl "
+                                onClick={() =>{ setShowOrderModal(true
+                                ); setId(items._id);}}>
+                                  ID
+                                </button>
+
                                 <button onClick={() => {setShowEditModal(true); setId(items._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                   <span
                                   className="flex">
@@ -213,7 +221,7 @@ const Users = () => {
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Location</label>
 <input id="location" name="location" value={location} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Item</label>
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Item <p className="text-[12px]">(enter items with a space or , ex- item1,item2 item3)</p></label>
 <input id="items" name="items" value={items} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 {/* <label className="font-semibold text-sm text-gray-600 pb-1 block">NOI</label>
@@ -283,6 +291,42 @@ const Users = () => {
 </div>
           </div>
         </div>
+      )}
+
+      {showOrderModal && (
+       <><h2 className="text-lg font-bold mb-4">Order details</h2>
+       <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
+         <div className="bg-white rounded-lg p-8">
+           <label htmlFor="order-details" className="block font-medium mb-2">
+             Enter order details:
+           </label>
+           <input
+             id="order-details"
+             type="text"
+             value={id}
+             className="block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 mb-4 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+             placeholder="Enter order details"
+           />
+
+<div className="flex">
+  <button className="" onClick={() => setShowOrderModal(false)}>
+                    Close
+                  </button>
+             <button
+               type="button"
+               className="inline-flex  ml-auto items-center px-4 py-2 border border-transparent rounded-md font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+               onClick={() => {
+                 const orderDetails = document.getElementById('order-details');
+                 orderDetails.select();
+                 document.execCommand('copy');
+               }}
+             >
+               Copy
+             </button>
+</div>
+         </div>
+       </div>
+       </>
       )}
     </>
   );

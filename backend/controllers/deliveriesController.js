@@ -11,14 +11,24 @@ const viewDeliveries = asyncHandler(async (req, res) => {
 })
 
 const addDeliveries = asyncHandler(async (req, res) => {
-    const { driver, no , order_date , delivery_date } = req.body
+    const { driver, no , order_date , delivery_date , orderid } = req.body
+
+    const exdeliveries = await Deliveries.findOne({ no })
+
+    if (exdeliveries) {
+      res.status(400)
+      throw new Error('User already exists')
+    }
+  
 
     const deliveries = await Deliveries.create({
         no,
         driver,
         order_date,
         delivery_date,
-        status : 'ongoing'
+        status : 'ongoing',
+        orderid
+
     })
 
     deliveries? res.status(201).json(deliveries) : res.status(400).json({message : "Error"})
@@ -27,7 +37,7 @@ const addDeliveries = asyncHandler(async (req, res) => {
 
 const updateDeliveries = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const { no, driver, order_date , delivery_date , status} = req.body;
+    const { no, driver, order_date , delivery_date , status , orderid} = req.body;
   
     // Wait for the Deliveries model to find the document by ID
     const deliveries = await Deliveries.findOne({ _id: id });
@@ -39,6 +49,7 @@ const updateDeliveries = asyncHandler(async (req, res) => {
       deliveries.order_date= order_date|| deliveries.reply;
       deliveries.delivery_date = delivery_date || deliveries.delivery_date;
       deliveries.status = status || deliveries.status;
+      deliveries.orderid = orderid || deliveries.orderid;
       // Save the updated document and wait for it to complete
       await deliveries.save();
   

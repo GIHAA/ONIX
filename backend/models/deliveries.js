@@ -18,6 +18,10 @@ const deliverySchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    orderid :{
+      type: String,
+      required: [true, "Please add a orderid"],
+    },
     status : {
       type: String,
       enum: ['ongoing', 'processing', 'completed' , 'canceled' ],

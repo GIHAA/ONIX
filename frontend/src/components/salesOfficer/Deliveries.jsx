@@ -23,13 +23,16 @@ const Users = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
-    const { no , driver , order_date , delivery_date } = formData;
+    const { no , driver , order_date , delivery_date , orderid } = formData;
+    const [ filteredData , setFilteredData ] = useState([])
+    const [ searchTerm , setSearchTerm ] = useState('')
 
     useEffect(()=>{
 
         axios.get("http://localhost:8080/api/deliveries/")
         .then((res) => {
             setData(res.data)
+            setFilteredData(res.data)
         })
         .catch(err => alert(err))
     
@@ -41,6 +44,7 @@ const Users = () => {
       axios.get("http://localhost:8080/api/deliveries/")
       .then((res) => {
           setData(res.data)
+          setFilteredData(res.data)
       })
     }
 
@@ -58,7 +62,7 @@ const Users = () => {
 
     const onDelete = (id) => {
         const res = axios.delete(`http://localhost:8080/api/deliveries/${id}`)
-          toast.success("Users deleted successfully")
+          toast.success("deliveries deleted successfully")
 
         
         setTimeout(function() {
@@ -68,19 +72,35 @@ const Users = () => {
     }
 
     const onSubmit = () => {
-
+      if (!no || !driver || !order_date || !delivery_date || !orderid) {
+        // If any of the required attributes are missing, show an error message and don't submit
+        toast.error("Please fill in all required fields.");
+        return;
+      }
 
         const res = axios.post("http://localhost:8080/api/deliveries/", formData).then((res) => {
-          toast.success("Users added successfully")
-        }).catch(err => alert(err))
+          toast.success("deliveries added successfully")
+        }).catch(err => toast.error("failed to add deliveries"))
       
         
-
         setTimeout(function() {
           refreshPage()
         }, 2000);
        
     }
+
+    const onSearch = (e) => {
+      const searchQuery = e.target.value.toLowerCase();
+      const filteredResults = data.filter((item) => 
+          item.no.toLowerCase().includes(searchQuery) ||
+          item.driver.toLowerCase().includes(searchQuery) ||
+          item.status.toLowerCase().includes(searchQuery) ||
+          item.orderid.toLowerCase().includes(searchQuery)
+      );
+      setFilteredData(filteredResults);
+      setSearchTerm(searchQuery);
+  }
+
 
   return (
     <>
@@ -101,6 +121,9 @@ const Users = () => {
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">
+<div className="ml-[150px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+            </div>
                   <table className=" mx-auto  w-[850px] h-[300px] ml-[150px]  ">
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
@@ -112,12 +135,13 @@ const Users = () => {
       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
        <th className="p-3">Status</th>
+       <th className="p-3">Order ID</th>
       <th className="p-3">action</th>
       </tr>
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {data.map((item) => {
+  {filteredData.map((item) => {
                         return(
   
                           <>
@@ -129,7 +153,7 @@ const Users = () => {
                             <td className="p-3 w-[150px]">{item.status}</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
                             <td className="p-3">{item.qty}</td> */}
-                          
+                          <td className="p-3 w-[150px]">{item.orderid}</td>
                             <td className="p-3">
                             <div className="flex ml-12">
                                 <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
@@ -174,7 +198,7 @@ const Users = () => {
         <div className="fixed inset-0 z-50  overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white w-[500px] rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Add New Users
+              Add New Deliveries
             </h2>
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block">Add No</label>
@@ -186,12 +210,14 @@ const Users = () => {
 
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order Date</label>
-<input  id="order_date" name="order_date" value={order_date} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input  id="order_date" name="order_date" value={order_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
-<input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
-
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order ID</label>
+<input  id="orderid" name="orderid" value={orderid} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+ 
 
 
 <div className="flex">
@@ -210,7 +236,7 @@ const Users = () => {
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Edit Users
+              Edit Deliveries
             </h2>
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block">Add No</label>
@@ -222,10 +248,15 @@ const Users = () => {
 
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order Date</label>
-<input  id="order_date" name="order_date" value={order_date} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input  id="order_date" name="order_date" value={order_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
-<input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order ID</label>
+<input  id="orderid" name="orderid" value={orderid} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+ 
+
 
                <select name="status" onChange={onChange} defaultValue="ongoing" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="ongoing">ongoing</option>
