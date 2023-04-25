@@ -53,7 +53,7 @@ const updateDeliveries = asyncHandler(async (req, res) => {
       // Update the deliveries document with new values
       deliveries.no = no || deliveries.no;
       deliveries.driver = driver || deliveries.driver;
-      deliveries.order_date= order_date|| deliveries.reply;
+      deliveries.order_date= order_date|| deliveries.order_date;
       deliveries.delivery_date = delivery_date || deliveries.delivery_date;
       deliveries.status = status || deliveries.status;
       deliveries.orderid = orderid || deliveries.orderid;
