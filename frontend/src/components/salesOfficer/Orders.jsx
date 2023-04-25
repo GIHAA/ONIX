@@ -25,6 +25,10 @@ const Users = () => {
       type: "physical"
     });
     
+    const isNumberAndTenDigit = (str) => {
+      return /^\d{10}$/.test(str);
+    };
+
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [showOrderModal, setShowOrderModal] = useState(false);
@@ -91,6 +95,11 @@ const Users = () => {
       if (!name || !date || !phone || !location || !items || !noi || !reason || !status || !type) {
         // If any of the required attributes are missing, show an error message and don't submit
         toast.error("Please fill in all required fields.");
+        return;
+      }
+
+      if(!isNumberAndTenDigit(phone)){
+        toast.error("Please enter a valid phone number.");
         return;
       }
 
