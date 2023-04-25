@@ -22,7 +22,7 @@ const Users = () => {
       noi: "",
       reason: "",
       status: "",
-      type: ""
+      type: "physical"
     });
     
     const [showEditModal, setShowEditModal] = useState(false);
@@ -58,7 +58,7 @@ const Users = () => {
       const newformData = { ...formData , status : "pending" , noi : numItems}
         const res = axios.put(`http://localhost:8080/api/order/${id}`, newformData)
 
-        toast.success("Users updated successfully")
+        toast.success("orders updated successfully")
         setShowEditModal(false)
         setTimeout(function() {
           refreshPage()
@@ -70,7 +70,7 @@ const Users = () => {
 
     const onDelete = (id) => {
         const res = axios.delete(`http://localhost:8080/api/order/${id}`)
-          toast.success("Users deleted successfully")
+          toast.success("orders deleted successfully")
 
         
         setTimeout(function() {
@@ -81,14 +81,21 @@ const Users = () => {
 
     const onSubmit = () => {
 
-      const items = formData.items.split(/[,\s]+/);
-      const numItems = items.length;
+      const noitems = formData.items.split(/[,\s]+/);
+      const numItems = noitems.length;
         
       const newformData = { ...formData , status : "pending" , noi : numItems}
       
+      const { name, date, phone, location, items, noi, reason, status, type } = newformData;
+
+      if (!name || !date || !phone || !location || !items || !noi || !reason || !status || !type) {
+        // If any of the required attributes are missing, show an error message and don't submit
+        toast.error("Please fill in all required fields.");
+        return;
+      }
 
         const res = axios.post("http://localhost:8080/api/order/", newformData).then((res) => {
-          toast.success("Users added successfully")
+          toast.success("orders added successfully")
         }).catch(err => alert(err))
     
         setTimeout(function() {
