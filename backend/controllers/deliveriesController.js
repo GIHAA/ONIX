@@ -17,7 +17,7 @@ const addDeliveries = asyncHandler(async (req, res) => {
 
     if (exdeliveries) {
       res.status(400)
-      throw new Error('User already exists')
+      throw new Error('no already exists')
     }
   
 
@@ -38,6 +38,13 @@ const addDeliveries = asyncHandler(async (req, res) => {
 const updateDeliveries = asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { no, driver, order_date , delivery_date , status , orderid} = req.body;
+
+    const exdeliveries = await Deliveries.findOne({ no })
+
+    if (exdeliveries) {
+      res.status(400)
+      throw new Error('no already exists')
+    }
   
     // Wait for the Deliveries model to find the document by ID
     const deliveries = await Deliveries.findOne({ _id: id });
