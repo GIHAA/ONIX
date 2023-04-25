@@ -105,6 +105,18 @@ const Users = () => {
 
     const onSubmit = () => {
 
+      const { name, email, password, role } = formData;
+
+      if (!name || !email || !password || !role ) {
+        // If any of the required attributes are missing, show an error message and don't submit
+        toast.error("Please fill in all required fields.");
+        return;
+      }
+      
+      if( !email.includes("@") || !email.includes(".") ){
+        toast.error("Please enter a valid email address.");
+        return;
+      }
 
         const res = axios.post("http://localhost:8080/api/users/", formData).then((res) => {
           toast.success("Users added successfully")
@@ -135,7 +147,7 @@ const Users = () => {
 
                 <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Users </h1>
 
-                <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
+                <button onClick={() => setShowCreateModal(true)} className=" fixed inset-0 z-50 h-[40px] mt-[220px] w-[260px] mt-5 items-center px-5 py-1 mr-5 bg-[#] text-white font-semibold  rounded-xl"></button>
 <div className="h-[500px] overflow-y-scroll">
                   <table className=" mx-auto mt-[50px] w-[850px] h-[300px] ml-[150px]  ">
   

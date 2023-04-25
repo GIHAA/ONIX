@@ -169,7 +169,7 @@ If you are new to our store, we glad to have you as member.
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]"
               />
               <label className="font-semibold text-sm text-gray-600 pb-1 block">
-                repeat Password
+                Confirm Password
               </label>
               <input
                 id="password2"
@@ -179,8 +179,11 @@ If you are new to our store, we glad to have you as member.
                 type="text"
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]"
               />
+                            <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Add a Profile Picture
+              </label>
               <input
-                className="w-full h-full py-6 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
+                className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
                 accept="image/*"
                 type="file"
                 onChange={convertToBase64}
