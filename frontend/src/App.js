@@ -16,24 +16,6 @@ import Stock from "./components/stockController/Stock";
 import Expenses from "./components/accountant/Expenses";
 
 
-
-import AllCategory from './components/Page/AllCategory';
-import SideMenu from './components/Layouts/AdminSideMenu';
-import AddCategory from './components/Page/AddCategory';
-import Adminlayout from './components/Layouts/AdminLayouts';
-import UpdateCategory from './components/Page/UpdateCategory';
-import InventryReport from './components/Page/Inventry_Reports';
-import AllIssueItems from './components/Page/AllIssueItems';
-import AddIssueItem from './components/Page/AddIssueItem';
-import UpdateIssueItems from './components/Page/UpdateIssueItems';
-import DashboardInventry from './components/Page/DashboardInventry';
-
-
-
-
-
-
-
 function App() {
   return (
     <>
@@ -57,25 +39,6 @@ function App() {
           <Route path="/orders" element={<Orders />} />
 
           <Route path="/expenses" element={<Expenses />} />
-
-
-
-
-
-
-        <Route path="/add" element={<Adminlayout><AddCategory/></Adminlayout>}/>
-        <Route path="/all_categories" element={<Adminlayout><AllCategory/></Adminlayout>} /> 
-        <Route path="/update/:id" element={<Adminlayout><UpdateCategory/></Adminlayout>}/>
-        <Route path="/inventryReport"element={<Adminlayout><InventryReport/></Adminlayout>}/>
-
-        <Route path="/getAllItems"element={<Adminlayout><AllIssueItems/></Adminlayout>}/>
-        <Route path="/add_IssueItem" element={<Adminlayout><AddIssueItem/></Adminlayout>} />
-        <Route path="/update_IssueItem/:id" element={<Adminlayout><UpdateIssueItems/></Adminlayout>} />
-        <Route path="/inventry_dashboard" element={<Adminlayout><DashboardInventry/></Adminlayout>} />
-
-
-
-
         </Routes>
 
       </Router>
