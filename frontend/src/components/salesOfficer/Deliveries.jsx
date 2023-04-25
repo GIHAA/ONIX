@@ -51,13 +51,14 @@ const Users = () => {
     const onEdit = (id) => {
         const res = axios.put(`http://localhost:8080/api/deliveries/${id}`, formData).then((res) => {
           toast.success("deliveries updated successfully")
+          setTimeout(function() {
+            refreshPage()
+            setFormData({})
+          }, 2000);
         }).catch(err => toast.error("failed to update deliveries"))
 
         setShowEditModal(false)
-        setTimeout(function() {
-          refreshPage()
-          setFormData({})
-        }, 2000);
+
     }
 
     const onDelete = (id) => {
