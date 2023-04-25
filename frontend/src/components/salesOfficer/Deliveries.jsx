@@ -49,10 +49,10 @@ const Users = () => {
     }
 
     const onEdit = (id) => {
-        const res = axios.put(`http://localhost:8080/api/deliveries/${id}`, formData)
+        const res = axios.put(`http://localhost:8080/api/deliveries/${id}`, formData).then((res) => {
+          toast.success("deliveries updated successfully")
+        }).catch(err => toast.error("failed to update deliveries"))
 
-        alert(JSON.stringify(formData))
-        toast.success("Users updated successfully")
         setShowEditModal(false)
         setTimeout(function() {
           refreshPage()
