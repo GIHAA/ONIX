@@ -85,6 +85,7 @@ const Users = () => {
         
         setTimeout(function() {
           refreshPage()
+          setFormData({})
         }, 2000);
        
     }
