@@ -17,7 +17,7 @@ function sideBar() {
       
     <div className='mt-4'>
     <img src={logo} alt="logo" className=" w- h-[100px] mx-auto object-contain"></img>
-      <h3 className=" text-[#2E4960] font-bold text-l text-center w-[150px] leading-5 my-2 tracking-wide mx-auto">
+      <h3 className=" text-[#2E4960] font-bold text-l text-center w-[210px] leading-5 my-2 tracking-wide mx-auto">
 
       </h3>
     </div>
@@ -30,7 +30,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+{/* <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/> */}
   Profile
 </NavLink>
 
@@ -39,7 +39,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Suppliers
 </NavLink>
 
@@ -48,8 +48,27 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Stock
+</NavLink>
+
+<NavLink
+  to="/"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+    Reports
+</NavLink>
+
+<NavLink
+  to="/"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+    My Activities 
+
 </NavLink>
 
 {/* <NavLink
@@ -57,7 +76,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Quotation
 </NavLink> */}
 

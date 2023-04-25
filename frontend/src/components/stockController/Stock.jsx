@@ -10,7 +10,7 @@ import editImg from "../../assets/edit.png";
 import deleteImg from "../../assets/delete.png";
 
 
-const Users = () => {
+const User = () => {
 
     const [ data , setData ] = useState([])
     const [ formData , setFormData ] = useState({
@@ -24,12 +24,15 @@ const Users = () => {
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
     const { stockid , name , quantity , date , status } = formData;
+    const [ filteredData , setFilteredData ] = useState([])
+    const [ searchTerm , setSearchTerm ] = useState('')
 
     useEffect(()=>{
 
         axios.get("http://localhost:8080/api/stock/")
         .then((res) => {
             setData(res.data)
+            setFilteredData(res.data)
         })
         .catch(err => alert(err))
     
@@ -41,12 +44,13 @@ const Users = () => {
       axios.get("http://localhost:8080/api/stock/")
       .then((res) => {
           setData(res.data)
+          filteredData(res.data)
       })
     }
 
     const onEdit = (id) => {
         const res = axios.put(`http://localhost:8080/api/stock/${id}`, formData)
-        toast.success("Users updated successfully")
+        toast.success("stocks updated successfully")
         setShowEditModal(false)
         setTimeout(function() {
           refreshPage()
@@ -56,20 +60,26 @@ const Users = () => {
 
     const onDelete = (id) => {
         const res = axios.delete(`http://localhost:8080/api/stock/${id}`)
-          toast.success("Users deleted successfully")
+          toast.success("stocks deleted successfully")
 
         
         setTimeout(function() {
           refreshPage()
-        }, 2000);
+        }, 3000);
 
     }
 
+
     const onSubmit = () => {
 
+      if (!stockid || !name || !quantity || !date || !status) {
+        // If any of the required attributes are missing, show an error message and don't submit
+        toast.error("Please fill in all required fields.");
+        return;
+      }
         const res = axios.post("http://localhost:8080/api/stock/", formData).then((res) => {
-          toast.success("Users added successfully")
-        }).catch(err => alert(err))
+          toast.success("stocks added successfully")
+        }).catch(err => toast.error("Failed to add stock"))
       
         
 
@@ -78,6 +88,17 @@ const Users = () => {
         }, 2000);
        
     }
+    const onSearch = (e) => {
+      const searchQuery = e.target.value.toLowerCase();
+      const filteredResults = data.filter((item) => 
+          item.stockid.toLowerCase().includes(searchQuery) ||
+          item.name.toLowerCase().includes(searchQuery) ||
+          item.status.toLowerCase().includes(searchQuery) 
+      );
+      setFilteredData(filteredResults);
+      setSearchTerm(searchQuery);
+  }
+    
 
   return (
     <>
@@ -98,6 +119,9 @@ const Users = () => {
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">
+<div className="ml-[150px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+            </div>
                   <table className=" mx-auto  w-[850px] h-[300px] ml-[150px]  ">
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
@@ -113,7 +137,7 @@ const Users = () => {
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {data.map((item) => {
+  {filteredData.map((item) => {
                         return(
   
                           <>
@@ -169,7 +193,7 @@ const Users = () => {
         <div className="fixed inset-0 z-50  overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white w-[500px] rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Add New Users
+              Add New stocks
             </h2>
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="stockid">Stock ID</label>
@@ -208,7 +232,7 @@ const Users = () => {
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Edit Users
+              Edit stocks
             </h2>
             
             
@@ -228,4 +252,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default User;

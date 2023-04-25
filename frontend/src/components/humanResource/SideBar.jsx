@@ -30,7 +30,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
   Profile
 </NavLink>
 
@@ -39,7 +39,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Employees Registration
 </NavLink>
 
@@ -48,7 +48,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Employees List
 </NavLink>
 
@@ -57,7 +57,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Employees Attendance
 </NavLink>
 
@@ -66,7 +66,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Employees Leaves
 </NavLink>
 
@@ -76,7 +76,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Reports
 </NavLink>
 
@@ -86,7 +86,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     My Activities
 </NavLink>
 {/* <NavLink
@@ -94,7 +94,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Quotation
 </NavLink> */}
 

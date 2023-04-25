@@ -24,7 +24,9 @@ const Users = () => {
       status: "",
       type: "physical"
     });
-    
+    const [ filteredData , setFilteredData ] = useState([])
+    const [ searchTerm , setSearchTerm ] = useState('')
+
     const isNumberAndTenDigit = (str) => {
       return /^\d{10}$/.test(str);
     };
@@ -35,11 +37,25 @@ const Users = () => {
     const [ id , setId ] = useState("")
     const {name, date , phone , location , items , noi , reason , status , type } = formData;
 
+    const onSearch = (e) => {
+
+      const searchQuery = e.target.value.toLowerCase();
+      const filteredResults = data.filter((item) => 
+          item.name.toLowerCase().includes(searchQuery) ||
+          item.phone.toLowerCase().includes(searchQuery) ||
+          item.location.toLowerCase().includes(searchQuery) ||
+          item.items.toLowerCase().includes(searchQuery)
+      );
+      setFilteredData(filteredResults);
+      setSearchTerm(searchQuery);
+  }
+
     useEffect(()=>{
 
         axios.get("http://localhost:8080/api/order/")
         .then((res) => {
             setData(res.data)
+            setFilteredData(res.data)
         })
         .catch(err => alert(err))
     
@@ -132,6 +148,10 @@ const Users = () => {
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">
+
+<div className="ml-[150px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+            </div>
                   <table className=" mx-auto  w-[850px] h-[300px] ml-[150px]  ">
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
@@ -151,7 +171,7 @@ const Users = () => {
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {data.map((items) => {
+  {filteredData.map((items) => {
                         return(
   
                           <>

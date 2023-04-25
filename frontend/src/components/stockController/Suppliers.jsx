@@ -22,13 +22,29 @@ const Users = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
+    const [ filteredData , setFilteredData ] = useState([])
+const [ searchTerm , setSearchTerm ] = useState('')
     const { name , email , phone , description } = formData;
+
+
+    
+const onSearch = (e) => {
+  const searchQuery = e.target.value.toLowerCase();
+  const filteredResults = data.filter((item) => 
+      item.name.toLowerCase().includes(searchQuery) ||
+      item.email.toLowerCase().includes(searchQuery) ||
+      item.description.toLowerCase().includes(searchQuery)
+  );
+  setFilteredData(filteredResults);
+  setSearchTerm(searchQuery);
+}
 
     useEffect(()=>{
 
         axios.get("http://localhost:8080/api/suppliers/")
         .then((res) => {
             setData(res.data)
+            setFilteredData(res.data)
         })
         .catch(err => alert(err))
     
@@ -40,6 +56,7 @@ const Users = () => {
       axios.get("http://localhost:8080/api/suppliers/")
       .then((res) => {
           setData(res.data)
+          setFilteredData(res.data)
       })
     }
 
@@ -64,9 +81,28 @@ const Users = () => {
 
     }
 
+    const isNumberAndTenDigit = (str) => {
+      return /^\d{10}$/.test(str);
+    };
+
     const onSubmit = () => {
 
+      const { name , email , phone , description } = formData;
 
+      if (!email || !name || !phone || !description ) {
+        // If any of the required attributes are missing, show an error message and don't submit
+        toast.error("Please fill in all required fields.");
+        return;
+      }
+      if( !email.includes("@") || !email.includes(".") ){
+        toast.error("Please enter a valid email address.");
+        return;
+      }
+      
+      if(isNumberAndTenDigit(phone) === false){
+        toast.error("Please enter a valid phone number.");
+        return;
+      }
         const res = axios.post("http://localhost:8080/api/suppliers/", formData).then((res) => {
           toast.success("Users added successfully")
         }).catch(err => alert(err))
@@ -98,6 +134,10 @@ const Users = () => {
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">
+
+<div className="ml-[150px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+            </div>
                   <table className=" mx-auto  w-[850px] h-[300px] ml-[150px]  ">
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
@@ -113,7 +153,7 @@ const Users = () => {
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {data.map((item) => {
+  {filteredData.map((item) => {
                         return(
   
                           <>

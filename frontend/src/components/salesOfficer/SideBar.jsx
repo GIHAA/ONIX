@@ -30,17 +30,8 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
   Profile
-</NavLink>
-
-<NavLink
-  to="/deliveries"
-  activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
->
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
-    Deliveries
 </NavLink>
 
 <NavLink
@@ -48,8 +39,35 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Orders
+</NavLink>
+
+<NavLink
+  to="/deliveries"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+    Deliveries
+</NavLink>
+
+<NavLink
+  to="/"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+    Reports
+</NavLink>
+
+<NavLink
+  to="/"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+    My Activities 
 </NavLink>
 
 {/* <NavLink
@@ -57,7 +75,7 @@ function sideBar() {
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
-    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    
     Quotation
 </NavLink> */}
 

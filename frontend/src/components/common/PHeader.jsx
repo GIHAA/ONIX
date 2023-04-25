@@ -52,7 +52,7 @@ function PHeader() {
 
             <li className="text-[20px] font-semibold">
               <Link
-                to="/adoptpet"
+                to="/"
                 className="block py-2 pl-3 pr-4  text-secondary rounded hover:text-gray-800 md:bg-transparent md:p-0 "
               >
                 Contact us
