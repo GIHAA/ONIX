@@ -79,6 +79,16 @@ function sideBar() {
     <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
     Reports
 </NavLink>
+
+
+<NavLink
+  to="/"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/>
+    My Activities
+</NavLink>
 {/* <NavLink
   to="/quotation"
   activeClassName="active"

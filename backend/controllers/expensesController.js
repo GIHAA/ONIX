@@ -12,6 +12,12 @@ const viewExpenses  = asyncHandler(async (req, res) => {
 
 const addExpenses  = asyncHandler(async (req, res) => {
   const { invoiceno, description, date, Remarks, Amount } = req.body;
+  const userExists = await Expenses.findOne({ invoiceno })
+
+  if (userExists) {
+    res.status(400)
+    throw new Error('error already exists')
+  }
 
   const expenses = await Expenses.create({
     invoiceno: invoiceno,
@@ -28,6 +34,14 @@ const addExpenses  = asyncHandler(async (req, res) => {
 const updateExpenses  = asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { invoiceno, description, date, Remarks, Amount } = req.body;
+
+    const userExists = await Expenses.findOne({ invoiceno })
+
+    if (userExists) {
+      res.status(400)
+      throw new Error('error already exists')
+    }
+  
   
     // Wait for the Expenses  model to find the document by ID
     const expenses  = await Expenses .findOne({ _id: id });

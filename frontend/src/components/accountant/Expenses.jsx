@@ -23,6 +23,10 @@ const Users = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
+
+    const [ filteredData , setFilteredData ] = useState([])
+const [ searchTerm , setSearchTerm ] = useState('')
+
     const { invoiceno, description,  date , Remarks, Amount } = formData;
 
     useEffect(()=>{
@@ -46,8 +50,11 @@ const Users = () => {
 
     const onEdit = (id) => {
 
-      alert(JSON.stringify(formData))
-        const res = axios.put(`http://localhost:8080/api/expenses/${id}`, formData)
+
+        const res = axios.put(`http://localhost:8080/api/expenses/${id}`, formData).then((res) => {
+          toast.success("Users added successfully")
+        }).catch(err => toast.error("failed to add deliveries"))
+
         toast.success("Users updated successfully")
         setShowEditModal(false)
         setTimeout(function() {
@@ -69,9 +76,17 @@ const Users = () => {
 
     const onSubmit = () => {
 
+      const { invoiceno, description,  date , Remarks, Amount } = formData;
+
+      if (!invoiceno || !description || !date || !Remarks || !Amount ) {
+        // If any of the required attributes are missing, show an error message and don't submit
+        toast.error("Please fill in all required fields.");
+        return;
+      }
+
         const res = axios.post("http://localhost:8080/api/expenses/", formData).then((res) => {
           toast.success("Users added successfully")
-        }).catch(err => alert(err))
+        }).catch(err => toast.error("failed to add deliveries"))
       
         
 
@@ -80,6 +95,18 @@ const Users = () => {
         }, 2000);
        
     }
+
+    const onSearch = (e) => {
+      const searchQuery = e.target.value.toLowerCase();
+      const filteredResults = data.filter((item) => 
+          item.invoiceno.toLowerCase().includes(searchQuery) ||
+          item.description.toLowerCase().includes(searchQuery) ||
+          item.Remarks.toLowerCase().includes(searchQuery) 
+      );
+      setFilteredData(filteredResults);
+      setSearchTerm(searchQuery);
+    }
+    
 
   return (
     <>
@@ -100,6 +127,9 @@ const Users = () => {
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">
+<div className="ml-[150px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+            </div>
                   <table className=" mx-auto  w-[850px] h-[300px] ml-[150px]  ">
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
@@ -183,7 +213,7 @@ const Users = () => {
 <input type="text" id="description" name="description" value={description} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Date">Date</label>
-<input type="date" id="Date" name="Date" value={Date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+<input type="date" id="date" name="date" value={date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Remarks">Remarks</label>
 <input type="text" id="Remarks" name="Remarks" value={Remarks} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
