@@ -17,12 +17,16 @@ const Users = () => {
     const [ formData , setFormData ] = useState({
         name : "",
         email : "",
+        password : "",
         role : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
-    const { about, details } = formData;
+    const { name, email , password } = formData;
+
+    const [ filteredData , setFilteredData ] = useState([])
+    const [ searchTerm , setSearchTerm ] = useState('')
 
     const convertToBase64 = (e) => {
       console.log(e);
@@ -129,6 +133,17 @@ const Users = () => {
         }, 2000);
        
     }
+    const onSearch = (e) => {
+      console.log();
+      const searchQuery = e.target.value.toLowerCase();
+      const filteredResults = data.filter((item) => 
+          item.name.toLowerCase().includes(searchQuery) ||
+          item.email.toLowerCase().includes(searchQuery) ||
+          item.role.toLowerCase().includes(searchQuery) 
+      );
+      setFilteredData(filteredResults);
+      setSearchTerm(searchQuery);
+    }
 
   return (
     <>
@@ -149,6 +164,10 @@ const Users = () => {
 
                 <button onClick={() => setShowCreateModal(true)} className=" fixed inset-0 z-50 h-[40px] mt-[220px] w-[260px] mt-5 items-center px-5 py-1 mr-5 bg-[#] text-white font-semibold  rounded-xl"></button>
 <div className="h-[500px] overflow-y-scroll">
+
+<div className="ml-[150px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+            </div>
                   <table className=" mx-auto mt-[50px] w-[850px] h-[300px] ml-[150px]  ">
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
@@ -163,7 +182,7 @@ const Users = () => {
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {data.map((item) => {
+  {filteredData.map((item) => {
                         return(
   
                           <>
@@ -223,15 +242,15 @@ const Users = () => {
             
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
-              <input  id="name" name="name" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <input  id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
               <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Email</label>
-              <input  id="email" name="email" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <input  id="email" name="email" value={email} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
              
               
               <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Password</label>
-              <input  id="password" name="password" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <input  id="password" name="password" value={password} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
 
               <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
@@ -271,11 +290,11 @@ const Users = () => {
             
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
-              <input  id="name" name="name" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <input  id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
               <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Email</label>
-              <input  id="email" name="email" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <input  id="email" name="email" value={email} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
               <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="customer">Customer</option>
