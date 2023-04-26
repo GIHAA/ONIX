@@ -88,6 +88,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
 
         const res = axios.post("http://localhost:8080/api/expenses/", formData).then((res) => {
           toast.success("Expenses  added successfully")
+          setFormData({})
         }).catch(err => toast.error("failed to add deliveries"))
       
         
