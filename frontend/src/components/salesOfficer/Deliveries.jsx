@@ -132,7 +132,7 @@ const Users = () => {
       <tr>
       <th className="p-3">No</th>
       <th className="p-3">Driver</th>
-      <th className="p-3">Order date</th>
+
       <th className="p-3">Delivery date</th>
       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
@@ -150,7 +150,7 @@ const Users = () => {
                           <tr className="hover:bg-[#efeeee] border-[2px]">
                             <td className="p-3 w-[350px]">{item.no}</td>
                             <td className="p-3 w-[350px]">{item.driver}</td>
-                            <td className="p-3 w-[150px]">{item.order_date}</td>
+    
                             <td className="p-3 w-[150px]">{item.delivery_date}</td>
                             <td className="p-3 w-[150px]">{item.status}</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
@@ -211,8 +211,6 @@ const Users = () => {
 <input  id="driver" name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order Date</label>
-<input  id="order_date" name="order_date" value={order_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
 <input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
@@ -248,9 +246,6 @@ const Users = () => {
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Driver</label>
 <input  id="driver" name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order Date</label>
-<input  id="order_date" name="order_date" value={order_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
 <input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
