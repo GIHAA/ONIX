@@ -10,7 +10,7 @@ import editImg from "../../assets/edit.png";
 import deleteImg from "../../assets/delete.png";
 
 
-const Users = () => {
+const Expenses  = () => {
 
     const [ data , setData ] = useState([])
     const [ formData , setFormData ] = useState({
@@ -34,6 +34,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
         axios.get("http://localhost:8080/api/expenses/")
         .then((res) => {
             setData(res.data)
+            setFilteredData(res.data)
         })
         .catch(err => alert(err))
     
@@ -45,6 +46,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
       axios.get("http://localhost:8080/api/expenses/")
       .then((res) => {
           setData(res.data)
+          setFilteredData(res.data)
       })
     }
 
@@ -52,10 +54,10 @@ const [ searchTerm , setSearchTerm ] = useState('')
 
 
         const res = axios.put(`http://localhost:8080/api/expenses/${id}`, formData).then((res) => {
-          toast.success("Users added successfully")
+          toast.success("Expenses  added successfully")
         }).catch(err => toast.error("failed to add deliveries"))
 
-        toast.success("Users updated successfully")
+        toast.success("Expenses  updated successfully")
         setShowEditModal(false)
         setTimeout(function() {
           refreshPage()
@@ -65,7 +67,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
 
     const onDelete = (id) => {
         const res = axios.delete(`http://localhost:8080/api/expenses/${id}`)
-          toast.success("Users deleted successfully")
+          toast.success("Expenses  deleted successfully")
 
         
         setTimeout(function() {
@@ -85,7 +87,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
       }
 
         const res = axios.post("http://localhost:8080/api/expenses/", formData).then((res) => {
-          toast.success("Users added successfully")
+          toast.success("Expenses  added successfully")
         }).catch(err => toast.error("failed to add deliveries"))
       
         
@@ -146,7 +148,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {data.map((item) => {
+  {filteredData.map((item) => {
                         return(
   
                           <>
@@ -273,4 +275,4 @@ const [ searchTerm , setSearchTerm ] = useState('')
   );
 };
 
-export default Users;
+export default Expenses ;

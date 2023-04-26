@@ -84,6 +84,7 @@ const Users = () => {
       axios.get("http://localhost:8080/api/users/")
       .then((res) => {
           setData(res.data)
+          setFilteredData(res.data)
       })
     }
 
@@ -98,8 +99,10 @@ const Users = () => {
     }
 
     const onDelete = (id) => {
-        const res = axios.delete(`http://localhost:8080/api/users/${id}`)
+        const res = axios.delete(`http://localhost:8080/api/users/${id}`).then((res) => {
           toast.success("Users deleted successfully")
+        }).catch(err => toast.error("deletion failed."))
+          
 
         
         setTimeout(function() {

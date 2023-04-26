@@ -27,7 +27,7 @@ const addStock  = asyncHandler(async (req, res) => {
 
 const updateStock  = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const { name, stockid, quantity , date} = req.body;
+    const { name, stockid, quantity , date , status} = req.body;
   
     // Wait for the Stock  model to find the document by ID
     const stock  = await Stock .findOne({ _id: id });
@@ -36,10 +36,12 @@ const updateStock  = asyncHandler(async (req, res) => {
       // Update the stock  document with new values
       stock.name = name || stock.name;
       stock.stockid = stockid || stock.stockid;
-      stock.quantity= quantity|| stock.reply;
+      stock.quantity= quantity|| stock.quantity;
       stock.date = date || stock.date;
       stock.status = status || stock.status;
       // Save the updated document and wait for it to complete
+
+     
       await stock .save();
   
       res.status(201).json(stock );

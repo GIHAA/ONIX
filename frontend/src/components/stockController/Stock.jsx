@@ -44,7 +44,7 @@ const User = () => {
       axios.get("http://localhost:8080/api/stock/")
       .then((res) => {
           setData(res.data)
-          filteredData(res.data)
+          setFilteredData(res.data)
       })
     }
 
@@ -132,6 +132,7 @@ const User = () => {
       <th className="p-3">Quantity</th>
       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
+            <th className="p-3">Status</th>
       <th className="p-3">action</th>
       </tr>
   </thead>
@@ -148,7 +149,7 @@ const User = () => {
                             <td className="p-3 w-[150px]">{item.quantity}</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
                             <td className="p-3">{item.qty}</td> */}
-                          
+                          <td className="p-3 w-[150px]">{item.status}</td>
                             <td className="p-3">
                             <div className="flex ml-12">
                                 <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
@@ -234,7 +235,23 @@ const User = () => {
             <h2 className="text-lg font-bold mb-4 ">
               Edit stocks
             </h2>
-            
+            <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="stockid">Stock ID</label>
+<input type="text" id="stockid" name="stockid" value={stockid} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="name">Name</label>
+<input type="text" id="name" name="name" value={name} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="quantity">Quantity</label>
+<input type="number" id="quantity" name="quantity" value={quantity} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="date">Date</label>
+<input type="date" id="date" name="date" value={date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"/>
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="status">Status</label>
+<select defaultValue="outtosale" id="status" name="status" value={status} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
+  <option value="outtosale">Out to Sale</option>
+  <option value="onhold">On Hold</option>
+</select>
             
 
 <div className="flex">
