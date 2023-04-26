@@ -18,7 +18,8 @@ const Users = () => {
         name : "",
         email : "",
         password : "",
-        role : "",
+        role : "customer",
+        image : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -126,7 +127,9 @@ const Users = () => {
         return;
       }
 
-        const res = axios.post("http://localhost:8080/api/users/", formData).then((res) => {
+
+      const newFormData = {...formData , image : image}
+        const res = axios.post("http://localhost:8080/api/users/", newFormData).then((res) => {
           toast.success("Users added successfully")
         }).catch(err => alert(err))
       
@@ -256,6 +259,13 @@ const Users = () => {
               <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Password</label>
               <input  id="password" name="password" value={password} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
+              <input
+                className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
+                accept="image/*"
+                type="file"
+                onChange={convertToBase64}
+              />
+
 
               <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="customer">Customer</option>
@@ -299,6 +309,14 @@ const Users = () => {
 
               <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Email</label>
               <input  id="email" name="email" value={email} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+
+              <input
+                className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
+                accept="image/*"
+                type="file"
+                onChange={convertToBase64}
+              />
+
 
               <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="customer">Customer</option>

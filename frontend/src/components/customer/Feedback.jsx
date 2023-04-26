@@ -26,7 +26,7 @@ const Feedback = () => {
 
         axios.get("http://localhost:8080/api/feedback/")
         .then((res) => {
-            setData(res.data)
+            setData(res.data)     
         })
         .catch(err => alert(err))
     
@@ -100,6 +100,7 @@ const Feedback = () => {
     <th className="p-3">name</th>
     <th className="p-3">Description</th>
     <th className="p-3">Reply</th>
+    <th className="p-3">Date</th>
     {/* <th className="p-3">category</th>
     <th className="p-3">qty</th> */}
     <th className="p-3">action</th>
@@ -115,6 +116,7 @@ const Feedback = () => {
                           <td className="p-3">{item.about}</td>
                           <td className="p-3 w-[350px]">{item.details}</td>
                           <td className="p-3 w-[150px]">{item.reply}</td>
+                          <td className="p-3 w-[150px]">{new Date(item.createdAt).toLocaleDateString()}</td>
                           {/* <td className="p-3 w-[250px]">{item.category}</td>
                           <td className="p-3">{item.qty}</td> */}
                         
@@ -165,7 +167,7 @@ const Feedback = () => {
             </h2>
             
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add about</label>
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
               <input  id="about" name="about" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
@@ -193,7 +195,7 @@ const Feedback = () => {
             </h2>
             
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add about</label>
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
               <input  id="about" name="about" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
