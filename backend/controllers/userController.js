@@ -109,7 +109,7 @@ const getMe = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
 
   const id = req.params.id;
-  const { name , email, role } = req.body;
+  const { name , email, role , image } = req.body;
 
   // Wait for the Feedback model to find the document by ID
   const user = await User.findOne({ _id: id });
@@ -119,7 +119,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.name = name || user.name;
     user.email = email || user.email;
     user.role = role || user.role;
-
+    user.image = image || user.image;
     // Save the updated document and wait for it to complete
     await user.save();
 

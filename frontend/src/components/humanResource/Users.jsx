@@ -90,7 +90,10 @@ const Users = () => {
     }
 
     const onEdit = (id) => {
-        const res = axios.put(`http://localhost:8080/api/users/${id}`, formData)
+
+      const newFormData = {...formData , image : image}
+
+        const res = axios.put(`http://localhost:8080/api/users/${id}`, newFormData)
         toast.success("Users updated successfully")
         setShowEditModal(false)
         setTimeout(function() {
@@ -310,6 +313,7 @@ const Users = () => {
               <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Email</label>
               <input  id="email" name="email" value={email} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add image</label>
               <input
                 className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
                 accept="image/*"
