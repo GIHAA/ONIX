@@ -67,6 +67,7 @@ const Users = () => {
       axios.get("http://localhost:8080/api/order/")
       .then((res) => {
           setData(res.data)
+          setFilteredData(res.data)
       })
     }
 
