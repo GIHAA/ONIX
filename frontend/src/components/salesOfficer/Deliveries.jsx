@@ -218,6 +218,11 @@ const Users = () => {
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order ID</label>
 <input  id="orderid" name="orderid" value={orderid} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
+<select name="status" onChange={onChange} defaultValue="ongoing" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
+  <option value="ongoing">ongoing</option>
+  <option value="processing">processing</option>
+  <option value="canceled">canceled</option>
+</select>     
 
 
 <div className="flex">
