@@ -13,19 +13,22 @@ function PortalHandler() {
   const renderPortals = (role) => {
     switch (role) {
       case "customer":
-        return <CustomerPortal />;
-      // case "driver":
-      //   return <DriverPortal />; // optional
+        return <CustomerPortal />;  // p3
       case "accountant":
-        return <AccountantPortal />;
+        return <AccountantPortal />; // 
       case "humanResourcesManager":
-        return <HumanResourcesManagerPortal />;
+        return <HumanResourcesManagerPortal />; // 
       case "salesOfficer":
-        return <SalesOfficerPortal />;
+        return <SalesOfficerPortal />; // 
       case "stockController":
         return <StockControllerPortal />;
-      // case "customerServiceManager":
-      //   return <CustomerServiceManagerPortal />; // optional
+
+        case "driver": // p1
+          return <StockControllerPortal />;
+
+        case "customerServiceManager": // p5
+          return <StockControllerPortal />;
+
       default:
         return <CustomerPortal />;
     }
@@ -35,3 +38,28 @@ function PortalHandler() {
 }
 
 export default PortalHandler;
+
+
+//p1 4 hours
+
+//p2.1  home page // shopping cart -> order , item display (without image) --> db ,  4 hours
+//p2.2   3 hours 
+
+//p4  new side // order CRUD --> db ,  4 - 5 hours
+
+//p5  HumanResourcesManagerPortal ( CRUD revist ) -> 3 - 4 hours
+
+//p5.1 customerServiceManager --> customer CRUD
+//p5.2 customerServiceManager --> customer feedback reply
+
+//p7 main --> attendance ( like profile ) create read on HR --> db ,  4 hours
+
+//p8.1 user attibutes change -- 4 hours
+//p8.2 user attibutes change -- 4 hours
+
+//p9 driver portal (add new attributes) 4 hours
+//p9.1 deliveries status change (status drop down) 4 hours
+
+
+
+
