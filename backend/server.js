@@ -21,5 +21,6 @@ app.use('/api/deliveries', require('./routes/deliveriesRoutes'))
 app.use('/api/order', require('./routes/orderRoutes'))
 app.use('/api/expenses', require('./routes/expensesRoutes'))
 app.use('/api/stock', require('./routes/stockRoutes'))
+app.use('/api/attendance', require('./routes/attendanceRoutes'))
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

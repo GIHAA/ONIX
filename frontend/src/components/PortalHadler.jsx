@@ -52,13 +52,38 @@ export default PortalHandler;
 //p5.1 customerServiceManager --> customer CRUD
 //p5.2 customerServiceManager --> customer feedback reply
 
-//p7 main --> attendance ( like profile ) create read on HR --> db ,  4 hours
+// done  |||| in(add sort) p7 main --> attendance ( like profile ) create read on HR --> db ,  4 hours
+
 
 //p8.1 user attibutes change -- 4 hours
+
+//--- may 12
+
 //p8.2 user attibutes change -- 4 hours
 
-//p9 driver portal (add new attributes) 4 hours
+//p9 driver portal (add new attributes (whatsappp )) 4 hours
 //p9.1 deliveries status change (status drop down) 4 hours
+
+
+//p11 stockController change delete -> return stock
+//stockController change delete -> return stock
+
+
+//p12 stock controller return function ( should store the returned amount in db(new attibute) ) 4 hours
+
+//--- may 15.5
+//--- validation 0.5
+//--- testing 0.5
+
+
+//mid
+//p13 stock controller stock order CRUD 
+
+//unclear
+//p11 accountant (salary) 4 hours --> attributes whatsappp
+//p11.1 accountant (salary) 4 hours
+
+
 
 
 

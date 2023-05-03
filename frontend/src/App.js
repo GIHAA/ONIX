@@ -14,7 +14,7 @@ import Deliveries from "./components/salesOfficer/Deliveries";
 import Orders from "./components/salesOfficer/Orders";
 import Stock from "./components/stockController/Stock";
 import Expenses from "./components/accountant/Expenses";
-
+import EmployessAttendance from "./components/humanResource/EmployessAttendance";
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
 
           <Route path="/users" element={<User />} />
           <Route path="/admin" element={<PortalHadler />} />
+          <Route path="/attendance" element={<EmployessAttendance />} />
 
           <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/stock" element={<Stock />} />
