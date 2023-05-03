@@ -126,7 +126,7 @@ const Profile = (props) => {
                 Update profile
               </h3> */}
                <label className=" w-[150px] font-semibold text-sm text-gray-600 pb-5 ">
-                    Account Type  : {user.role} <button onClick={() => setShowAttendanceModal(true)}> attendance</button>
+                    Account Type  : {user.role} { user.role != "customer" ? (<> <button onClick={() => setShowAttendanceModal(true)}> attendance</button></>):(<></>)}
                   </label>
                  
     <div className="flex mt-6">

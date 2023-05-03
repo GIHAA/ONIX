@@ -15,6 +15,7 @@ import Orders from "./components/salesOfficer/Orders";
 import Stock from "./components/stockController/Stock";
 import Expenses from "./components/accountant/Expenses";
 import EmployessAttendance from "./components/humanResource/EmployessAttendance";
+import HomePage from "./components/customer/HomePage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<PortalHadler />} />
+          <Route path="/home" element={<HomePage />} />
 
           <Route path="/quotation" element={<Quatation />} />
           <Route path="/feedback" element={<Feedback />} />
