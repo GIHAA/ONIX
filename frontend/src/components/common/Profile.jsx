@@ -126,7 +126,7 @@ const Profile = (props) => {
                 Update profile
               </h3> */}
                <label className=" w-[150px] font-semibold text-sm text-gray-600 pb-5 ">
-                    Account Type  : {user.role} { user.role != "customer" ? (<> <button onClick={() => setShowAttendanceModal(true)}> attendance</button></>):(<></>)}
+                    Account Type  : {user.role} { user.role != "customer" ? (<> <button className="transition w-[25%] rounded-[100px] duration-200 bg-[#2E4960] hover:bg-[#2E4960] focus:bg-[#2E4960] focus:shadow-sm focus:ring-4 focus:ring-opacity-50 text-white py-2.5 text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block ml-[20px]" onClick={() => setShowAttendanceModal(true)}> attendance</button></>):(<></>)}
                   </label>
                  
     <div className="flex mt-6">
@@ -246,12 +246,12 @@ const Profile = (props) => {
           <div className="flex">
             <p>Arrival Time</p>
             <input  id="email" name="email" value={arrivalTime} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-            <button onClick={arrival}>submit</button>
+            <button onClick={arrival} className="transition rounded-[100px] duration-200 bg-[#2E4960] hover:bg-[#2E4960] focus:bg-[#2E4960] focus:shadow-sm focus:ring-4 focus:ring-opacity-50 text-white py-2.5 text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block h-[50px] w-[150px] mx-3 ">submit</button>
           </div>
           <div className="flex">
             <p>Leave Time</p>
             <input  id="email" name="email" value={leaveTime} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-            <button onClick={leave}>submit</button>
+            <button onClick={leave} className="transition rounded-[100px] duration-200 bg-[#2E4960] hover:bg-[#2E4960] focus:bg-[#2E4960] focus:shadow-sm focus:ring-4 focus:ring-opacity-50 text-white py-2.5 text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block h-[50px] w-[150px] mx-3 ">submit</button>
           </div>
 
      

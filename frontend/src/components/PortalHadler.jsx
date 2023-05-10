@@ -6,6 +6,7 @@ import HumanResourcesManagerPortal from "./humanResource/HumanResourcePortal";
 import StockControllerPortal from "./stockController/StockControllerPortal";
 import SalesOfficerPortal from "./salesOfficer/SalesOfficerPortal";
 import AccountantPortal from "./accountant/AccountantPortal";
+import CustomerServiceManagerPortal from "./customerServiceManager/CustomerServiceManagerPortal"
 
 function PortalHandler() {
   const { user } = useSelector((state) => state.auth);
@@ -27,7 +28,7 @@ function PortalHandler() {
           return <StockControllerPortal />;
 
         case "customerServiceManager": // p5
-          return <StockControllerPortal />;
+          return <CustomerServiceManagerPortal />;
 
       default:
         return <CustomerPortal />;
@@ -39,21 +40,19 @@ function PortalHandler() {
 
 export default PortalHandler;
 
-
 //p1 4 hours
 
 //p2.1  home page // shopping cart -> order , item display (without image) --> db ,  4 hours
-//p2.2   3 hours 
+//p2.2  3 hours 
 
-//p4  new side // order CRUD --> db ,  4 - 5 hours
+// done p4  new side // order CRUD --> db ,  4 - 5 hours
 
 //p5  HumanResourcesManagerPortal ( CRUD revist ) -> 3 - 4 hours
 
-//p5.1 customerServiceManager --> customer CRUD
-//p5.2 customerServiceManager --> customer feedback reply
+// done p5.1 customerServiceManager --> customer CRUD
+// done p5.2 customerServiceManager --> customer feedback reply
 
 // done  |||| in(add sort) p7 main --> attendance ( like profile ) create read on HR --> db ,  4 hours
-
 
 //p8.1 user attibutes change -- 4 hours
 
@@ -64,10 +63,8 @@ export default PortalHandler;
 //p9 driver portal (add new attributes (whatsappp )) 4 hours
 //p9.1 deliveries status change (status drop down) 4 hours
 
-
 //p11 stockController change delete -> return stock
 //stockController change delete -> return stock
-
 
 //p12 stock controller return function ( should store the returned amount in db(new attibute) ) 4 hours
 
@@ -75,16 +72,9 @@ export default PortalHandler;
 //--- validation 0.5
 //--- testing 0.5
 
-
 //mid
 //p13 stock controller stock order CRUD 
 
 //unclear
 //p11 accountant (salary) 4 hours --> attributes whatsappp
 //p11.1 accountant (salary) 4 hours
-
-
-
-
-
-

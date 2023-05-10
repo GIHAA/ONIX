@@ -16,6 +16,9 @@ import Stock from "./components/stockController/Stock";
 import Expenses from "./components/accountant/Expenses";
 import EmployessAttendance from "./components/humanResource/EmployessAttendance";
 import HomePage from "./components/customer/HomePage";
+import Customer from "./components/customerServiceManager/Customer"
+import ManageFeedback from "./components/customerServiceManager/ManageFeedback";
+import Order from "./components/customer/Orders"
 
 function App() {
   return (
@@ -42,6 +45,11 @@ function App() {
           <Route path="/orders" element={<Orders />} />
 
           <Route path="/expenses" element={<Expenses />} />
+
+          <Route path="/customers" element={<Customer />} />  
+          <Route path="/managefeed" element={<ManageFeedback />} />
+
+          <Route path="/myorder" element={<Order />} />
         </Routes>
 
       </Router>
