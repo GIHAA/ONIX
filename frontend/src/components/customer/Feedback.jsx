@@ -1,10 +1,10 @@
 import React from "react";
 import PHeader from "../common/PHeader";
 import SideBar from "./SideBar";
-import Profile from "../common/Profile";
+//import Profile from "../common/Profile";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import editImg from "../../assets/edit.png";
 import deleteImg from "../../assets/delete.png";
@@ -21,12 +21,26 @@ const Feedback = () => {
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
     const { about, details } = formData;
+    const [ filteredData , setFilteredData ] = useState([])
+    const [ searchTerm , setSearchTerm ] = useState('')
+
+    const onSearch = (e) => {
+      const searchQuery = e.target.value.toLowerCase();
+      const filteredResults = data.filter((item) => 
+          item.about.toLowerCase().includes(searchQuery) ||
+          item.details.toLowerCase().includes(searchQuery)
+      );
+      setFilteredData(filteredResults);
+      setSearchTerm(searchQuery);
+    }
+
 
     useEffect(()=>{
 
         axios.get("http://localhost:8080/api/feedback/")
         .then((res) => {
-            setData(res.data)     
+            setData(res.data)
+            setFilteredData(res.data)     
         })
         .catch(err => alert(err))
     
@@ -38,13 +52,15 @@ const Feedback = () => {
       axios.get("http://localhost:8080/api/feedback/")
       .then((res) => {
           setData(res.data)
+          setFilteredData(res.data)
       })
     }
 
     const onEdit = (id) => {
         const res = axios.put(`http://localhost:8080/api/feedback/${id}`, formData)
         toast.success("Feedback updated successfully")
-        
+        setShowEditModal(false)
+
         setTimeout(function() {
           refreshPage()
           setFormData({})
@@ -63,6 +79,15 @@ const Feedback = () => {
     }
 
     const onSubmit = () => {
+
+      const { about , details } = formData;
+
+      if (!about || !details) {
+        // If any of the required attributes are missing, show an error message and don't submit
+        toast.error("Please fill in all required fields.");
+        return;
+      }
+
         const res = axios.post("http://localhost:8080/api/feedback/", formData).then((res) => {
           toast.success("Feedback added successfully")
         }).catch(err => alert(err))
@@ -76,7 +101,9 @@ const Feedback = () => {
     }
 
   return (
+
     <>
+    
       <div className="flex scroll-smooth">
         <SideBar />
 
@@ -93,6 +120,13 @@ const Feedback = () => {
                 <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Feedback </h1>
 
                 <button onClick={() => setShowCreateModal(true)} className="ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
+
+              
+                <div className="ml-[500px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+              </div> 
+              
+
                 <table className=" mx-auto mt-[50px] w-[850px] h-[300px] ml-[150px]  ">
 
 <thead className=" bg-[#2E4960] text-white sticky top-0">
@@ -108,10 +142,12 @@ const Feedback = () => {
 </thead>
 
 <tbody  className="bg-white text-center border-black ">
-{data.map((item) => {
+
+{filteredData.map((item) => {
                       return(
 
                         <>
+
                         <tr className="hover:bg-[#efeeee] border-[2px]">
                           <td className="p-3">{item.about}</td>
                           <td className="p-3 w-[350px]">{item.details}</td>

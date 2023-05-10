@@ -12,7 +12,6 @@ const viewOrder = asyncHandler(async (req, res) => {
 
 const addOrder = asyncHandler(async (req, res) => {
     const { name, date , phone , location , items , noi , reason , status , type} = req.body
-    
 
     const order = await Order.create({
         name,
