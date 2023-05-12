@@ -1,0 +1,127 @@
+a.aa:link, a.aa:visited {
+    background-color: #080C39;
+    color: white;
+    padding: 6px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 100px;
+    font-weight: 650;
+    border: #080C39;
+
+  }
+  
+  a.aa:hover, a.aa:active {
+    background-color: rgb(242, 234, 234);
+    color: black;
+    font-weight: 700;
+
+  
+  }
+    
+  
+  .Generate_Reportbtn{
+   
+    background-color: #080C39; 
+    color: white; 
+    border: rgb(242, 234, 234);
+    height: 36px;
+    width: 160px;
+    font-weight: 700;
+    margin-left: 70px;
+  }
+
+
+  
+  .Generate_Reportbtn:hover {
+
+    background-color: rgb(242, 234, 234);
+    color: rgb(10, 6, 6);
+    font-weight: 700;
+  }
+
+  .addItemBtn1{
+   
+    background-color: #080C39; 
+    color: white; 
+    border: rgb(242, 234, 234);
+    height: 36px;
+    width: 160px;
+    font-weight: 700;
+    margin-left: 250px;
+  }
+
+
+  
+  .addItemBtn1:hover {
+
+    background-color: rgb(242, 234, 234);
+    color: rgb(10, 6, 6);
+    font-weight: 700;
+  }
+
+  
+
+  /* table */
+  .tableheader{
+    background-color: rgb(146, 148, 151);
+  }
+
+
+  .tdButton{
+    background-color:whitesmoke;
+    width: 8%;
+   
+  }
+  .tdID1{
+    align-self: auto;
+
+    background-color:whitesmoke;
+  }
+ .ItemList{
+    margin-left: 50px;
+    width: 80%;
+    margin-top: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    
+ }
+ .btnUpdate{
+  background-color: #080C39;
+  color: white;
+  border-radius: 12px;
+  padding: 5px 8px;
+  font-weight: 500;
+  font-size: small;
+ }
+ .btnUpdate:hover {
+    background-color: rgb(242, 234, 234);
+    color: rgb(10, 6, 6);
+    font-weight: 500;
+    
+  }
+
+
+ .btnDelete{
+  color: white;
+  background-color: rgba(91, 27, 27, 0.995);
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: small;
+ }
+
+ .btnDelete:hover {
+    background-color: rgb(242, 234, 234);
+    color: rgb(121, 5, 5);
+    font-weight: 500;
+  }
+
+ .IssueListButton{
+    margin-left: 0px;
+    margin-top: 50px;
+    width: 650px;
+    
+ }
+
+

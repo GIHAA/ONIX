@@ -20,7 +20,7 @@ const StockSchema = mongoose.Schema(
       },
     status: {
         type: String,
-        enum: ['outtosale', 'onhold' , 'returned' ],
+        enum: ['outtosale', 'onhold' ],
         default: 'onhold',
     },
   },

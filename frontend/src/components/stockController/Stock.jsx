@@ -212,8 +212,7 @@ const User = () => {
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="status">Status</label>
 <select defaultValue="outtosale" id="status" name="status" value={status} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="outtosale">Out to Sale</option>
-  <option value="onhold">In Stores</option>
-  <option value="returned">Returned</option>
+  <option value="onhold">On Hold</option>
 </select>
 
 
