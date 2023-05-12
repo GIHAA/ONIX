@@ -73,7 +73,7 @@ const Users = () => {
     }
 
     const onSubmit = () => {
-      if (!no || !driver || !delivery_date || !orderid) {
+      if (!no || !driver  || !delivery_date || !orderid) {
         // If any of the required attributes are missing, show an error message and don't submit
         toast.error("Please fill in all required fields.");
         return;

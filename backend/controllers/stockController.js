@@ -12,7 +12,15 @@ const viewStock  = asyncHandler(async (req, res) => {
 
 const addStock  = asyncHandler(async (req, res) => {
     const { stockid, name , quantity , date , status } = req.body
-    console.log(quantity)
+
+
+    const copy = await Stock.findOne({ stockid : stockid })
+
+    if(copy){
+        res.status(400)
+        throw new Error('Stock already exists')
+    }
+    
     const stock  = await Stock.create({
         stockid,
         name,

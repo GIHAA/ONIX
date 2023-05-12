@@ -6,6 +6,7 @@ import HumanResourcesManagerPortal from "./humanResource/HumanResourcePortal";
 import StockControllerPortal from "./stockController/StockControllerPortal";
 import SalesOfficerPortal from "./salesOfficer/SalesOfficerPortal";
 import AccountantPortal from "./accountant/AccountantPortal";
+import CustomerServiceManagerPortal from "./customerServiceManager/CustomerServiceManagerPortal"
 
 function PortalHandler() {
   const { user } = useSelector((state) => state.auth);
@@ -13,20 +14,22 @@ function PortalHandler() {
   const renderPortals = (role) => {
     switch (role) {
       case "customer":
-        return <CustomerPortal />;
-      // case "driver":
-      //   return <DriverPortal />; // optional
+        return <CustomerPortal />;  // p3
       case "accountant":
-        return <AccountantPortal />;
+        return <AccountantPortal />; // 
       case "humanResourcesManager":
-        return <HumanResourcesManagerPortal />;
+        return <HumanResourcesManagerPortal />; // 
       case "salesOfficer":
-        return <SalesOfficerPortal />;
+        return <SalesOfficerPortal />; // 
       case "stockController":
         return <StockControllerPortal />;
-        
-      // case "customerServiceManager":
-      //   return <CustomerServiceManagerPortal />; // optional
+
+        case "driver": // p1
+          return <StockControllerPortal />;
+
+        case "customerServiceManager": // p5
+          return <CustomerServiceManagerPortal />;
+
       default:
         return <CustomerPortal />;
     }
