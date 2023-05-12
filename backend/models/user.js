@@ -7,6 +7,26 @@ const userSchema = mongoose.Schema(
         type: String,
         required: [true, 'Please add a name'],
     },
+    age:{
+        type: String,
+        required: false
+    },
+    gender:{
+        type: String,
+        required: false
+    },
+    educationqualifications:{
+        type: String,
+        required: false
+    },
+    position:{
+        type: String,
+        required: false
+    },
+    phone: {
+        type: String,
+        required: false
+    },
     username: {
         type: String,
         required: [false, 'Please add a username'],
