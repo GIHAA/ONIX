@@ -58,19 +58,27 @@ export default PortalHandler;
 
 //--- may 12
 
-//p8.2 user attibutes change -- 4 hours
+// p13 backlog - asanka shopping cart , customer delete button ,  cs add-> register , cs cus coloum -role +address, phone , cs cus no edit ,  
 
-//p9 driver portal (add new attributes (whatsappp )) 4 hours
-//p9.1 deliveries status change (status drop down) 4 hours
+// p8.2 user attibutes change -- 4 hours
 
-//p11 stockController change delete -> return stock
-//stockController change delete -> return stock
+// p9 driver portal (add new attributes (whatsappp )) 4 hours
+// p9.1 deliveries status change (status drop down) 4 hours
+// p11 stockController change delete -> return stock
+// stockController change delete -> return stock
 
-//p12 stock controller return function ( should store the returned amount in db(new attibute) ) 4 hours
+// p12 stock controller return function ( should store the returned amount in db(new attibute) ) 4 hours
+
+// p14
+
+// p15 attendace
 
 //--- may 15.5
 //--- validation 0.5
 //--- testing 0.5
+
+// non --- edits should fill with old data (back up place holder)
+
 
 //mid
 //p13 stock controller stock order CRUD 

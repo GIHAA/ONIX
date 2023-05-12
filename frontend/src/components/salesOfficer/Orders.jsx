@@ -73,10 +73,14 @@ const Users = () => {
 
     const onEdit = (id) => {
 
-      const items = formData.items.split(/[,\s]+/);
-      const numItems = items.length;
-        
-      const newformData = { ...formData , status : "pending" , noi : numItems}
+      let newformData = {...formData}
+      if(formData.items){
+        const items = formData.items.split(/[,\s]+/);
+        const numItems = items.length;
+          
+        newformData = { ...formData , noi : numItems}
+      }
+
         const res = axios.put(`http://localhost:8080/api/order/${id}`, newformData)
 
         toast.success("orders updated successfully")
@@ -306,11 +310,12 @@ const Users = () => {
 
 
 
-{/* <label className="font-semibold text-sm text-gray-600 pb-1 block">Status</label>
-<select name="status" onChange={onChange} defaultValue="physical" >
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Status</label>
+<select name="status" onChange={onChange} defaultValue="Ready" >
   <option value="ready">Ready</option>
   <option value="pending">Pending</option>
-</select> */}
+  <option value="out-to-deliver">Out-to-deliver</option>
+</select>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Type</label>
 <select name="type" onChange={onChange} defaultValue="physical" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" >

@@ -208,12 +208,12 @@ const Users = () => {
 
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Driver</label>
-<input  id="driver" name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input  id="driver"  name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
-<input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input  id="delivery_date" min={new Date().toISOString().split('T')[0]}  name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order ID</label>
 <input  id="orderid" name="orderid" value={orderid} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
