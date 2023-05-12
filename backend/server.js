@@ -10,11 +10,6 @@ connectDB()
 
 const app = express()
 
-
-//image file 
-app.use(express.static("public"));
-
-
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -26,42 +21,6 @@ app.use('/api/deliveries', require('./routes/deliveriesRoutes'))
 app.use('/api/order', require('./routes/orderRoutes'))
 app.use('/api/expenses', require('./routes/expensesRoutes'))
 app.use('/api/stock', require('./routes/stockRoutes'))
-
-
-
-
-
-
-
-
-const categoryRouter = require("./routes/category.js");  // import category.js file
-
- //http://Localhost:8070/category    [calling from the frontend to the backend is like this]
-
-app.use("/category",categoryRouter)  //the file assigned to the category variable is loaded
-
-//import category repport file
-const categoryReport = require("./routes/CategoryReportFile.js");
-app.use("/categoryReport",categoryReport)
-
-//issued items
-const issueItemRouter = require("./routes/inventry_issueItems.js"); 
-app.use("/inventry_issueItems",issueItemRouter)
-
-//import issue item report file
-const itemReport = require("./routes/issueItemReportRouteFile");
-app.use("/issueItemReport",itemReport)
-
-
-
-
-
-
-
-
-
-
-
-
+app.use('/api/attendance', require('./routes/attendanceRoutes'))
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
