@@ -40,21 +40,21 @@ function PortalHandler() {
 
 export default PortalHandler;
 
-//p1 4 hours
+// done p1 4 hours
 
-//p2.1  home page // shopping cart -> order , item display (without image) --> db ,  4 hours
-//p2.2  3 hours 
+// (asanka issue) p2.1  home page // shopping cart -> order , item display (without image) --> db ,  4 hours
+// (asanka issue) p2.2  3 hours 
 
 // done p4  new side // order CRUD --> db ,  4 - 5 hours
 
-//p5  HumanResourcesManagerPortal ( CRUD revist ) -> 3 - 4 hours
+// done p5  HumanResourcesManagerPortal ( CRUD revist ) -> 3 - 4 hours
 
 // done p5.1 customerServiceManager --> customer CRUD
 // done p5.2 customerServiceManager --> customer feedback reply
 
 // done  |||| in(add sort) p7 main --> attendance ( like profile ) create read on HR --> db ,  4 hours
 
-//p8.1 user attibutes change -- 4 hours
+// done p8.1 user attibutes change -- 4 hours
 
 //--- may 12
 

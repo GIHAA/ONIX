@@ -12,7 +12,8 @@ const viewUsers = asyncHandler(async (req, res) => {
 
 //register user
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, address , phone ,  password  , image , role} = req.body
+  const { name, email, address , dob , gender , phone ,  password  , image , role} = req.body
+
 
   if (!name || !email || !password) {
     res.status(400)
@@ -39,6 +40,8 @@ let user;
       email,
       address,
       phone,
+      dob,
+      gender,
       password: hashedPassword,
       image: image,
       role: role
@@ -48,6 +51,8 @@ let user;
     name,
     email,
     address,
+    dob,
+    gender,
     phone,
     password: hashedPassword,
     image: image

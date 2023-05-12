@@ -53,10 +53,13 @@ function Home () {
     email: "",
     password: "",
     password2: "",
+    phone: "",
     image: "",
+    dob: "",
+    gender: ""
   });
 
-  const { name, email, password, password2, address, phone } = formData;
+  const { name, email, password, password2, address, phone , dob , gender } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -71,6 +74,7 @@ function Home () {
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData)
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(password);
@@ -88,13 +92,25 @@ function Home () {
         phone,
         image,
         role: "customer",
+        dob: "",
+        gender: ""
       };
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+      console.log(userData)
+
+      if( !name || !email || !password || !password2 || !address || !phone || !dob || !gender  ){
+        toast.error("Please fill all the fields.");
+        return
+      }
+
       if (emailRegex.test(email)) {
-        
+        if (isNumberAndTenDigit(phone)) {
         dispatch(register(userData));
+        }else{
+          toast.error("The phone number is invalid.");
+        }
       } else {
         toast.error("The email address is invalid.");
       }
@@ -155,7 +171,55 @@ If you are new to our store, we glad to have you as member.
                 type="text"
                 className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
               />
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Date of Birth
+              </label>
+              <input
+                id="dob"
+                name="dob"
+                value={dob}
+                onChange={onChange}
+                type="date"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Address
+              </label>
+              <input
+                id="address"
+                name="address"
+                value={address}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
              
+             
+             <label className="font-semibold text-sm text-gray-600 pb-1 block">
+             Gender
+              </label>
+              <input
+                id="gender"
+                name="gender"
+                value={gender}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block">
+             Phone Number
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                value={phone}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
              
               <label className="font-semibold text-sm text-gray-600 pb-1 block">
                 Password
