@@ -1,4 +1,4 @@
-a.aa:link, a.aa:visited {
+/* a.aa:link, a.aa:visited {
     background-color: #080C39;
     color: white;
     padding: 6px 20px;
@@ -59,12 +59,12 @@ a.aa:link, a.aa:visited {
     background-color: rgb(242, 234, 234);
     color: rgb(10, 6, 6);
     font-weight: 700;
-  }
+  } */
 
   
 
   /* table */
-  .tableheader{
+  /* .tableheader{
     background-color: rgb(146, 148, 151);
   }
 
@@ -122,6 +122,6 @@ a.aa:link, a.aa:visited {
     margin-top: 50px;
     width: 650px;
     
- }
+ } */
 
 

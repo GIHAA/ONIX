@@ -4,8 +4,10 @@ import './AddIssueItem.css';
 import './AllIssueItems.css';
 import {Link} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import SideBar from "../stockController/SideBar";
+import PHeader from "../common/PHeader";
 
-
+import AdminSideMenu from "../Layouts/AdminSideMenu"
 
 export default function AllIssueItems(){
 
@@ -15,12 +17,14 @@ export default function AllIssueItems(){
     useEffect(() => {
         
         getIssueItems();
+       
     }, [])
 
     const getIssueItems= async()=>{
-        const result =await axios.get(`http://localhost:8070/Inventry_IssueItems/getAllItems/`);
+        const result =await axios.get(`http://localhost:8080/Inventry_IssueItems/getAllItems/`);
         setItems(result.data);
         console.log(result.data);
+        
 
     }
 
@@ -36,7 +40,7 @@ export default function AllIssueItems(){
     // delete one item
     const DeleteIssueItem = async (id)=> {
         console.warn(id)
-        let result =await fetch(`http://localhost:8070/Inventry_IssueItems/delete_IssueItem/${id}`,{
+        let result =await fetch(`http://localhost:8080/Inventry_IssueItems/delete_IssueItem/${id}`,{
             method:"Delete"
         });
         result =await result.json()
@@ -53,7 +57,7 @@ export default function AllIssueItems(){
     const searchItemHandle = async (e)=>{
         let key = e.target.value;
         if(key){
-            let result = await fetch(`http://localhost:8070/Inventry_IssueItems/search_IssueItem/${key}`)
+            let result = await fetch(`http://localhost:8080/Inventry_IssueItems/search_IssueItem/${key}`)
             result = await result.json()
             if(result){
                 setItems(result)
@@ -66,67 +70,66 @@ export default function AllIssueItems(){
 
 
     return(
-
-    	<div class="container" className="ItemList">
-        <h2 >Issue Item List....</h2>
-        <br/>
- 
-        <form className="form-inline my-2 my-lg-0">
-
-      <input className="form-control mr-sm-2" style={{width:"400px",borderWidth:"2px",borderColor:"#080C39"}} type="search" placeholder="Search Category or ID" aria-label="Search" onChange ={searchItemHandle}/>
-      
-      <Link to = "/add_IssueItem"><button className="addItemBtn1" type="submit"> Add New Issue Item</button></Link>
-     <Link to = "/inventryReport"><button className="Generate_Reportbtn" type="submit">Generate Report</button></Link>
-      
-   
-    
-    </form>
-    <div>
-
-        <br/>
-         <table class="table">
-            <thead class="tableheader">
-                <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Display.Name</th>
-                <th scope="col">Category </th>
-                <th scope="col">Description</th>
-                <th scope="col">Image </th>
-                <th scope="col">Issue.Qnt </th>     
-                <th scope="col">Price </th>
-                <th scope="col">Discount </th>
-                <th scope="col">Sell.Price </th>
-                <th scope="col">Weight </th>
-                <th scope="col">Ex.Date </th>
-
-                <th></th>
-                <th></th>
-                </tr>
-           </thead>
-          <tbody>
-            <br></br>
-            { issueItems.length>0 ? issueItems.map((item) =>
-                <tr key={item._id}>
+        <div class="flex scroll-smooth">
+        <SideBar />
+        <div class="w-full  h-full bg-white shadow-lg rounded-xl ">
+           
+          <PHeader />
+          
+          <AdminSideMenu />
+          <div class="container" className="ItemList">
+            <h2 class="m-5 text-3xl font-bold ">Issue Item List....</h2>
+            <br />
+            <form class="flex justify">
+              <input class="form-input w-80 h-10 border-4 border-gray-300 ml-16 rounded-md" type="search" placeholder="  Search Items..." aria-label="Search" onChange={searchItemHandle} />
+             
+                 <Link to ="/add_IssueItem"> <button className="bg-[#2E4960] p-1.5 ml-96 text-white hover:bg-[#0012] ">Add New Issue Item</button></Link>
+                <Link to ="/inventryReport"><button className="bg-[#2E4960] p-1.5 ml-10 text-white hover:bg-[#0012] ">Generate Report</button></Link>
+            
+            </form>
+            <div>
+              <br />
+              <table class="ml-3 table-auto w-full">
+                <thead class="tableheader">
+                  <tr class=" bg-[#2E4960] text-white  top-0">
+                    <th class=" bg-[#2E4960] text-white   py-3">ID</th>
+                    <th >Name</th>
+                    <th >Display.Name</th>
+                    <th >Category</th>
+                    <th >Description</th>
+                    <th >Image</th>
+                    <th >Issue.Qnt</th>
+                    <th >Price</th>
+                    <th >Discount</th>
+                    <th >Sell.Price</th>
                   
-                    <td className="tdID1">{item.Inventry_Item_ID}</td>
-                    <td className="">{item.Inventry_Item_Name}</td>         
-                    <td className="tdID1">{item.Inventry_Item_DisplayName}</td>
-                    <td className="">{item.Inventry_Item_Category}</td>
-                    <td className="tdID1">{item.Inventry_Item_Description}</td>
-                    <td ><img src ={`http://localhost:8070${item.Image}`} style={{width:"50px",height:"50px"}}/></td>
+                    <th >Ex.Date</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <br />
+                  {issueItems.length > 0 ? issueItems.map((item) =>
+                    <tr key={item._id}>
+                      <td class="border px-1 py-2">{item.Inventry_Item_ID}</td>
+                      <td class="border px-4 py-2">{item.Inventry_Item_Name}</td>
+                      <td class="border px-2 py-2">{item.Inventry_Item_DisplayName}</td>
+                      <td class="border px-4 py-2">{item.Inventry_Item_Category}</td>
+                      <td class="border px-2 py-2">{item.Inventry_Item_Description}</td>
+                      <td class="border px-1 py-2"><img src={`http://localhost:8080${item.Image}`} class="w-16 h-16 object-cover" /></td>
+                      <td class="border px-4 py-2">{item.Inventry_Item_IssuedQuantity}</td>
                     
-                    <td className="tdID">{item.Inventry_Item_IssuedQuantity}</td>
-                    <td className="">{item.Inventry_Item_Price}</td>
-                    <td className="tdID">{item.Inventry_Item_Discount}</td>
-                    <td className="">{item.Inventry_Item_SellPrice}</td>
-                    <td className="tdID">{item.Inventry_Item_Weight}</td>
-                    <td className="">{item.Inventry_Item_ExDate}</td>
+                    <td class="border px-4 py-2">{item.Inventry_Item_Price}</td>
+                    <td class="border px-4 py-2">{item.Inventry_Item_Discount}</td>
+                    <td class="border px-4 py-2">{item.Inventry_Item_Price*(100-item.Inventry_Item_Discount)/100}</td>
+                
+                    <td class="border px-4 py-2">{item.Inventry_Item_ExDate}</td>
 
 
 
-                    <td className="tdButton"><Link to={"/update_IssueItem/"+item._id}><button className="btnUpdate">Update</button></Link></td>
-                    <td className="tdButton"><button onClick={()=>DeleteIssueItem(item._id)} className="btnDelete">Delete</button></td>
+                    <td class="border px-2 py-2"><Link to={"/update_IssueItem/"+item._id}><button className="bg-[#2E4960] p-1  text-white hover:bg-[#0012] rounded-md">Update</button></Link></td>
+                    <td class="border px-2 py-2"><button onClick={()=>DeleteIssueItem(item._id)} className="bg-[#800000] p-1  text-white hover:bg-[#0012] rounded-md">Delete</button></td>
                 </tr>
             )
             :<h1>No Result Found..</h1>
@@ -135,6 +138,8 @@ export default function AllIssueItems(){
         </table>
         </div>
 
+    </div>
+    </div>
     </div>
     )
 }

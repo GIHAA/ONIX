@@ -30,6 +30,8 @@ import AllIssueItems from './components/Page/AllIssueItems';
 import AddIssueItem from './components/Page/AddIssueItem';
 import UpdateIssueItems from './components/Page/UpdateIssueItems';
 import DashboardInventry from './components/Page/DashboardInventry';
+import HomePageCustomer from "./components/Page/HomePageCustomer";
+import ItemView from "./components/Page/ItemView";
 
 function App() {
   return (
@@ -63,6 +65,8 @@ function App() {
           <Route path="/myorder" element={<Order />} />
 
           
+
+
         <Route path="/add" element={<Adminlayout><AddCategory/></Adminlayout>}/>
         <Route path="/all_categories" element={<Adminlayout><AllCategory/></Adminlayout>} /> 
         <Route path="/update/:id" element={<Adminlayout><UpdateCategory/></Adminlayout>}/>
@@ -71,7 +75,9 @@ function App() {
         <Route path="/getAllItems"element={<AllIssueItems/>}/>
         <Route path="/add_IssueItem" element={<Adminlayout><AddIssueItem/></Adminlayout>} />
         <Route path="/update_IssueItem/:id" element={<Adminlayout><UpdateIssueItems/></Adminlayout>} />
-        <Route path="/inventry_dashboard" element={<Adminlayout><DashboardInventry/></Adminlayout>} />
+        <Route path="/inventry_dashboard" element={<DashboardInventry/>} />
+        <Route path="/Home_Page" element={<HomePageCustomer/>}/>
+        <Route path="/ItemView/:id" element={<ItemView/>}/>
         </Routes>
 
       </Router>
