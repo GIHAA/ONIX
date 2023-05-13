@@ -27,7 +27,7 @@ export default function AddCategory(){
     }
     //console.log(newCategory);
 
-    axios.post("http://localhost:8070/category/add ",newCategory).then(()=>{
+    axios.post("http://localhost:8080/category/add ",newCategory).then(()=>{
       alert("New Category Added Successfully");
         setCategoryName("");
         setCategoryID("");

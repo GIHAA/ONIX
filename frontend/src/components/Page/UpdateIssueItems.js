@@ -34,7 +34,7 @@ export default function UpdateIssueItems(){
     useEffect(() => {
         
         const getCategory= async()=>{
-            const result =await axios.get(`http://localhost:8070/category/all_categories`);
+            const result =await axios.get(`http://localhost:8080/category/all_categories`);
             setSelectedCategory(result.data);
             console.log(result.data);
         
@@ -46,7 +46,7 @@ export default function UpdateIssueItems(){
 
         const getItemDetails = async() => {
     
-            const result = await axios.get(`http://localhost:8070/Inventry_IssueItems/get_OneIssueItem/${params.id}`);
+            const result = await axios.get(`http://localhost:8080/Inventry_IssueItems/get_OneIssueItem/${params.id}`);
     
             const item = result.data
 
@@ -100,7 +100,7 @@ export default function UpdateIssueItems(){
             }
 
 
-            axios.put(`http://localhost:8070/Inventry_IssueItems/update_IssueItem/${params.id}`,newItem).then(()=>{
+            axios.put(`http://localhost:8080/Inventry_IssueItems/update_IssueItem/${params.id}`,newItem).then(()=>{
 
           
             setInventry_Item_ID("");
@@ -134,7 +134,7 @@ export default function UpdateIssueItems(){
             
             const formData = new FormData();
             formData.append("image", file);
-            const result1 = await axios.post(`http://localhost:8070/Inventry_IssueItems/upload`, formData); //path of (function) image upload in the category route file 
+            const result1 = await axios.post(`http://localhost:8080/Inventry_IssueItems/upload`, formData); //path of (function) image upload in the category route file 
           
               setImage(result1.data.path);
               console.log(result1.data.path)
@@ -227,7 +227,7 @@ export default function UpdateIssueItems(){
           <div class="form-row mt-4" >
          <div class="form-group col-md-8" style={{alignItems:"center",justifyContent:"center"}}>   
      {
-        Image && (<img src={`http://localhost:8070/${Image}`}  class="rounded float-right w-50  " alt="..."/>)}
+        Image && (<img src={`http://localhost:8080/${Image}`}  class="rounded float-right w-50  " alt="..."/>)}
      
              </div>
            </div>   

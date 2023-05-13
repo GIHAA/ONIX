@@ -21,7 +21,7 @@ export default function AllCategory(){
     }, [])
 
     const getCategories= async()=>{
-        const result =await axios.get(`http://localhost:8070/category/all_categories`);
+        const result =await axios.get(`http://localhost:8080/category/all_categories`);
         setCategories(result.data);
         console.log(result.data);
 
@@ -30,7 +30,7 @@ export default function AllCategory(){
     // delete one item
     const DeleteCategory = async (id)=> {
         console.warn(id)
-        let result =await fetch(`http://localhost:8070/category/delete/${id}`,{
+        let result =await fetch(`http://localhost:8080/category/delete/${id}`,{
             method:"Delete"
         });
         result =await result.json()
@@ -47,7 +47,7 @@ export default function AllCategory(){
     const searchHandle = async (e)=>{
         let key = e.target.value;
         if(key){
-            let result = await fetch(`http://localhost:8070/category/searchCategory/${key}`)
+            let result = await fetch(`http://localhost:8080/category/searchCategory/${key}`)
             result = await result.json()
             if(result){
                 setCategories(result)

@@ -21,7 +21,7 @@ const [items,setItems] =useState([]);
     }, [])
 
     const getCategories= async()=>{
-        const result =await axios.get(`http://localhost:8070/category/all_categories`);
+        const result =await axios.get(`http://localhost:8080/category/all_categories`);
         setCategories(result.data);
         console.log(result.data);
 
@@ -30,9 +30,9 @@ const [items,setItems] =useState([]);
 
 const getInventry_Report =async() =>{
   
-        await  axios.post(`http://localhost:8070/categoryReport/createPdf`,categories).then((respnse)=>{
+        await  axios.post(`http://localhost:8080/categoryReport/createPdf`,categories).then((respnse)=>{
         console.log(respnse)
-        axios.get(`http://localhost:8070/categoryReport/fetchPdf`,{responseType:'blob'}).then((res)=>{
+        axios.get(`http://localhost:8080/categoryReport/fetchPdf`,{responseType:'blob'}).then((res)=>{
 
         const pdfBlob=new Blob([res.data],{type:'application/pdf'})
 
@@ -44,7 +44,7 @@ const getInventry_Report =async() =>{
 
 
 const getIssueItems= async()=>{
-    const result =await axios.get(`http://localhost:8070/Inventry_IssueItems/getAllItems/`);
+    const result =await axios.get(`http://localhost:8080/Inventry_IssueItems/getAllItems/`);
     setItems(result.data);
     console.log(result.data);
 
@@ -53,9 +53,9 @@ const getIssueItems= async()=>{
 
 const getInventry_Report_Items =async() =>{
   
-    await  axios.post(`http://localhost:8070/issueItemReport/createPdf`,items).then((respnse)=>{
+    await  axios.post(`http://localhost:8080/issueItemReport/createPdf`,items).then((respnse)=>{
     console.log(respnse)
-    axios.get(`http://localhost:8070/issueItemReport/fetchPdf`,{responseType:'blob'}).then((res)=>{
+    axios.get(`http://localhost:8080/issueItemReport/fetchPdf`,{responseType:'blob'}).then((res)=>{
 
     const pdfBlob=new Blob([res.data],{type:'application/pdf'})
 

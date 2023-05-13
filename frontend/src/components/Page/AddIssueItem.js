@@ -21,20 +21,33 @@ export default function AddIssueItem(){
   const [Inventry_Item_Weight, setInventry_Item_Weight] =useState("");
   const [Inventry_Item_ExDate, setInventry_Item_ExDate] =useState("");
   const [selectedCategory, setSelectedCategory] =useState("");
+  const [selectItems, setSelectItem] =useState("");
 
 
   useEffect(() => {
         
     getCategory();
+    getItems();
+    
+
+
+
+
   }, [])
 
   const getCategory= async()=>{
-    const result =await axios.get(`http://localhost:8070/category/all_categories`);
+    const result =await axios.get(`http://localhost:8080/category/all_categories`);
     setSelectedCategory(result.data);
     console.log(result.data);
 
   }
 
+  const getItems= async()=>{
+    const result =await axios.get(`http://localhost:8080/api/stock/`);
+    setSelectItem(result.data);
+    console.log(result.data);
+
+  }
   
 
 
@@ -63,7 +76,7 @@ export default function AddIssueItem(){
     }
     //console.log(newCategory);
 
-    axios.post("http://localhost:8070/Inventry_IssueItems/add_IssueItem ",newIssueItem).then(()=>{
+    axios.post("http://localhost:8080/Inventry_IssueItems/add_IssueItem ",newIssueItem).then(()=>{
         alert("New Category Added Successfully")
         setInventry_Item_ID("Null");
         setInventry_Item_Name("Null");
@@ -100,7 +113,7 @@ export default function AddIssueItem(){
     
     const formData = new FormData();
     formData.append("image", file);
-    const result1 = await axios.post(`http://localhost:8070/Inventry_IssueItems/upload`, formData); //path of (function) image upload in the category route file 
+    const result1 = await axios.post(`http://localhost:8080/Inventry_IssueItems/upload`, formData); //path of (function) image upload in the category route file 
   
       setImage(result1.data.path);
       console.log(result1.data.path)
@@ -138,13 +151,22 @@ export default function AddIssueItem(){
 
     <div class="form-group col-md-5">
       <label for="inputState">Item Name  :</label>
-      <input value={Inventry_Item_Name} onChange={(e)=>{setInventry_Item_Name(e.target.value);}}   id="inputState" class="form-control" placeholder="Enter Item Name"  required />
+      <select class="form-control" value={Inventry_Item_Name} onChange={(e)=>{setInventry_Item_Name(e.target.value);}}   id="inputState"  placeholder="Enter Item Name"  required >
+      <option selected>Choose Item...</option>
+      {selectItems.length>0 && selectItems.map((item) =>{
+            return(
+            <option value={item.name}>{item.name }</option>)
+            })
+      }
+    </select>
+
+
     </div>
     <div class="form-group col-md-3" style={{marginLeft:"50px"}}>
       <label for="inputState">Category  :</label>
        
 
-      <select class="form-control" value={Inventry_Item_Category} onChange={(event)=>setInventry_Item_Category(event.target.value)}  id="exampleFormControlSelect1" placeholder="Select Product Category"> 
+      <select class="form-control" value={Inventry_Item_Category} onChange={(event)=>setInventry_Item_Category(event.target.value)}  id="exampleFormControlSelect1" placeholder="Select Product Category" required> 
     <option selected>Choose Category...</option>
 
       {selectedCategory.length>0 && selectedCategory.map((item) =>{
@@ -194,7 +216,7 @@ export default function AddIssueItem(){
      <div class="form-row mt-4" >
     <div class="form-group col-md-8" style={{alignItems:"center",justifyContent:"center"}}>   
 {
-   Image && (<img src={`http://localhost:8070/${Image}`}  class="rounded float-right w-50  " alt="..."/>)}
+   Image && (<img src={`http://localhost:8080/${Image}`}  class="rounded float-right w-50  " alt="..."/>)}
 
         </div>
       </div>   

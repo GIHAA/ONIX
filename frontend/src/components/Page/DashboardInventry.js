@@ -1,7 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import './DashboardInventry.css';
-
+import SideBar from '../stockController/SideBar';
+import PHeader from '../common/PHeader';
+import AdminSidebar from '../Layouts/AdminSideMenu';
 
 const DashboardInventry =() => {
 
@@ -13,7 +15,7 @@ const DashboardInventry =() => {
            
            
     const getIssueItems= async()=>{
-        const result =await axios.get(`http://localhost:8070/Inventry_IssueItems/getAllItems/`);
+        const result =await axios.get(`http://localhost:8080/Inventry_IssueItems/getAllItems/`);
         setItems(result.data);
         console.log(result.data);
 
@@ -21,7 +23,7 @@ const DashboardInventry =() => {
 
 
     const getCategories= async()=>{
-        const result =await axios.get(`http://localhost:8070/category/all_categories`);
+        const result =await axios.get(`http://localhost:8080/category/all_categories`);
         setCategories(result.data);
         console.log(result.data);
 
@@ -37,24 +39,51 @@ const DashboardInventry =() => {
 
 
     return(
-        
-        <div className='container'>
+    <div class="flex scroll-smooth">
+    <SideBar />
+    <div class="w-full h-full bg-white shadow-lg rounded-xl">
+        <PHeader />
+        <AdminSidebar/>
+        <div className="ml-10">
             <h1 className='h1_text'>Inventry Details...</h1>
-        <div className='divDashboard'><label>Total Issue Items</label>
-        <br></br>
-            <label className='labelDashboard'>{issueItems.length}</label>
-        </div>
-        <div className='divDashboard'><label>Total Categories</label>
-        <br></br>
-            <label className='labelDashboard'>{categories.length}</label>
-        </div>
-        <div className='divDashboard2'>
-            <label>Expired Items </label>
-            <br></br>
-            <label className='labelDashboard'>0</label>
-            
+            <div class='flex flex-wrap'>
+                <div class='bg-gray-300 h-45 w-96 border-4 border-blue-900 rounded-xl p-3 mr-8 mt-8 text-center text-3xl font-bold'>
+                    <label class='block mb-4'>Total Issue Items</label>
+                    <label class='text-5xl'>{issueItems.length}</label><br/>
+                    <label ><button className="bg-[#2E4960]  p-1 text-white hover:bg-[#0012] text-sm rounded-md">View Details</button></label>
+                </div>
+                <div class='bg-gray-300 h-45 w-96 border-4 border-blue-900 rounded-xl p-3 mr-8 mt-8 text-center text-3xl font-bold'>
+                    <label class='block mb-4'>Total Categories</label>
+                    <label class='text-5xl'>{categories.length}</label>
+                    <br/>
+                    <label ><button className="bg-[#2E4960]  p-1 text-white hover:bg-[#0012] text-sm rounded-md">View Details</button></label>
+                </div>
+                <div class='bg-gray-300 h-45 w-96 border-4 border-red-700 rounded-xl p-3 mr-8 mt-8 text-center text-3xl font-bold'>
+                    <label class='block mb-4'>Expired Items</label>
+                    <label class='text-5xl'>0</label>
+                    <br/>  
+                    <label ><button className="bg-[#2E4960]  p-1 text-white hover:bg-[#0012] text-sm rounded-md">View Details</button></label>
+
+                </div>
+                <div class='bg-gray-300 h-45 w-96 border-4 border-red-700 rounded-xl p-3 mr-8 mt-8 text-center text-3xl font-bold'>
+                    <label class='block mb-4'>Out of Stock(Issued)</label>
+                    <label class='text-5xl'>0</label>
+                    <br/>  
+                    <label ><button className="bg-[#2E4960]  p-1 text-white hover:bg-[#0012] text-sm rounded-md">View Details</button></label>
+
+                </div>
+                <div class='bg-gray-300 h-45 w-96 border-4 border-red-700 rounded-xl p-3 mr-8 mt-8 text-center text-3xl font-bold'>
+                    <label class='block mb-4'>Low Stock(Issued)</label>
+                    <label class='text-5xl'>0</label>
+                    <br/>  
+                    <label ><button className="bg-[#2E4960]  p-1 text-white hover:bg-[#0012] text-sm rounded-md">View Details</button></label>
+
+                </div>
             </div>
         </div>
+    </div>
+    </div>
+
     )
 
 

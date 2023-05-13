@@ -25,7 +25,7 @@ export default function UpdateCategory(){
 
         const getCategoryDetails = async() => {
     
-            const result = await axios.get(`http://localhost:8070/category/get/${params.id}`);
+            const result = await axios.get(`http://localhost:8080/category/get/${params.id}`);
     
             const item = result.data
     
@@ -56,7 +56,7 @@ export default function UpdateCategory(){
             }
 
 
-            axios.put(`http://localhost:8070/category/update/${params.id}`,newCategory).then(()=>{
+            axios.put(`http://localhost:8080/category/update/${params.id}`,newCategory).then(()=>{
 
             setCategoryName("");
             setCategoryID("");
@@ -79,7 +79,7 @@ export default function UpdateCategory(){
             
             const formData = new FormData();
             formData.append("image", file);
-            const result1 = await axios.post(`http://localhost:8070/category/upload`, formData); //path of (function) image upload in the category route file 
+            const result1 = await axios.post(`http://localhost:8080/category/upload`, formData); //path of (function) image upload in the category route file 
           
               setImage(result1.data.path);
               console.log(result1.data.path)
