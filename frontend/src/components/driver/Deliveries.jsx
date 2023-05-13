@@ -4,26 +4,32 @@ import SideBar from "./SideBar";
 import Profile from "../common/Profile";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import editImg from "../../assets/edit.png";
 import deleteImg from "../../assets/delete.png";
+import { logout, reset  } from "../../services/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Users = () => {
 
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
     const [ data , setData ] = useState([])
     const [ formData , setFormData ] = useState({
         no : "",
         driver : "",
         order_date : "",
         delivery_date : "",
+        location: "",
         status : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
-    const { no , driver , order_date , delivery_date , orderid } = formData;
+    const { no , driver , order_date , delivery_date , orderid, location } = formData;
     const [ filteredData , setFilteredData ] = useState([])
     const [ searchTerm , setSearchTerm ] = useState('')
 
@@ -49,12 +55,14 @@ const Users = () => {
 
     const onEdit = (id) => {
         const res = axios.put(`http://localhost:8080/api/deliveries/${id}`, formData).then((res) => {
-          toast.success("deliveries updated successfully")
+          toast.success("Updated successfully")
           setTimeout(function() {
             refreshPage()
             setFormData({})
           }, 2000);
-        }).catch(err => toast.error("failed to update deliveries"))
+        }).catch(err => toast.error("failed to update"))
+   
+     
 
         setShowEditModal(false)
 
@@ -120,7 +128,7 @@ const Users = () => {
 
                 <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Deliveries </h1>
 
-                <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
+                {/* <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button> */}
 <div className="h-[500px] overflow-y-scroll">
 <div className="ml-[150px] ">
                 <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
@@ -135,6 +143,7 @@ const Users = () => {
       <th className="p-3">Delivery date</th>
       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
+          <th className="p-3">Location</th>
        <th className="p-3">Status</th>
        <th className="p-3">Order ID</th>
       <th className="p-3">action</th>
@@ -151,6 +160,7 @@ const Users = () => {
                             <td className="p-3 w-[350px]">{item.driver}</td>
     
                             <td className="p-3 w-[150px]">{item.delivery_date}</td>
+                            <td className="p-3 w-[150px]">{item.location}</td>
                             <td className="p-3 w-[150px]">{item.status}</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
                             <td className="p-3">{item.qty}</td> */}
@@ -239,25 +249,15 @@ const Users = () => {
               Edit Deliveries
             </h2>
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add No</label>
-<input  id="no" name="no" value={no} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Driver</label>
-<input  id="driver" name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-
-
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
-<input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order ID</label>
-<input  id="orderid" name="orderid" value={orderid} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Location</label>
+<input  id="location" name="location" value={location} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
 
 
                <select name="status" onChange={onChange} defaultValue="ongoing" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="ongoing">ongoing</option>
-  <option value="processing">processing</option>
+  <option value="completed">completed</option>
   <option value="canceled">canceled</option>
 </select>     
 

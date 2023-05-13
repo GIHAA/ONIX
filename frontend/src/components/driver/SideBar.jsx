@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { toast } from "react-toastify";
 import updateUser from "../../services/api/user";
+import { login, reset , logout } from "../../services/auth/authSlice";
+ 
 
 function SideBar() {
-  const [showdisplay, setshowdisplay] = useState("true");
+  const [showdisplay, setshowdisplay] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
@@ -23,39 +25,40 @@ function SideBar() {
     phone: "",
     image: "",
     dob: "",
-    gender: ""
+    gender: "",
+    vehiclenumber: "",
+    license: "",
+    experience: "",
+    vehicletype: "",
+    address: "",
   });
 
-  const { name, email, password, password2, address, phone , dob , gender ,confirmpassword } = formData;
+  const { name, email, password, password2, address, phone , dob , gender ,confirmpassword , license , experience, vehicletype, vehiclenumber } = formData;
 
 const navigate = useNavigate();
 const dispatch = useDispatch();
 
 const onChange = (e) =>
   setFormData({ ...formData, [e.target.name]: e.target.value });
-const onSubmit = (e) => {
-  e.preventDefault();
-  
-  if (password !== password2) {
-    toast.error("Passwords do not match");
-  } 
-  else if(formData.confirmpassword === ""){
-    toast.error("Please enter your password to confirm changes");
-  }
-  else{
+const onSubmit = () => {
+
+
     
     const formDataID = { ...formData, _id: user._id} 
     const response = updateUser(formDataID)
       .then(() => {
-        toast.success("Profile updated successfully");
+        toast.success("Driver details added sucessfully login agian");
       })
       .catch((err) => {
         toast.error("An error occurred while updating profile");
         console.log(err);
       });
 
-    console.log(response.data);
-  }
+      dispatch(logout());
+      dispatch(reset());
+      navigate("/login");
+      
+
 };
   return (
     <>
@@ -88,7 +91,7 @@ const onSubmit = (e) => {
         </NavLink>
 
         <NavLink
-          to="/deliveries"
+          to="/mydeliveries"
           activeClassName="active"
           className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
         >
@@ -126,20 +129,20 @@ const onSubmit = (e) => {
       
     </div>
       { showdisplay && (
-        <div className="fixed inset-0 z-50 overflow-auto bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black  z-50 overflow-auto bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">Update Driver details</h2>
             <div className="flex mt-6">
       
       <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
-        Name  :
+      experience  :
       </label>
       <input
-        id="name"
-        name="name"
-        value={name}
+        id="experience"
+        name="experience"
+        value={experience}
         onChange={onChange}
-        placeholder={user.name}
+        placeholder={user.experience}
         type="text"
         className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
       />
@@ -147,28 +150,43 @@ const onSubmit = (e) => {
 </div>
 <div className="flex">
       <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
-        Email :
+        Vehicletype :
       </label>
       <input
-        id="email"
-        name="email"
-        value={email}
+        id="vehicletype"
+        name="vehicletype"
+        value={vehicletype}
         onChange={onChange}
-        placeholder={user.email}
+        placeholder={user.vehicletype}
         type="text"
         className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
       />
 </div>
 <div className="flex">
       <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
-        Adderess :
+      Vehicle number :
       </label>
       <input
-        id="address"
-        name="address"
-        value={address}
+        id="vehiclenumber"
+        name="vehiclenumber"
+        value={vehiclenumber}
         onChange={onChange}
-        placeholder={user.address}
+        placeholder={user.vehiclenumber}
+        type="text"
+        className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+      />
+</div>
+
+<div className="flex">
+      <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
+      License :
+      </label>
+      <input
+        id="license"
+        name="license"
+        value={license}
+        onChange={onChange}
+        placeholder={user.license}
         type="text"
         className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
       />

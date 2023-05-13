@@ -11,7 +11,7 @@ const viewDeliveries = asyncHandler(async (req, res) => {
 })
 
 const addDeliveries = asyncHandler(async (req, res) => {
-    const { driver, no , order_date , delivery_date , orderid } = req.body
+    const { driver, no , location , delivery_date , orderid } = req.body
 
     const exdeliveries = await Deliveries.findOne({ no })
 
@@ -24,7 +24,7 @@ const addDeliveries = asyncHandler(async (req, res) => {
     const deliveries = await Deliveries.create({
         no,
         driver,
-        order_date,
+        location,
         delivery_date,
         status : 'ongoing',
         orderid
@@ -37,7 +37,7 @@ const addDeliveries = asyncHandler(async (req, res) => {
 
 const updateDeliveries = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const { no, driver, order_date , delivery_date , status , orderid} = req.body;
+    const { no, driver, location , delivery_date , status , orderid} = req.body;
 
     const exdeliveries = await Deliveries.findOne({ no })
 
@@ -53,7 +53,7 @@ const updateDeliveries = asyncHandler(async (req, res) => {
       // Update the deliveries document with new values
       deliveries.no = no || deliveries.no;
       deliveries.driver = driver || deliveries.driver;
-      deliveries.order_date= order_date|| deliveries.order_date;
+      deliveries.location= location|| deliveries.location;
       deliveries.delivery_date = delivery_date || deliveries.delivery_date;
       deliveries.status = status || deliveries.status;
       deliveries.orderid = orderid || deliveries.orderid;

@@ -11,6 +11,7 @@ import Feedback from "./components/customer/Feedback";
 import User from "./components/humanResource/Users";
 import Suppliers from "./components/stockController/Suppliers";
 import Deliveries from "./components/salesOfficer/Deliveries";
+import MyDeliveries from "./components/driver/Deliveries";
 import Orders from "./components/salesOfficer/Orders";
 import Stock from "./components/stockController/Stock";
 import Expenses from "./components/accountant/Expenses";
@@ -61,6 +62,8 @@ function App() {
           <Route path="/managefeed" element={<ManageFeedback />} />
 
           <Route path="/myorder" element={<Order />} />
+          <Route path="/mydeliveries" element={<MyDeliveries />}/>
+
 
           
         <Route path="/add" element={<Adminlayout><AddCategory/></Adminlayout>}/>

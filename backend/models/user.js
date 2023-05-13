@@ -62,6 +62,22 @@ const userSchema = mongoose.Schema(
       type : String,
       required: false,
     },
+    experience: {
+        type : String,
+        required: false,
+    },
+    vehicletype:{
+        type : String,
+        required: false,
+    },
+    vehiclenumber:{
+        type : String,
+        required: false,
+    },
+    license:{
+        type : String,
+        required: false,        
+    }
   },
   {
     timestamps: true,

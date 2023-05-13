@@ -92,11 +92,11 @@ export default PortalHandler;
 //--- new
 
 // connect asanka part -- 13
-// driver -- 14
-// stock controller stock order CRUD / supplier orders / same attributes (stock) -- 14 (sandaru)
+// done driver -- 14
+// stock controller stock order CRUD / supplier orders / same attributes (stock) -- 14 
 // quality should change color , change delete to remove -- 14
 // salary name , month , salary , ot hours -- 14
-// ( asanka ) shooping cart -- 14 (sandaru)
+// ( asanka ) shooping cart -- 14 
 
 // validation / finalizing -- 15 ( morning )
 
