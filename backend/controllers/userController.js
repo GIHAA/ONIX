@@ -114,7 +114,7 @@ const getMe = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
 
   const id = req.params.id;
-  const { name , email, role , image } = req.body;
+  const { name , email, role , image , address , phone  } = req.body;
 
   // Wait for the Feedback model to find the document by ID
   const user = await User.findOne({ _id: id });
@@ -125,6 +125,8 @@ const updateUser = asyncHandler(async (req, res) => {
     user.email = email || user.email;
     user.role = role || user.role;
     user.image = image || user.image;
+    user.address = address || user.address;
+    user.phone = phone || user.phone;
     // Save the updated document and wait for it to complete
     await user.save();
 
@@ -139,14 +141,14 @@ const deleteUser = asyncHandler(async (req, res) => {
 
   const { email, password } = req.body
 
-  if ( !email || !password) {
-    res.status(400)
-    throw new Error('Please add all fields')
-  }
+  // if ( !email || !password) {
+  //   res.status(400)
+  //   throw new Error('Please add all fields')
+  // }
 
   const user = await User.findOne({ email })
   
-  if (user && (await bcrypt.compare(password, user.password))) {
+  if (user) {
     const deletedUser = await user.deleteOne()
     res.json({
       _id: deletedUser.id,

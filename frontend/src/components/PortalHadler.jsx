@@ -7,6 +7,7 @@ import StockControllerPortal from "./stockController/StockControllerPortal";
 import SalesOfficerPortal from "./salesOfficer/SalesOfficerPortal";
 import AccountantPortal from "./accountant/AccountantPortal";
 import CustomerServiceManagerPortal from "./customerServiceManager/CustomerServiceManagerPortal"
+import DriverPortal from "./driver/DriverPortal"
 
 function PortalHandler() {
   const { user } = useSelector((state) => state.auth);
@@ -25,7 +26,7 @@ function PortalHandler() {
         return <StockControllerPortal />;
 
         case "driver": // p1
-          return <StockControllerPortal />;
+          return <DriverPortal />;
 
         case "customerServiceManager": // p5
           return <CustomerServiceManagerPortal />;
@@ -58,7 +59,7 @@ export default PortalHandler;
 
 //--- may 12
 
-// p13 backlog - asanka shopping cart , customer delete button ,  cs add-> register , cs cus coloum -role +address, phone , cs cus no edit ,  
+// done p13 backlog - asanka shopping cart , customer delete button ,  cs add-> register , cs cus coloum -role +address, phone , cs cus no edit ,  
 
 // p8.2 user attibutes change -- 4 hours
 
@@ -71,7 +72,7 @@ export default PortalHandler;
 
 // p14
 
-// p15 attendace
+// done p15 attendace
 
 //--- may 15.5
 //--- validation 0.5
@@ -86,3 +87,23 @@ export default PortalHandler;
 //unclear
 //p11 accountant (salary) 4 hours --> attributes whatsappp
 //p11.1 accountant (salary) 4 hours
+
+
+//--- new
+
+// connect asanka part -- 13
+// driver -- 14
+// stock controller stock order CRUD / supplier orders / same attributes (stock) -- 14 (sandaru)
+// quality should change color , change delete to remove -- 14
+// salary name , month , salary , ot hours -- 14
+// ( asanka ) shooping cart -- 14 (sandaru)
+
+// validation / finalizing -- 15 ( morning )
+
+// report - csm customer list -- 16 ( evening )
+// report - hr attendace list 
+// report - accountant salaty report -- 16 ( evening )
+// report - cs suppiler list -- 16 ( evening )
+// report - cs stock order -- 16 ( evening )
+// report - so orders -- 16 ( evening )
+// report - deliveries -- 16 ( evening )

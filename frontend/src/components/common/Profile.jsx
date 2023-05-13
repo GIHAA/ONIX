@@ -22,18 +22,22 @@ const Profile = (props) => {
     };
     
     const [showAttendanceModal, setShowAttendanceModal] = useState(false);
-    const [formData, setFormData] = useState({
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
-      confirmpassword: "",
-      token: user.token,
-      _id: user._id,
-    });
-  
-    const { name, email, address, phone, password, password2, confirmpassword,} =
-      formData;
+
+      const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+        confirmpassword: "",
+        token: user.token,
+        _id: user._id,
+        phone: "",
+        image: "",
+        dob: "",
+        gender: ""
+      });
+    
+      const { name, email, password, password2, address, phone , dob , gender ,confirmpassword } = formData;
   
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -97,10 +101,20 @@ const Profile = (props) => {
         }).catch(err => alert(err))
      
     }
+
+    const onDelete = () => {
+      const formData = { ...user,  _id: user._id , token: user.token };
+      axios.post("http://localhost:8080/api/users/delete", formData).then((res) => {
+        toast.success("Account deleted successfully")
+        dispatch(logout());
+        navigate("/");
+      }).catch(err => alert(err))
+    }
+
     return (
       <>
         <div className="w-full pr-[200px] bg-bgsec">
-          <div className=" mx-auto rounded-[20px] bg-[#E7E9FB] p-8 mt-[50px] flex h-[510px]  w-[900px]">
+          <div className=" mx-auto rounded-[20px] bg-[#E7E9FB] p-8 mt-[10px] flex h-[510px]  w-[900px]">
             <div className="w-1/3  h-full">
                 <div className="w-full flex justify-center">
                 
@@ -155,6 +169,35 @@ const Profile = (props) => {
                     value={email}
                     onChange={onChange}
                     placeholder={user.email}
+                    type="text"
+                    className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                  />
+</div>
+<div className="flex">
+                  <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
+                    Adderess :
+                  </label>
+                  <input
+                    id="address"
+                    name="address"
+                    value={address}
+                    onChange={onChange}
+                    placeholder={user.address}
+                    type="text"
+                    className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                  />
+</div>
+  
+<div className="flex">
+                  <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
+                    Phone number :
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    value={phone}
+                    onChange={onChange}
+                    placeholder={user.phone}
                     type="text"
                     className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
                   />
@@ -226,6 +269,15 @@ const Profile = (props) => {
                   <span className="inline-block mr-2">Delete</span>
                 </button> */}
 
+       
+
+                <button
+                  onClick={onDelete}
+                  type="button"
+                  className="transition mr-auto w-[25%] rounded-[100px] duration-200 bg-[#2E4960] hover:bg-[#2E4960] focus:bg-[#2E4960] focus:shadow-sm focus:ring-4 focus:ring-opacity-50 text-white py-2.5 text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                >
+                  <span className="inline-block mr-2">Delete profile</span>
+                </button>
                 <button
                   onClick={onSubmit}
                   type="button"

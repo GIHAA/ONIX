@@ -8,19 +8,22 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import editImg from "../../assets/edit.png";
 import deleteImg from "../../assets/delete.png";
+import { useSelector } from "react-redux";
 
 
 const Feedback = () => {
+  const { user } = useSelector((state) => state.auth);
 
     const [ data , setData ] = useState([])
     const [ formData , setFormData ] = useState({
-        about : "",
+        about : user.name,
         details : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
     const { about, details } = formData;
+
 
     useEffect(()=>{
 
@@ -112,6 +115,8 @@ const Feedback = () => {
                       return(
 
                         <>
+               
+                        { item.about == user.name ?(
                         <tr className="hover:bg-[#efeeee] border-[2px]">
                           <td className="p-3">{item.about}</td>
                           <td className="p-3 w-[350px]">{item.details}</td>
@@ -138,7 +143,8 @@ const Feedback = () => {
                             </div>
                           </td>
                         
-                        </tr>
+                        </tr>): <></>
+}
                         </>
 
                       )

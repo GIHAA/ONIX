@@ -12,17 +12,24 @@ import deleteImg from "../../assets/delete.png";
 const Users = () => {
   const [data, setData] = useState([]);
   const [image, setImage] = useState("");
+
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
+    password2: "",
     role: "customer",
+    phone: "",
     image: "",
+    dob: "",
+    gender: "",
+    address: ""
   });
   const [showEditModal, setShowEditModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [id, setId] = useState("");
-  const { name, email, password } = formData;
+  const { name, email, password , password2 , phone , dob , gender , address } = formData;
 
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -189,8 +196,9 @@ const Users = () => {
                   <thead className=" bg-[#2E4960] text-white sticky top-0">
                     <tr>
                       <th className="p-3">Name</th>
-                      <th className="p-3">Email</th>
-                      <th className="p-3">Role</th>
+                      <th className="p-3">Email </th>
+                      <th className="p-3">Phone Number</th>
+                      <th className="p-3">Address</th>
                       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
                       <th className="p-3">action</th>
@@ -204,28 +212,14 @@ const Users = () => {
                           <tr className="hover:bg-[#efeeee] border-[2px]">
                             <td className="p-3 w-[350px]">{item.name}</td>
                             <td className="p-3 w-[350px]">{item.email}</td>
-                            <td className="p-3 w-[150px]">{item.role}</td>
+                            <td className="p-3 w-[350px]">{item.phone}</td>
+                            <td className="p-3 w-[150px]">{item.address}</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
                             <td className="p-3">{item.qty}</td> */}
 
                             <td className="p-3">
                               <div className="flex ml-12">
-                                <button
-                                  onClick={() => {
-                                    setShowEditModal(true);
-                                    setId(item._id);
-                                  }}
-                                  className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl"
-                                >
-                                  <span className="flex">
-                                    <img
-                                      src={editImg}
-                                      alt=""
-                                      className="w-4 h-4 mr-2 mt-1"
-                                    />
-                                    Edit
-                                  </span>
-                                </button>
+                                
 
                                 <button
                                   className="flex px-5 py-1 mr-5 bg-[#d11818] text-white font-semibold hover:bg-[#760d0d] rounded-xl "
@@ -257,59 +251,110 @@ const Users = () => {
       {showCreateModal && (
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
-            <h2 className="text-lg font-bold mb-4 ">Add New Users</h2>
+          <label className="mt-4 font-semibold text-sm text-gray-600 pb-1 block">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                value={name}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]"
+              />
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
 
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">
-              Add Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              value={name}
-              onChange={onChange}
-              type="text"
-              className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
-            />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Date of Birth
+              </label>
+              <input
+                id="dob"
+                name="dob"
+                value={dob}
+                onChange={onChange}
+                type="date"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
 
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">
-              Add Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              value={email}
-              onChange={onChange}
-              type="text"
-              className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
-            />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Address
+              </label>
+              <input
+                id="address"
+                name="address"
+                value={address}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
+             
+             
+             <label className="font-semibold text-sm text-gray-600 pb-1 block">
+             Gender
+              </label>
+              <input
+                id="gender"
+                name="gender"
+                value={gender}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
 
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">
-              Add Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              value={password}
-              onChange={onChange}
-              type="text"
-              className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
-            />
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">
-              Add image
-            </label>
-            <input
-              className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
-              accept="image/*"
-              type="file"
-              onChange={convertToBase64}
-            />
-
-            {/* <input
-                className="w-full h-full py-6 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
+<label className="font-semibold text-sm text-gray-600 pb-1 block">
+             Phone Number
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                value={phone}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+              />
+             
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]"
+              />
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Confirm Password
+              </label>
+              <input
+                id="password2"
+                name="password2"
+                value={password2}
+                onChange={onChange}
+                type="text"
+                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]"
+              />
+                            <label className="font-semibold text-sm text-gray-600 pb-1 block">
+                Add a Profile Picture
+              </label>
+              <input
+                className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
                 accept="image/*"
                 type="file"
                 onChange={convertToBase64}
-              /> */}
+              />
+
             <div className="flex">
               <button className="" onClick={() => setShowCreateModal(false)}>
                 Close
