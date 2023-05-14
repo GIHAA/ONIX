@@ -111,7 +111,7 @@ const Feedback = () => {
 </thead>
 
 <tbody  className="bg-white text-center border-black ">
-{data.fillter(item => item.about === user.name).map((item) => {
+{data.filter(item => item.about === user.name).map((item) => {
                       return(
 
                         <>
