@@ -10,27 +10,38 @@ import editImg from "../../assets/edit.png";
 import deleteImg from "../../assets/delete.png";
 
 
-const Users = () => {
+const Salary = () => {
 
     const [ data , setData ] = useState([])
     const [ formData , setFormData ] = useState({
-        no : "",
-        driver : "",
-        order_date : "",
-        delivery_date : "",
-        status : "",
-        location: ""
+        name : "",
+        month : "",
+        salary : "",
+        othours : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
-    const { no , driver , order_date , delivery_date , orderid , location } = formData;
     const [ filteredData , setFilteredData ] = useState([])
-    const [ searchTerm , setSearchTerm ] = useState('')
+const [ searchTerm , setSearchTerm ] = useState('')
+    const { name , month , salary , othours } = formData;
+
+
+    
+const onSearch = (e) => {
+  const searchQuery = e.target.value.toLowerCase();
+  const filteredResults = data.filter((item) => 
+      item.name.toLowerCase().includes(searchQuery) ||
+      item.month.toLowerCase().includes(searchQuery) ||
+      item.othours.toLowerCase().includes(searchQuery)
+  );
+  setFilteredData(filteredResults);
+  setSearchTerm(searchQuery);
+}
 
     useEffect(()=>{
 
-        axios.get("http://localhost:8080/api/deliveries/")
+        axios.get("http://localhost:8080/api/salary/")
         .then((res) => {
             setData(res.data)
             setFilteredData(res.data)
@@ -42,7 +53,13 @@ const Users = () => {
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
     const refreshPage = () => {
-      axios.get("http://localhost:8080/api/deliveries/")
+      setFormData({
+        name : "",
+        month : "",
+        salary : "",
+        othours : "",
+      })
+      axios.get("http://localhost:8080/api/salary/")
       .then((res) => {
           setData(res.data)
           setFilteredData(res.data)
@@ -50,21 +67,18 @@ const Users = () => {
     }
 
     const onEdit = (id) => {
-        const res = axios.put(`http://localhost:8080/api/deliveries/${id}`, formData).then((res) => {
-          toast.success("deliveries updated successfully")
-          setTimeout(function() {
-            refreshPage()
-            setFormData({})
-          }, 2000);
-        }).catch(err => toast.error("failed to update deliveries"))
-
+        const res = axios.put(`http://localhost:8080/api/salary/${id}`, formData)
+        toast.success("Salary updated successfully")
         setShowEditModal(false)
-
+        setTimeout(function() {
+          refreshPage()
+          setFormData({})
+        }, 2000);
     }
 
     const onDelete = (id) => {
-        const res = axios.delete(`http://localhost:8080/api/deliveries/${id}`)
-          toast.success("deliveries deleted successfully")
+        const res = axios.delete(`http://localhost:8080/api/salary/${id}`)
+          toast.success("Salary deleted successfully")
 
         
         setTimeout(function() {
@@ -73,37 +87,31 @@ const Users = () => {
 
     }
 
+    const isNumberAndTenDigit = (str) => {
+      return /^\d{10}$/.test(str);
+    };
+
     const onSubmit = () => {
-      if (!no || !driver  || !delivery_date || !orderid) {
+
+      const { name , month , salary , othours } = formData;
+
+      if (!month || !name || !salary || !othours ) {
         // If any of the required attributes are missing, show an error message and don't submit
         toast.error("Please fill in all required fields.");
         return;
       }
 
-        const res = axios.post("http://localhost:8080/api/deliveries/", formData).then((res) => {
-          toast.success("deliveries added successfully")
-        }).catch(err => toast.error("failed to add deliveries"))
+        const res = axios.post("http://localhost:8080/api/salary/", formData).then((res) => {
+          toast.success("Salary added successfully")
+        }).catch(err => alert(err))
       
         
+
         setTimeout(function() {
           refreshPage()
-          setFormData({})
         }, 2000);
        
     }
-
-    const onSearch = (e) => {
-      const searchQuery = e.target.value.toLowerCase();
-      const filteredResults = data.filter((item) => 
-          item.no.toLowerCase().includes(searchQuery) ||
-          item.driver.toLowerCase().includes(searchQuery) ||
-          item.status.toLowerCase().includes(searchQuery) ||
-          item.orderid.toLowerCase().includes(searchQuery)
-      );
-      setFilteredData(filteredResults);
-      setSearchTerm(searchQuery);
-  }
-
 
   return (
     <>
@@ -120,10 +128,11 @@ const Users = () => {
                 <PHeader />
 
 
-                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Deliveries </h1>
+                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Employee Salary </h1>
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">
+
 <div className="ml-[150px] ">
                 <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
             </div>
@@ -131,15 +140,13 @@ const Users = () => {
   
   <thead className=" bg-[#2E4960] text-white sticky top-0">
       <tr>
-      <th className="p-3">No</th>
-      <th className="p-3">Driver</th>
-
-      <th className="p-3">Delivery date</th>
+      <th className="p-3">Name</th>
+      <th className="p-3">Month</th>
+      <th className="p-3">Basic Salary</th>
+      <th className="p-3">OThours</th>
+      <th className="p-3">Total</th>
       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
-       <th className="p-3">Status</th>
-       <th className="p-3">Location</th>
-       <th className="p-3">Order ID</th>
       <th className="p-3">action</th>
       </tr>
   </thead>
@@ -150,15 +157,14 @@ const Users = () => {
   
                           <>
                           <tr className="hover:bg-[#efeeee] border-[2px]">
-                            <td className="p-3 w-[350px]">{item.no}</td>
-                            <td className="p-3 w-[350px]">{item.driver}</td>
-    
-                            <td className="p-3 w-[150px]">{item.delivery_date}</td>
-                            <td className="p-3 w-[150px]">{item.status}</td>
-                            <td className="p-3 w-[150px]">{item.location}</td>
+                            <td className="p-3 w-[350px]">{item.name}</td>
+                            <td className="p-3 w-[350px]">{item.month}</td>
+                            <td className="p-3 w-[150px]">{item.salary}</td>
+                            <td className="p-3 w-[150px]">{item.othours}</td>
+                            <td className="p-3 w-[150px]">{ item.salary/1 + ((item.othours/1) *500) }</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
                             <td className="p-3">{item.qty}</td> */}
-                          <td className="p-3 w-[150px]">{item.orderid}</td>
+                          
                             <td className="p-3">
                             <div className="flex ml-12">
                                 <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
@@ -203,30 +209,23 @@ const Users = () => {
         <div className="fixed inset-0 z-50  overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white w-[500px] rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Add New Deliveries
+              Add New Salary 
             </h2>
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add No</label>
-<input  id="no" name="no" value={no} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
+<input  id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Driver</label>
-<input  id="driver"  name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Month</label>
+<input  id="month"  min={new Date().toISOString().split('T')[0]} name="month" value={month} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add othours</label>
+<input  id="othours" name="othours" value={othours} onChange={onChange} type="number" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
-<input  id="delivery_date" min={new Date().toISOString().split('T')[0]}  name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add salary</label>
+<input  id="salary" name="salary" value={salary} onChange={onChange} type="number" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order ID</label>
-<input  id="orderid" name="orderid" value={orderid} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
- 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Location</label>
-<input  id="location" name="location" value="instore" onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
- 
- 
-
-
 
 <div className="flex">
                 <button className="" onClick={() => setShowCreateModal(false)}>
@@ -244,30 +243,24 @@ const Users = () => {
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Edit Deliveries
+              Edit Salary
             </h2>
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add No</label>
-<input  id="no" name="no" value={no} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+            
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
+<input  id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Driver</label>
-<input  id="driver" name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Month</label>
+<input  id="month"  min={new Date().toISOString().split('T')[0]} name="month" value={month} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
-<input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date"   min={new Date().toISOString().split('T')[0]} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add othours</label>
+<input  id="othours" name="othours" value={othours} onChange={onChange} type="number" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Order ID</label>
-<input  id="orderid" name="orderid" value={orderid} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add salary</label>
+<input  id="salary" name="salary" value={salary} onChange={onChange} type="number" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
  
-
-
-               <select name="status" onChange={onChange} defaultValue="ongoing" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
-  <option value="ongoing">ongoing</option>
-  <option value="processing">processing</option>
-  <option value="canceled">canceled</option>
-</select>     
 
 <div className="flex">
                 <button className="" onClick={() => setShowEditModal(false)}>
@@ -284,4 +277,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Salary;

@@ -35,12 +35,12 @@ function sideBar() {
 </NavLink>
 
 <NavLink
-  to="/"
+  to="/Home_Page"
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
     
-  Shopping Cart
+  Home page
 </NavLink>
 
 

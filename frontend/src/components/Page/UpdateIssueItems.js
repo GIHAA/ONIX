@@ -275,7 +275,7 @@ export default function UpdateIssueItems(){
          </div>
          <div class="col-md-4 mb-3">
            <label for="validationServer05">Expire Date  :</label>
-           <input type="date" class="form-control is-valid" id="validationServer05"  required value={Inventry_Item_ExDate} onChange={(e)=>{setInventry_Item_ExDate(e.target.value);}}/>
+           <input type="date"  min={new Date().toISOString().split('T')[0]}  class="form-control is-valid" id="validationServer05"  required value={Inventry_Item_ExDate} onChange={(e)=>{setInventry_Item_ExDate(e.target.value);}}/>
        
          </div>
        </div>
