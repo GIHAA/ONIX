@@ -193,7 +193,7 @@ module.exports=(issueItem)=>{
         <th class="desc">Price</th>
         <th class="desc">Discount</th>
         <th class="desc">Sell.Price</th>
-        <th class="desc">Weight</th>
+        <th class="desc">Author</th>
         <th class="desc">Ex. Date</th>
 
       </tr>
@@ -213,7 +213,7 @@ module.exports=(issueItem)=>{
           <td class="desc">${item.Inventry_Item_Price}</td>
           <td class="desc">${item.Inventry_Item_Discount}</td>
           <td class="desc">${item.Inventry_Item_SellPrice}</td>
-          <td class="desc">${item.Inventry_Item_Weight}</td>
+          <td class="desc">${item.Inventry_Item_Author}</td>
           <td class="desc">${item.Inventry_Item_ExDate}</td>
       
           

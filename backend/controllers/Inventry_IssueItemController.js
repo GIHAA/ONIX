@@ -17,7 +17,8 @@
       const Inventry_Item_Price = Number(req.body.Inventry_Item_Price);
       const Inventry_Item_Discount = Number(req.body.Inventry_Item_Discount);
       const Inventry_Item_SellPrice = Number(req.body.Inventry_Item_SellPrice);
-      const Inventry_Item_Weight = Number(req.body.Inventry_Item_Weight);  
+      const Inventry_Item_Author = req.body.Inventry_Item_Author; 
+      const Inventry_Item_Language = req.body.Inventry_Item_Language; 
       const Inventry_Item_ExDate = req.body.Inventry_Item_ExDate;
    
       
@@ -33,7 +34,8 @@
           Inventry_Item_Price,
           Inventry_Item_Discount,
           Inventry_Item_SellPrice,
-          Inventry_Item_Weight,
+          Inventry_Item_Author,
+          Inventry_Item_Language,
           Inventry_Item_ExDate
       })
   
@@ -65,7 +67,7 @@
   //http://localhost:8070/Inventry_IssueItems/update/g76f6fgyg
   const updateIssueItems =  async (req, res)=>{     //also can use post method  //we can use async function for get response from update request.it helpful for eliminate the crash
       let issueItemID = req.params.id;   // catch the id value in the URL as a parameter
-      const {Inventry_Item_ID,Inventry_Item_Name,Inventry_Item_DisplayName,Inventry_Item_Description,Image,Inventry_Item_Category,Inventry_Item_IssuedQuantity,Inventry_Item_Price,Inventry_Item_Discount,Inventry_Item_SellPrice,Inventry_Item_Weight,Inventry_Item_ExDate} = req.body;      // use destructure method //write one line for get body request
+      const {Inventry_Item_ID,Inventry_Item_Name,Inventry_Item_DisplayName,Inventry_Item_Description,Image,Inventry_Item_Category,Inventry_Item_IssuedQuantity,Inventry_Item_Price,Inventry_Item_Discount,Inventry_Item_SellPrice,Inventry_Item_Author,Inventry_Item_ExDate,Inventry_Item_Language} = req.body;      // use destructure method //write one line for get body request
   
       const updateIssueItems ={
         Inventry_Item_ID,
@@ -78,7 +80,8 @@
         Inventry_Item_Price,
         Inventry_Item_Discount,
         Inventry_Item_SellPrice,
-        Inventry_Item_Weight,
+        Inventry_Item_Author,
+        Inventry_Item_Language,
         Inventry_Item_ExDate
   
       }
@@ -138,8 +141,13 @@
               },
               {
                 Inventry_Item_Category: { $regex: req.params.key}
+              },
+              {
+                Inventry_Item_Author: { $regex: req.params.key}
+              },
+              {
+                Inventry_Item_ExDate: { $regex: req.params.key}
               }
-  
           ]
       });
       res.send(result);

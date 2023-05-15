@@ -46,15 +46,18 @@ const Inventry_IssueItemsSchema = new Schema({   // create schema
         type : Number,
         required : true
     },
-    Inventry_Item_Weight: {
-        type : Number,
+    Inventry_Item_Author: {
+        type : String,
         required : true
     },
     Inventry_Item_ExDate: {
         type : String,
         required : true
+    },
+    Inventry_Item_Language: {
+        type : String,
+        required : true
     }
-    
 
 })
 

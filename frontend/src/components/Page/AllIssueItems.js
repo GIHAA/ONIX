@@ -73,9 +73,7 @@ export default function AllIssueItems(){
         <div class="flex scroll-smooth">
         <SideBar />
         <div class="w-full  h-full bg-white shadow-lg rounded-xl ">
-           
           <PHeader />
-          
           <AdminSideMenu />
           <div class="container" className="ItemList">
             <h2 class="m-5 text-3xl font-bold ">Issue Item List....</h2>
@@ -83,8 +81,8 @@ export default function AllIssueItems(){
             <form class="flex justify">
               <input class="form-input w-80 h-10 border-4 border-gray-300 ml-16 rounded-md" type="search" placeholder="  Search Items..." aria-label="Search" onChange={searchItemHandle} />
              
-                 <Link to ="/add_IssueItem"> <button className="bg-[#2E4960] p-1.5 ml-96 text-white hover:bg-[#0012] ">Add New Issue Item</button></Link>
-                <Link to ="/inventryReport"><button className="bg-[#2E4960] p-1.5 ml-10 text-white hover:bg-[#0012] ">Generate Report</button></Link>
+                 <Link to ="/add_IssueItem"> <button className="bg-[#2E4960] hover:bg-[#0012] hover:text-black font-bold text-white px-4 py-2 rounded ml-64 p-1.5 ">Add New Issue Item</button></Link>
+                <Link to ="/inventryReport"><button className="bg-[#2E4960] hover:bg-[#0012] hover:text-black font-bold text-white px-4 py-2 rounded  p-1.5 ml-10  ">Generate Report</button></Link>
             
             </form>
             <div>
@@ -94,8 +92,10 @@ export default function AllIssueItems(){
                   <tr class=" bg-[#2E4960] text-white  top-0">
                     <th class=" bg-[#2E4960] text-white   py-3">ID</th>
                     <th >Name</th>
-                    <th >Display.Name</th>
+                    <th >Dis.Name</th>
+                    <th >Language</th>
                     <th >Category</th>
+                    <th >Author</th>
                     <th >Description</th>
                     <th >Image</th>
                     <th >Issue.Qnt</th>
@@ -115,7 +115,9 @@ export default function AllIssueItems(){
                       <td class="border px-1 py-2">{item.Inventry_Item_ID}</td>
                       <td class="border px-4 py-2">{item.Inventry_Item_Name}</td>
                       <td class="border px-2 py-2">{item.Inventry_Item_DisplayName}</td>
+                      <td class="border px-2 py-2">{item.Inventry_Item_Language}</td>
                       <td class="border px-4 py-2">{item.Inventry_Item_Category}</td>
+                      <td class="border px-2 py-2">{item.Inventry_Item_Author}</td>
                       <td class="border px-2 py-2">{item.Inventry_Item_Description}</td>
                       <td class="border px-1 py-2"><img src={`http://localhost:8080${item.Image}`} class="w-16 h-16 object-cover" /></td>
                       <td class="border px-4 py-2">{item.Inventry_Item_IssuedQuantity}</td>
@@ -132,7 +134,7 @@ export default function AllIssueItems(){
                     <td class="border px-2 py-2"><button onClick={()=>DeleteIssueItem(item._id)} className="bg-[#800000] p-1  text-white hover:bg-[#0012] rounded-md">Delete</button></td>
                 </tr>
             )
-            :<h1>No Result Found..</h1>
+            :<td className="text-2xl w-56 font-bold">No Result Found...</td>
         }
           </tbody>
         </table>

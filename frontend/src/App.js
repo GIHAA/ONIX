@@ -68,12 +68,12 @@ function App() {
 
 
         <Route path="/add" element={<Adminlayout><AddCategory/></Adminlayout>}/>
-        <Route path="/all_categories" element={<Adminlayout><AllCategory/></Adminlayout>} /> 
+        <Route path="/all_categories" element={<AllCategory/>} /> 
         <Route path="/update/:id" element={<Adminlayout><UpdateCategory/></Adminlayout>}/>
         <Route path="/inventryReport"element={<Adminlayout><InventryReport/></Adminlayout>}/>
 
         <Route path="/getAllItems"element={<AllIssueItems/>}/>
-        <Route path="/add_IssueItem" element={<Adminlayout><AddIssueItem/></Adminlayout>} />
+        <Route path="/add_IssueItem" element={<AddIssueItem/>} />
         <Route path="/update_IssueItem/:id" element={<Adminlayout><UpdateIssueItems/></Adminlayout>} />
         <Route path="/inventry_dashboard" element={<DashboardInventry/>} />
         <Route path="/Home_Page" element={<HomePageCustomer/>}/>
