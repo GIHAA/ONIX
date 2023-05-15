@@ -96,14 +96,12 @@ function Home () {
         gender: ""
       };
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      console.log(userData)
-
       if( !name || !email || !password || !password2 || !address || !phone || !dob || !gender  ){
         toast.error("Please fill all the fields.");
         return
       }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       if (emailRegex.test(email)) {
         if (isNumberAndTenDigit(phone)) {
@@ -180,6 +178,7 @@ If you are new to our store, we glad to have you as member.
                 name="dob"
                 value={dob}
                 onChange={onChange}
+                
                 type="date"
                 className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
               />

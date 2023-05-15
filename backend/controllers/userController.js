@@ -10,6 +10,13 @@ const viewUsers = asyncHandler(async (req, res) => {
     users? res.status(201).json(users) : res.status(400).json({message : "Error"})
 })
 
+
+const viewdrivers = asyncHandler(async (req, res) => {
+  const users = await User.find({ role : "driver"})
+
+  users? res.status(201).json(users) : res.status(400).json({message : "Error"})
+})
+
 //register user
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, address , dob , gender , phone ,  password  , image , role} = req.body
@@ -69,7 +76,11 @@ let user;
       role: user.role,
       image : user.image,
       createdAt : user.createdAt,
-      updatedAt : user.updatedAt
+      updatedAt : user.updatedAt,
+      experience : user.experience,
+      vehicletype : user.vehicletype,
+      vehiclenumber : user.vehiclenumber,
+      license : user.license
     })
   } else {
     res.status(400)
@@ -96,7 +107,13 @@ const loginUser = asyncHandler(async (req, res) => {
       role: user.role,
       image : user.image,
       updatedAt : user.updatedAt,
-      createdAt : user.createdAt
+      createdAt : user.createdAt,
+      experience : user.experience,
+      vehicletype : user.vehicletype,
+      vehiclenumber : user.vehiclenumber,
+      license : user.license,
+      address : user.address,
+      phone: user.phone
     })
   } else {
     res.status(400)
@@ -114,7 +131,7 @@ const getMe = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
 
   const id = req.params.id;
-  const { name , email, role , image , address , phone  } = req.body;
+  const { name , email, role , image , address , phone , vehicletype , experience , vehiclenumber ,license } = req.body;
 
   // Wait for the Feedback model to find the document by ID
   const user = await User.findOne({ _id: id });
@@ -127,6 +144,10 @@ const updateUser = asyncHandler(async (req, res) => {
     user.image = image || user.image;
     user.address = address || user.address;
     user.phone = phone || user.phone;
+    user.vehiclenumber = vehiclenumber || user.vehiclenumber;
+    user.vehicletype = vehicletype || user.vehicletype;
+    user.experience = experience || user.experience;
+    user.license = license || user.license;
     // Save the updated document and wait for it to complete
     await user.save();
 
@@ -180,11 +201,14 @@ const generateToken = (id) => {
   })
 }
 
+
+
 module.exports = {
   registerUser,
   loginUser,
   viewUsers,
   updateUser,
   deleteUser,
-  deleteadmin
+  deleteadmin,
+  viewdrivers
 }

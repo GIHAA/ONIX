@@ -271,7 +271,6 @@ const Users = () => {
 
 
               <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
-  <option value="customer">Customer</option>
   <option value="driver">Driver</option>
   <option value="accountant">Accountant</option>
   <option value="humanResourcesManager">Human Resources Manager</option>
@@ -323,7 +322,6 @@ const Users = () => {
 
 
               <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
-  <option value="customer">Customer</option>
   <option value="driver">Driver</option>
   <option value="accountant">Accountant</option>
   <option value="humanResourcesManager">Human Resources Manager</option>

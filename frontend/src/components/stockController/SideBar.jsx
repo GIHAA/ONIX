@@ -53,6 +53,15 @@ function sideBar() {
 </NavLink>
 
 <NavLink
+  to="/stockorder"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+Supplier order
+</NavLink>
+
+<NavLink
   to="/inventry_dashboard"
   activeClassName="active"
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"

@@ -7,11 +7,13 @@ const {
   updateUser,
   deleteUser,
   viewUsers,
-  deleteadmin
+  deleteadmin,
+  viewdrivers
 } = require('../controllers/userController')
 const { protect , userProtect , adminProtect} = require('../middleware/authMiddleware')
 
 router.get('/', viewUsers)
+router.get('/drivers', viewdrivers)
 router.post('/',registerUser)
 router.post('/login', loginUser)
 router.put('/:id', updateUser)

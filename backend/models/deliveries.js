@@ -10,7 +10,7 @@ const deliverySchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a cus_id"],
     },
-    order_date: {
+    location: {
       type: String,
       required: false,
     },

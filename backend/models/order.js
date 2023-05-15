@@ -4,36 +4,39 @@ const OrderSchema = mongoose.Schema(
   {
     name: {
         type: String,
-        required: [true, 'Please add a name'],
+        required: [false, 'Please add a name'],
     },
     date: {
         type: Date,
-        required: true,
+        required: false,
     },
     phone: {
         type: String,
-        required: [true, 'Please add an price'],
-        unique: true,
+        required: [false, 'Please add an price'],
     },
     location: {
         type: String,
-        required: [true, 'Please add a details'],
+        required: [false, 'Please add a details'],
     },
     items : {
         type: String,
-        required: [true, 'Please add a items'],
+        required: [false, 'Please add a items'],
     },
     noi : {
         type : Number,
-        required : [true, 'Please add a totalunit'],
+        required : [false, 'Please add a totalunit'],
     },
     reason : {
         type : String,
-        required : [true, 'Please add a reason'],
+        required : [false, 'Please add a reason'],
     },
     status: {
       type: String,
       enum: ['ready' , 'pending' , 'out-to-deliver' ],
+    },
+    price:{
+      type: String,
+      required: false,
     },
     type: {
         type: String,
@@ -42,7 +45,7 @@ const OrderSchema = mongoose.Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 )
 

@@ -25,7 +25,8 @@ const Users = () => {
       noi: "",
       reason: "",
       status: "",
-      type: "physical"
+      type: "",
+      price : "",
     });
     const [ filteredData , setFilteredData ] = useState([])
     const [ searchTerm , setSearchTerm ] = useState('')
@@ -149,8 +150,10 @@ const Users = () => {
 
 
                 <h1 className="text-[30px] font-semibold ml-[150px] mt-5">My Orders </h1>
+{/* 
+                <button onClick={() => {setShowCreateModal(true)
+                }} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl"> Buy Now</button> */}
 
-                <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">TEMP asanka should use this function</button>
 <div className="h-[500px] overflow-y-scroll">
 
 <div className="ml-[150px] ">
@@ -253,7 +256,7 @@ const Users = () => {
 <input id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" /> */}
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Date</label>
-<input id="date" name="date" value={date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input id="date" name="date" value={date} onChange={onChange}  min={new Date().toISOString().split('T')[0]} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Phone</label>
 <input id="phone" name="phone" value={phone} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />

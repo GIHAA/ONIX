@@ -23,8 +23,9 @@ app.use('/api/deliveries', require('./routes/deliveriesRoutes'))
 app.use('/api/order', require('./routes/orderRoutes'))
 app.use('/api/expenses', require('./routes/expensesRoutes'))
 app.use('/api/stock', require('./routes/stockRoutes'))
+app.use('/api/stockorder', require('./routes/stockOrderRoutes'))
 app.use('/api/attendance', require('./routes/attendanceRoutes'))
-
+app.use('/api/salary', require('./routes/salaryRoutes')) 
 
 
 const categoryRouter = require("./routes/category.js");  // import category.js file
