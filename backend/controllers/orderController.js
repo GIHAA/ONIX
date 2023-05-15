@@ -33,7 +33,7 @@ const addOrder = asyncHandler(async (req, res) => {
 
 const updateOrder = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const { name, date , phone , location , items , noi , reason , status , type} = req.body
+    const { name, date , phone , location , items , noi , reason , status , type ,price} = req.body
   
     // Wait for the Order model to find the document by ID
     const order = await Order.findOne({ _id: id });

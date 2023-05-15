@@ -144,7 +144,7 @@ const User = () => {
                 <PHeader />
 
 
-                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Stock Order Management </h1>
+                <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Supplier Order Management </h1>
 
                 <button onClick={() => setShowCreateModal(true)} className="mb-[30px] ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
 <div className="h-[500px] overflow-y-scroll">

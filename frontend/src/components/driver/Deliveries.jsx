@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Users = () => {
 
+  const { user } = useSelector((state) => state.auth); 
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -151,7 +152,7 @@ const Users = () => {
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {filteredData.map((item) => {
+  {filteredData.filter(item => item.driver === user.name ).map((item) => {
                         return(
   
                           <>
@@ -175,11 +176,7 @@ const Users = () => {
                                   </span>
                                 </button>
                     
-                                <button className="flex px-5 py-1 mr-5 bg-[#d11818] text-white font-semibold hover:bg-[#760d0d] rounded-xl "
-                                onClick={() => onDelete(item._id)}>
-                                <img src={deleteImg} alt="" className="w-4 h-4 mr-2 mt-1" />
-                                  Delete
-                                </button>
+                
                               </div>
                             </td>
                           

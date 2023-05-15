@@ -305,7 +305,7 @@ const Users = () => {
             
 
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Item</label>
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Item <p className="text-[12px]">(enter items with a space or , ex- item1,item2 item3)</p></label>
 <input id="items" name="items" value={items} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 

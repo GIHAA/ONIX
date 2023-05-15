@@ -19,8 +19,9 @@ const Users = () => {
         order_date : "",
         delivery_date : "",
         status : "",
-        location: ""
+        location: "instore"
     })
+    const [ NameOptons,  setNameOptions] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
@@ -29,6 +30,19 @@ const Users = () => {
     const [ searchTerm , setSearchTerm ] = useState('')
 
     useEffect(()=>{
+
+      axios
+      .get("http://localhost:8080/api/users/drivers", {
+
+      })
+      .then((response) => {
+        const Names = response.data.map((Names) => Names);
+        setNameOptions(Names);
+      })
+      .catch((error) => {
+        console.error("Error fetching supplier names:", error);
+      });
+
 
         axios.get("http://localhost:8080/api/deliveries/")
         .then((res) => {
@@ -46,6 +60,7 @@ const Users = () => {
       .then((res) => {
           setData(res.data)
           setFilteredData(res.data)
+          setFormData({    location: "instore"})
       })
     }
 
@@ -54,7 +69,7 @@ const Users = () => {
           toast.success("deliveries updated successfully")
           setTimeout(function() {
             refreshPage()
-            setFormData({})
+            setFormData({    location: "instore"})
           }, 2000);
         }).catch(err => toast.error("failed to update deliveries"))
 
@@ -87,7 +102,7 @@ const Users = () => {
         
         setTimeout(function() {
           refreshPage()
-          setFormData({})
+          setFormData({    location: "instore"})
         }, 2000);
        
     }
@@ -209,11 +224,25 @@ const Users = () => {
             <label className="font-semibold text-sm text-gray-600 pb-1 block">Add No</label>
 <input  id="no" name="no" value={no} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-
+{/* 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Driver</label>
-<input  id="driver"  name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input  id="driver"  name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" /> */}
 
-
+<select
+id="driver"
+name="driver"
+                        value={driver}
+                        onChange={onChange}
+                        className="mb-4 block rounded-3xl py-2.5 px-5 w-[50vh] text-sm text-gray-900 bg-[#E4EBF7] border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#FF9F00]"
+                        required
+                      >
+                        <option value="">Select Driver</option>
+                        {NameOptons.map((supplier) => (
+                          <option key={supplier.name} value={supplier.name}>
+                            {supplier.name} {supplier.type}
+                          </option>
+                        ))}
+                      </select>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
 <input  id="delivery_date" min={new Date().toISOString().split('T')[0]}  name="delivery_date" value={delivery_date} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
@@ -251,8 +280,6 @@ const Users = () => {
 <input  id="no" name="no" value={no} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Driver</label>
-<input  id="driver" name="driver" value={driver} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>

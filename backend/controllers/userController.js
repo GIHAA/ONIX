@@ -10,6 +10,13 @@ const viewUsers = asyncHandler(async (req, res) => {
     users? res.status(201).json(users) : res.status(400).json({message : "Error"})
 })
 
+
+const viewdrivers = asyncHandler(async (req, res) => {
+  const users = await User.find({ role : "driver"})
+
+  users? res.status(201).json(users) : res.status(400).json({message : "Error"})
+})
+
 //register user
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, address , dob , gender , phone ,  password  , image , role} = req.body
@@ -194,11 +201,14 @@ const generateToken = (id) => {
   })
 }
 
+
+
 module.exports = {
   registerUser,
   loginUser,
   viewUsers,
   updateUser,
   deleteUser,
-  deleteadmin
+  deleteadmin,
+  viewdrivers
 }
