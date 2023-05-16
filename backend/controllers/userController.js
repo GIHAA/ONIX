@@ -17,6 +17,12 @@ const viewdrivers = asyncHandler(async (req, res) => {
   users? res.status(201).json(users) : res.status(400).json({message : "Error"})
 })
 
+const viewcus = asyncHandler(async (req, res) => {
+  const users = await User.find({ role : "customer"})
+
+  users? res.status(201).json(users) : res.status(400).json({message : "Error"})
+})
+
 //register user
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, address , dob , gender , phone ,  password  , image , role} = req.body
@@ -210,5 +216,6 @@ module.exports = {
   updateUser,
   deleteUser,
   deleteadmin,
-  viewdrivers
+  viewdrivers,
+  viewcus
 }

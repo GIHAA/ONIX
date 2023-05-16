@@ -146,10 +146,14 @@ const Users = () => {
                         <>
                         <div className="my-4 text-start pl-[20px] pt-[20px] w-auto rounded-[20px] h-[200px] bg-[#3088ec54]">
 
-                          <h1 className="text-[20px]">{item.about}</h1>
-                          <p className="text-gray-600">{item.details}</p>
-                          <p className="text-gray-900 mt-4">reply :</p>
-                          <p className="text-gray-600">{item.reply}</p>
+<div className="flex">
+                            <h1 className="text-[20px]">{item.name} </h1><p className="text-blue-900 ml-auto mr-6">{new Date(item.createdAt).toLocaleString()}</p>
+</div>
+                          <p className="text-gray-900 mt-2">About : {item.about}</p>
+                
+                          <p className="text-gray-900 mt-2">Description : {item.details}</p>
+                          <p className="text-gray-900 mt-2">Reply : <span className="text-blue-900">{item.reply}</span></p>
+         
 <div className="flex justify-end">
                             <button
                             onFocus={()=>{
@@ -194,7 +198,7 @@ const Users = () => {
       {showEditModal && (
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
-            <h2 className="text-lg font-bold mb-4 ">Reply to {selected.about}</h2>
+            <h2 className="text-lg font-bold mb-4 ">Reply to {selected.name}</h2>
 
             <label className="font-semibold text-sm text-gray-600 pb-1 block">
               Add Reply

@@ -16,7 +16,8 @@ const Feedback = () => {
 
     const [ data , setData ] = useState([])
     const [ formData , setFormData ] = useState({
-        about : user.name,
+        name: user.name,
+        about : "",
         details : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
@@ -100,7 +101,7 @@ const Feedback = () => {
 
 <thead className=" bg-[#2E4960] text-white sticky top-0">
     <tr>
-    <th className="p-3">name</th>
+    <th className="p-3">About</th>
     <th className="p-3">Description</th>
     <th className="p-3">Reply</th>
     <th className="p-3">Date</th>
@@ -111,12 +112,12 @@ const Feedback = () => {
 </thead>
 
 <tbody  className="bg-white text-center border-black ">
-{data.filter(item => item.about === user.name).map((item) => {
+{data.filter(item => item.name === user.name).map((item) => {
                       return(
 
                         <>
                
-                        { item.about == user.name ?(
+                        { item.name == user.name ?(
                         <tr className="hover:bg-[#efeeee] border-[2px]">
                           <td className="p-3">{item.about}</td>
                           <td className="p-3 w-[350px]">{item.details}</td>
@@ -127,7 +128,7 @@ const Feedback = () => {
                         
                           <td className="p-3">
                           <div className="flex ml-12">
-                              <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                              <button  onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                 <span
                                 className="flex">
                                 <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
@@ -173,11 +174,11 @@ const Feedback = () => {
             </h2>
             
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add About</label>
               <input  id="about" name="about" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Desciption</label>
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Description</label>
               <input  id="details" name="details" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
@@ -201,11 +202,11 @@ const Feedback = () => {
             </h2>
             
             
-            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
+            <label className="font-semibold text-sm text-gray-600 pb-1 block">Add About</label>
               <input  id="about" name="about" value={about} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Desciption</label>
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Description</label>
               <input  id="details" name="details" value={details} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 

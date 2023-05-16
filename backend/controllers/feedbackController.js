@@ -11,9 +11,10 @@ const viewFeedback = asyncHandler(async (req, res) => {
 })
 
 const addFeedback = asyncHandler(async (req, res) => {
-    const { about, details } = req.body
+    const { about, details , name} = req.body
 
     const feedback = await Feedback.create({
+        name,
         about,
         details,
         reply : "no reply ",
