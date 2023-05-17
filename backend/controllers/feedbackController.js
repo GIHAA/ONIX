@@ -51,6 +51,7 @@ const updateFeedback = asyncHandler(async (req, res) => {
 const deleteFeedback = asyncHandler(async (req, res) => {
 
     const id = req.params.id
+
     const feedback = await Feedback.findByIdAndDelete(id)
 
     feedback? res.status(201).json(feedback) : res.status(400).json({message : "Error"})
