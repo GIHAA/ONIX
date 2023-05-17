@@ -307,11 +307,6 @@ const Users = () => {
   <option value="out-to-deliver">Out-to-deliver</option>
 </select>
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Type</label>
-<select name="type" onChange={onChange} defaultValue="physical" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" >
-  <option value="online">online</option>
-  <option value="physical">physical</option>
-</select>
 
 <div className="flex">
                 <button className="" onClick={() => setShowEditModal(false)}>

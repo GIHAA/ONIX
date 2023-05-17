@@ -178,7 +178,7 @@ const Users = () => {
   </thead>
   
   <tbody  className="bg-white text-center border-black ">
-  {filteredData.filter((item) => item.name === user.name).map((items) => {
+  {filteredData.filter((item) => item.name === user.name ).map((items) => {
                         return(
   
                           <>
@@ -201,25 +201,12 @@ const Users = () => {
                             <td className="p-3">
                             <div className="flex ml-12">
 
-                            {/* <button className="flex px-5 py-1 mr-5 bg-[#001233] text-white font-semibold hover:bg-[#760d0d] rounded-xl "
-                                onClick={() =>{ setShowOrderModal(true
-                                ); setId(items._id);}}>
-                                  ID
-                                </button> */}
-
-                                {/* <button onClick={() => {setShowEditModal(true); setId(items._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
-                                  <span
-                                  className="flex">
-                                  <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
-                                    Edit
-                                  </span>
-                                </button> */}
-                    
-                                <button className="flex w-[120px] px-5 py-1 mr-5 bg-[#d11818] text-white font-semibold hover:bg-[#760d0d] rounded-xl "
+                    { items.status === "pending" ? (<button className="flex w-[120px] px-5 py-1 mr-5 bg-[#d11818] text-white font-semibold hover:bg-[#760d0d] rounded-xl "
                                 onClick={() => onDelete(items._id)}>
                                 <img src={deleteImg} alt="" className="w-4 h-4 mr-2 mt-1" />
                                   Cancel
-                                </button>
+                                </button>):(<></>)}
+                                
                               </div>
                             </td>
                           
