@@ -327,9 +327,11 @@ export default function AddIssueItem(){
   <div class="grid grid-cols-5 gap-4 mt-6">
   <div class="form-row " >
     <div class="col-md-4 mb-3">
+
       <label className="block font-bold">Issue Quantity :</label>
       <input type="text" className="h-9 mt-2 rounded-md"  placeholder="  Enter Issue Quantity" required value={Inventry_Item_IssuedQuantity} onChange={(e)=>{setInventry_Item_IssuedQuantity(e.target.value);}}/>
       </div>
+
     </div>
 
     <div class="col-md-4 mb-3">
