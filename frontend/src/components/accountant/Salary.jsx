@@ -171,7 +171,7 @@ const onSearch = (e) => {
                           
                             <td className="p-3">
                             <div className="flex ml-12">
-                                <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                                <button onClick={() => {setShowEditModal(true); setId(item._id); setFormData(item) }} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                   <span
                                   className="flex">
                                   <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />

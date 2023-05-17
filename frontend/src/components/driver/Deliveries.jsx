@@ -27,7 +27,23 @@ const Users = () => {
         location: "",
         status : "",
     })
+
+    const [ cusData , setCusData ] = useState({
+      name : "",
+      phone: "",
+      location : "",
+      items : "",
+  })
+
+  const getCus = (id) =>{
+    axios.get(`http://localhost:8080/api/order/${id}`)
+    .then((res) => {
+        setCusData(res.data[0])     
+    })
+    .catch(err => alert(err))
+  }
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showCusModal, setShowCusModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
     const { no , driver , order_date , delivery_date , orderid, location } = formData;
@@ -168,14 +184,21 @@ const Users = () => {
                           <td className="p-3 w-[150px]">{item.orderid}</td>
                             <td className="p-3">
                             <div className="flex ml-12">
-                                <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                                <button 
+                                
+                                onClick={() => {setFormData({...item ,no: "" }); setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                   <span
                                   className="flex">
                                   <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
                                     Edit
                                   </span>
                                 </button>
-                    
+                                <button onClick={() => {setShowCusModal(true); setId(item._id); getCus(item.orderid)}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                                  <span
+                                  className="flex">
+                                     view Customer details
+                                  </span>
+                                </button>
                 
                               </div>
                             </td>
@@ -265,6 +288,30 @@ const Users = () => {
                 <button className="ml-auto" onClick={() => onEdit(id)}>
                   Submit
                 </button>
+</div>
+          </div>
+        </div>
+      )}
+
+
+{showCusModal && (
+        <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-lg font-bold mb-4 ">
+              View Deliveries
+            </h2>
+            
+
+<label className="font-semibold text-gray-600 pb-4 text-[20px] block">name : {cusData.name}</label>
+<label className="font-semibold text-gray-600 pb-4 text-[20px] block">location : {cusData.location}</label>
+<label className="font-semibold text-gray-600 pb-4 text-[20px] block">phone : {cusData.phone}</label>
+<label className="font-semibold text-gray-600 pb-4 text-[20px] block">items : {cusData.items}</label>
+
+<div className="flex">
+                <button className="" onClick={() => setShowCusModal(false)}>
+                  Close
+                </button>
+
 </div>
           </div>
         </div>

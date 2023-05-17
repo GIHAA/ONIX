@@ -182,7 +182,7 @@ const User = () => {
             
                             <td className="p-3">
                             <div className="flex ml-12">
-                                <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                                <button onClick={() => {setFormData({...item ,orderid: "" }); setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                   <span
                                   className="flex">
                                   <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
@@ -292,6 +292,23 @@ name="supplier"
             </h2>
             <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="orderid">stockorder ID</label>
 <input type="text" id="orderid" name="orderid" value={orderid} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+
+<select
+id="supplier"
+name="supplier"
+                        value={supplier}
+                        onChange={onChange}
+                        className="mb-4 block rounded-3xl py-2.5 px-5 w-[50vh] text-sm text-gray-900 bg-[#E4EBF7] border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#FF9F00]"
+                        required
+                      >
+                        <option value="">Select Supplier</option>
+                        {supplierNameOptions.map((supplier) => (
+                          <option key={supplier.name} value={supplier.name}>
+                            {supplier.name} {supplier.type}
+                          </option>
+                        ))}
+                      </select>
+
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="name">Name</label>
 <input type="text" id="name" name="name" value={name} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
