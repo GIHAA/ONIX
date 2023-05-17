@@ -73,7 +73,7 @@ export default function UpdateIssueItems(){
             setInventry_Item_DisplayName(item.Inventry_Item_DisplayName);
             setInventry_Item_Language(item.Inventry_Item_Language);
             setInventry_Item_Description(item.Inventry_Item_Description);
-           
+            setImage(item.Image);
             setInventry_Item_Category(item.Inventry_Item_Category);
             setInventry_Item_IssuedQuantity(item.Inventry_Item_IssuedQuantity);
             setInventry_Item_Price(item.Inventry_Item_Price);
@@ -301,15 +301,11 @@ export default function UpdateIssueItems(){
                       id="customFile"
                       onChange={ItemImageUpload}
                     />
-                 
-      </div>
-     </div>
+                 </div>
+               </div>
     
-    
-    
-    
-        <div class="col-sm">
-         <div class="form-row mt-4" >
+       <div class="col-sm">
+        <div class="form-row mt-4" >
         <div class="form-group col-md-8 flex items-center justify-center" style={{alignItems:"center",justifyContent:"center"}}>   
     {
        Image && (<img src={`http://localhost:8080/${Image}`}  class="rounded float-right w-50  " alt="..."/>)}
@@ -380,3 +376,7 @@ export default function UpdateIssueItems(){
            )
            
 }
+
+
+
+

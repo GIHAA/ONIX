@@ -147,10 +147,10 @@ export default function ItemView() {
                 </label>
               </div>
 
-              {/* <div ><input className="bg-gray-300 w-28 text-2xl line-through" value={prices}/>
-         <input className="bg-gray-300  text-1xl mt-1" value={discounts}/></div> */}
+              <div ><input className="bg-gray-300 w-28 text-2xl line-through" value={prices}/>
+         <input className="bg-gray-300  text-md mt-1" value={discounts}/></div>
               <div className="mt-4 ">
-                Discription
+                Description
                 <label className="block mb-4 text-2xl mt-3">
                   {item.Inventry_Item_Description}
                 </label>
@@ -158,9 +158,7 @@ export default function ItemView() {
               <div>
                 <label className="block mb-6 mt-4 text-2xl">
                   Rs.{" "}
-                  {(item.Inventry_Item_Price *
-                    (100 - item.Inventry_Item_Discount)) /
-                    100}
+                  {(item.Inventry_Item_Price * (100 - item.Inventry_Item_Discount)) /   100}
                 </label>
               </div>
 
@@ -205,7 +203,7 @@ export default function ItemView() {
                 onClick={onSubmit}
                 className="bg-[#2E4960] p-3 w-[150px] text-white hover:bg-[#0012] text-sm rounded-md"
               >
-                Add to Order
+               Buy Now
               </button>
             </div>
           </div>

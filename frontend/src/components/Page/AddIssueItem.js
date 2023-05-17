@@ -7,6 +7,7 @@ import './AllIssueItems.css';
 import SideBar from "../stockController/SideBar";
 import AdminSideMenu from "../Layouts/AdminSideMenu";
 import PHeader from "../common/PHeader";
+import { toast } from "react-toastify";
 
 
 //export is also in the same line 
@@ -56,9 +57,12 @@ export default function AddIssueItem(){
 
   }
 
+  // const currentDate = new Date().toISOString().split("T")[0];
+  // if (Inventry_Item_ExDate < currentDate) {
+    
+  //   console.error();;
+  // }
   
-
-
 
   function sendData(e){
     e.preventDefault();
@@ -85,21 +89,21 @@ export default function AddIssueItem(){
     //console.log(newCategory);
 
     axios.post("http://localhost:8080/Inventry_IssueItems/add_IssueItem",newIssueItem).then(()=>{
-        alert("New Category Added Successfully")
-        setInventry_Item_ID("Null");
-        setInventry_Item_Name("Null");
-        setInventry_Item_DisplayName("Null");
-        setInventry_Item_Language("Null");
-        setInventry_Item_Description("Null");
-        setImage("Null");
-        setInventry_Item_Category("Null");
-        setInventry_Item_IssuedQuantity("Null");
-        setInventry_Item_Price("Null");
-        setInventry_Item_Discount("Null");
-        setInventry_Item_SellPrice("Null");
-        setInventry_Item_Author("Null");
-        setInventry_Item_ExDate("Null");
         
+        setInventry_Item_ID("");
+        setInventry_Item_Name("");
+        setInventry_Item_DisplayName("");
+        setInventry_Item_Language("");
+        setInventry_Item_Description("");
+        setImage("");
+        setInventry_Item_Category("");
+        setInventry_Item_IssuedQuantity("");
+        setInventry_Item_Price("");
+        setInventry_Item_Discount("");
+        setInventry_Item_SellPrice("");
+        setInventry_Item_Author("");
+        setInventry_Item_ExDate("");
+        toast("New Item Added Successfully")
 
     }).catch((err)=>{
       alert(err)
@@ -334,12 +338,19 @@ export default function AddIssueItem(){
 
     </div>
 
-    <div class="col-md-4 mb-3">
-      <label className="font-bold">Expire Date  :</label>
-      <input type="date" class="block h-9 rounded-md w-40 text-center mt-2"  required value={Inventry_Item_ExDate} onChange={(e)=>{setInventry_Item_ExDate(e.target.value);}}/>
-  
-    
-  </div>
+ <div class="col-md-4 mb-3">
+          <label className="font-bold">Expire Date:</label>
+          <input type="date" class="block h-9 rounded-md w-40 text-center mt-2" required value={Inventry_Item_ExDate} onChange={(e) => {
+              const selectedDate = e.target.value;
+              const currentDate = new Date().toISOString().split("T")[0];
+              if (selectedDate < currentDate) {
+                toast("Please select a future date for the expiry date.");
+                return;
+              }
+              setInventry_Item_ExDate(selectedDate);
+            }}
+          />
+</div>
   </div>
   
   <button className="bg-[#2E4960] p-4 mt-5 w-44 rounded-lg text-white hover:bg-[#0012] ml-[880px] font-bold" type="submit">Submit Details</button>

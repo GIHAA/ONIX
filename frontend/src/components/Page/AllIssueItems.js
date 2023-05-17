@@ -3,7 +3,7 @@ import axios from "axios";
 import './AddIssueItem.css';
 import './AllIssueItems.css';
 import {Link} from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useParams } from "react-router-dom";
 import SideBar from "../stockController/SideBar";
 import PHeader from "../common/PHeader";
 
@@ -13,22 +13,54 @@ export default function AllIssueItems(){
 
     const [issueItems, setItems]= useState([]);
     const navigate = useNavigate();
+    const params = useParams();
+ 
+
 
     useEffect(() => {
         
         getIssueItems();
+        
        
     }, [])
 
     const getIssueItems= async()=>{
         const result =await axios.get(`http://localhost:8080/Inventry_IssueItems/getAllItems/`);
+        // updateIssuedQuantity();
         setItems(result.data);
+      
         console.log(result.data);
         
 
     }
 
+    // const updateIssuedQuantity = async () => {
+    //   const ordersResult = await axios.get("http://localhost:8080/api/order/")
+     
+    //   const orders = ordersResult.data;
+    
+    //   const updatedItems = issueItems.map((item) => {
+        
+    //     const relevantOrder = orders.find((orders) => orders.items === item.Inventry_Item_DisplayName);
+    
+    //     if (relevantOrder) {
+    //       const issuedQuantity = item.Inventry_Item_IssuedQuantity - relevantOrder.noi;
+    //       return { ...item, Inventry_Item_IssuedQuantity: issuedQuantity };
+    //     }
+      
+    //     return item;
+    // });
+    
+    //   setItems(updatedItems);
+    // };
 
+    
+    
+    
+    
+    
+    
+    
 
 
 
@@ -46,7 +78,7 @@ export default function AllIssueItems(){
         result =await result.json()
         if(result)
         {
-            alert("Category Deleted")
+            alert("Item Deleted Successfully")
             getIssueItems();
         }
     

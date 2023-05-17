@@ -67,7 +67,7 @@ export default function AllCategory(){
         <div class="w-full  h-full bg-white shadow-lg rounded-xl ">
            
           <PHeader />   
-          <AdminSideMenu />
+          {/* <AdminSideMenu /> */}
 
 
         <div className=" mx-auto p-8 ">

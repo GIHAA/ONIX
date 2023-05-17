@@ -22,14 +22,12 @@ const [items,setItems] =useState([]);
         getIssueItems();
     }, [])
 
-    const getCategories= async()=>{
+const getCategories= async()=>{
         const result =await axios.get(`http://localhost:8080/category/all_categories`);
         setCategories(result.data);
         console.log(result.data);
 
     }
-
-
 const getInventry_Report =async() =>{
   
         await  axios.post(`http://localhost:8080/categoryReport/createPdf`,categories).then((respnse)=>{
@@ -43,16 +41,12 @@ const getInventry_Report =async() =>{
         })
    })
 }
-
-
 const getIssueItems= async()=>{
     const result =await axios.get(`http://localhost:8080/Inventry_IssueItems/getAllItems/`);
     setItems(result.data);
     console.log(result.data);
 
 }
-
-
 const getInventry_Report_Items =async() =>{
   
     await  axios.post(`http://localhost:8080/issueItemReport/createPdf`,items).then((respnse)=>{
@@ -75,7 +69,7 @@ const getInventry_Report_Items =async() =>{
 <SideBar />
 <div class="w-full  h-full bg-white  rounded-xl ">
     <PHeader />
-    <AdminSideMenu />
+    {/* <AdminSideMenu /> */}
 
 
 <div className="mt-32 pl-[400px] pr-[400px]">

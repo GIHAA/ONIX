@@ -102,7 +102,7 @@ export default function UpdateCategory(){
             <SideBar />
             <div class="w-full  h-full bg-white  rounded-xl ">     
             <PHeader />  
-            <AdminSideMenu />
+            {/* <AdminSideMenu /> */}
               
               <div >   
               <div className="categoryListButton">
