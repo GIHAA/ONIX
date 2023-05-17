@@ -216,7 +216,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
 <input type="text" id="description" name="description" value={description} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Date">Date</label>
-<input type="date"  min={new Date().toISOString().split('T')[0]} id="date" name="date" value={date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+<input type="date"   max={new Date().toISOString().split('T')[0]} id="date" name="date" value={date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Remarks">Remarks</label>
 <input type="text" id="Remarks" name="Remarks" value={Remarks} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>

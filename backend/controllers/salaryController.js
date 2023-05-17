@@ -11,13 +11,14 @@ const viewSalary = asyncHandler(async (req, res) => {
 })
 
 const addSalary = asyncHandler(async (req, res) => {
-    const { name, month , salary , othours } = req.body
+    const { name, month , salary , othours , role } = req.body
 
     const ssalary = await Salary.create({
         name,
         month,
         salary,
-        othours
+        othours,
+        role
     })
 
     ssalary? res.status(201).json(ssalary) : res.status(400).json({message : "Error"})
@@ -26,7 +27,7 @@ const addSalary = asyncHandler(async (req, res) => {
 
 const updateSalary = asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const { month, name, salary , othours} = req.body;
+    const { month, name, salary , othours , role} = req.body;
   
     // Wait for the Salary model to find the document by ID
     const ssalary = await Salary.findOne({ _id: id });
@@ -37,6 +38,7 @@ const updateSalary = asyncHandler(async (req, res) => {
       ssalary.name = name || ssalary.name;
       ssalary.salary= salary|| ssalary.salary;
       ssalary.othours = othours || ssalary.othours;
+      ssalary.role = role || ssalary.role;
       // Save the updated document and wait for it to complete
       await ssalary.save();
   

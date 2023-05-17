@@ -15,12 +15,12 @@ const Users = () => {
     const [ data , setData ] = useState([])
     const [formData, setFormData] = useState({
       name: "",
-      date: "",
+      date: new Date(),
       phone: "",
       location: "",
       items: "",
       noi: "",
-      reason: "",
+      reason: "temp",
       status: "",
       type: "physical"
     });
@@ -265,17 +265,7 @@ const Users = () => {
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Item <p className="text-[12px]">(enter items with a space or , ex- item1,item2 item3)</p></label>
 <input id="items" name="items" value={items} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
-{/* <label className="font-semibold text-sm text-gray-600 pb-1 block">NOI</label>
-<input id="noi" name="noi" value={noi} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" /> */}
 
-<label className="font-semibold text-sm text-gray-600 pb-1 block">Reason</label>
-<input id="reason" name="reason" value={reason} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-
-{/* <label className="font-semibold text-sm text-gray-600 pb-1 block">Status</label>
-<select name="status" onChange={onChange} defaultValue="physical" >
-  <option value="ready">Ready</option>
-  <option value="pending">Pending</option>
-</select> */}
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Type</label>
 <select name="type" onChange={onChange} defaultValue="physical" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" >

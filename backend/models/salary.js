@@ -6,6 +6,10 @@ const salarySchema = mongoose.Schema(
       type: String,
       required: [false],
     },
+    role: {
+      type: String,
+      required: [false],
+    },
     month: {
       type: String,
       required: [false],
