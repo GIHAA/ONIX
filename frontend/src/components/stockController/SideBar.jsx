@@ -76,7 +76,7 @@ Supplier order
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
-  Dashboard (issud)
+  Dashboard
 </NavLink>
 
 <NavLink
