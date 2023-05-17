@@ -8,6 +8,7 @@ import logo from "../../assets/logo.png";
 
 import "jspdf-autotable";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Report = () => {
   const [ShowReport, setShowReport] = useState(true);
@@ -193,6 +194,10 @@ const Report = () => {
                     Genarate Suppiler List Report
                   </button>
                 </div>
+
+             
+
+
                 <div>
                   <button
                     onClick={() => genaratePDF2()}
@@ -201,6 +206,14 @@ const Report = () => {
                     Genarate Stock Order Report
                   </button>
                 </div>
+                
+                <div>
+                    <Link to="/inventryReport"  >  <button
+                      className="w-[300px] text-start h-[100px] mb-[30px] ml-[150px] text-[20px]  mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl" >
+                      Issue Items Report
+                    </button></Link>
+                </div>
+
               </div>
               <div></div>
             </div>
