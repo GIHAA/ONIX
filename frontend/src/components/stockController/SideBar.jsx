@@ -28,7 +28,7 @@ function sideBar() {
     <NavLink
   to="/"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
 {/* <img src="https://img.icons8.com/ios-glyphs/30/null/user-male-circle.png" className="w-6 h-6 mr-2"/> */}
   Profile
@@ -37,7 +37,7 @@ function sideBar() {
 <NavLink
   to="/suppliers"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
     Suppliers
@@ -46,7 +46,7 @@ function sideBar() {
 <NavLink
   to="/stock"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
     Stock
@@ -55,7 +55,7 @@ function sideBar() {
 <NavLink
   to="/stockorder"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
 Supplier order
@@ -64,7 +64,7 @@ Supplier order
 <NavLink
   to="/inventry_dashboard"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
   Manage issue items
@@ -73,7 +73,7 @@ Supplier order
 <NavLink
   to="/all_categories"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
   Category
@@ -82,17 +82,18 @@ Supplier order
 <NavLink
   to="/screport"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
     Reports
 </NavLink>
 
 
+
 {/* <NavLink
   to="/"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
     My Activities 
@@ -102,7 +103,7 @@ Supplier order
 {/* <NavLink
   to="/quotation"
   activeClassName="active"
-  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[40px] block text-center mb-7 mx-auto  items-center"
 >
     
     Quotation
