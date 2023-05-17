@@ -34,7 +34,8 @@ const Feedback = () => {
 
         axios.get("http://localhost:8080/api/feedback/")
         .then((res) => {
-            setData(res.data)     
+            setData(res.data) 
+            setFilteredData(res.data)        
         })
         .catch(err => alert(err))
     
