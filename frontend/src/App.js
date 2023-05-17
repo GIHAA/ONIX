@@ -77,38 +77,7 @@ function App() {
           <Route path="/soreport" element={<SoReport />} />
           <Route path="/screport" element={<ScReport />} />
 
-          <Route
-            path="/add"
-            element={
-              <Adminlayout>
-                <AddCategory />
-              </Adminlayout>
-            }
-          />
-          <Route
-            path="/all_categories"
-            element={
-              <Adminlayout>
-                <AllCategory />
-              </Adminlayout>
-            }
-          />
-          <Route
-            path="/update/:id"
-            element={
-              <Adminlayout>
-                <UpdateCategory />
-              </Adminlayout>
-            }
-          />
-          <Route
-            path="/inventryReport"
-            element={
-              <Adminlayout>
-                <InventryReport />
-              </Adminlayout>
-            }
-          />
+      
 
 
 

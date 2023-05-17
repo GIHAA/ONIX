@@ -172,7 +172,7 @@ export default function UpdateIssueItems(){
                
               <PHeader />
               
-              <AdminSideMenu />
+              {/* <AdminSideMenu /> */}
     
     
     <div className="p-8">

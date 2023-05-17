@@ -15,6 +15,7 @@ const DashboardInventry =() => {
     const [count,setCount] = useState("");
     const [count1,setCount1] = useState("");
     const [exdate,setExdate] = useState("");
+    const [selectItems, setSelectItem] =useState("");
 
      useEffect(() => {
            
@@ -26,13 +27,19 @@ const DashboardInventry =() => {
 
     }
 
-
     const getCategories= async()=>{
         const result =await axios.get(`http://localhost:8080/category/all_categories`);
         setCategories(result.data);
         console.log(result.data);
 
     }
+    const getItems= async()=>{
+      const result =await axios.get(`http://localhost:8080/api/stock/`);
+      setSelectItem(result.data);
+      console.log(result.data);
+  
+    }
+
     const getoutofstock = () => {
         const zeroStockItems = issueItems.filter(item => item.Inventry_Item_IssuedQuantity === 0);
         const zeroStockItemsWithInfo = zeroStockItems.map(item => ({
@@ -77,6 +84,7 @@ const DashboardInventry =() => {
     getoutofstock();
     getlowstock();
     getExDate();
+    getItems();
 
      }, [issueItems])
 
@@ -87,7 +95,7 @@ const DashboardInventry =() => {
     <SideBar />
     <div class="w-full h-full bg-white shadow-lg rounded-xl">
         <PHeader />
-        <AdminSidebar/>
+        {/* <AdminSidebar/> */}
         <div className="ml-10">
           
 
@@ -103,6 +111,12 @@ const DashboardInventry =() => {
                     <label class='text-5xl'>{categories.length}</label>
                     <br/>
                     <Link to ="/all_categories"  > <label ><button className="bg-[#2E4960]  p-1 text-white hover:bg-[#0012] text-sm rounded-md">View Details</button></label></Link>
+                </div>
+                <div class='bg-gray-300 h-45 w-96 border-4 border-blue-900 rounded-xl p-3 mr-8 mt-8 text-center text-3xl font-bold'>
+                    <label class='block mb-4'>Total Stock Items</label>
+                    <label class='text-5xl'>{selectItems.length}</label>
+                    <br/>
+                    <Link to ="/stock"  > <label ><button className="bg-[#2E4960]  p-1 text-white hover:bg-[#0012] text-sm rounded-md">View Details</button></label></Link>
                 </div>
 
                 </div>
