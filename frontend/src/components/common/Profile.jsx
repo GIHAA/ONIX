@@ -12,6 +12,7 @@ const Profile = (props) => {
   const { user } = useSelector((state) => state.auth);
   const [arrivalTime, setArrivalTime] = useState("");
   const [leaveTime, setLeaveTime] = useState("");
+  const [image, setImage] = useState("");
 
   const [arrivalTimeblock, setArrivalTimeblock] = useState(false);
   const [leaveTimeblock, setLeaveTimeblock] = useState(false);
@@ -83,7 +84,7 @@ const Profile = (props) => {
     } else if (formData.confirmpassword === "") {
       toast.error("Please enter your password to confirm changes");
     } else {
-      const formDataID = { ...formData, _id: user._id };
+      const formDataID = { ...formData, _id: user._id , image: image  };
       const response = updateUser(formDataID)
         .then(() => {
           toast.success("Profile updated successfully");
@@ -146,10 +147,49 @@ const Profile = (props) => {
       .catch((err) => alert(err));
   };
 
+  const convertToBase64 = (e) => {
+    console.log(e);
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      const imgElement = document.createElement("img");
+      imgElement.src = reader.result;
+      imgElement.onload = () => {
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 630;
+        const MAX_HEIGHT = 630;
+        let width = imgElement.width;
+        let height = imgElement.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(imgElement, 0, 0, width, height);
+        const dataURL = canvas.toDataURL(e.target.files[0].type, 0.5);
+        setImage(dataURL);
+      };
+    };
+    reader.onerror = (error) => {
+      console.log("Error: ", error);
+    };
+    setFormData({ ...formData, image: image });
+  };
+
   return (
     <>
       <div className="w-full pr-[200px] bg-bgsec">
-        <div className=" mx-auto rounded-[20px] bg-[#E7E9FB] p-8 mt-[10px] flex h-[510px]  w-[900px]">
+        <div className=" mx-auto rounded-[20px] bg-[#E7E9FB] p-8 mt-[10px] flex h-[590px]  w-[900px]">
           <div className="w-1/3  h-full">
             <div className="w-full flex justify-center">
               <img
@@ -173,7 +213,7 @@ const Profile = (props) => {
               <h3 className="text-center mb-5 mt-5 text-[22px] font-bold">
                 Update profile
               </h3> */}
-            <label className=" w-[150px] font-semibold text-sm text-gray-600 pb-5 ">
+            <label className=" w-[150px] font-semibold text-[20px] text-gray-600  ">
               Account Type : {user.role}{" "}
               {user.role != "customer" ? (
                 <>
@@ -191,7 +231,7 @@ const Profile = (props) => {
               )}
             </label>
 
-            <div className="flex mt-6">
+            <div className="flex mt-3">
               <label className="w-[150px] font-semibold text-sm text-gray-600 pb-1 block">
                 Name :
               </label>
@@ -202,7 +242,7 @@ const Profile = (props) => {
                 onChange={onChange}
                 placeholder={user.name}
                 type="text"
-                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                className="border rounded-lg px-3 py-2 mt-1 mb-2 text-sm w-full"
               />
             </div>
             <div className="flex">
@@ -216,7 +256,7 @@ const Profile = (props) => {
                 onChange={onChange}
                 placeholder={user.email}
                 type="text"
-                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                className="border rounded-lg px-3 py-2 mt-1 mb-2 text-sm w-full"
               />
             </div>
             <div className="flex">
@@ -230,7 +270,7 @@ const Profile = (props) => {
                 onChange={onChange}
                 placeholder={user.address}
                 type="text"
-                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                className="border rounded-lg px-3 py-2 mt-1 mb-2 text-sm w-full"
               />
             </div>
 
@@ -245,7 +285,7 @@ const Profile = (props) => {
                 onChange={onChange}
                 placeholder={user.phone}
                 type="text"
-                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                className="border rounded-lg px-3 py-2 mt-1 mb-2 text-sm w-full"
               />
             </div>
 
@@ -271,7 +311,7 @@ const Profile = (props) => {
                 value={password}
                 onChange={onChange}
                 type="text"
-                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                className="border rounded-lg px-3 py-2 mt-1 mb-2 text-sm w-full"
               />
             </div>
 
@@ -285,7 +325,7 @@ const Profile = (props) => {
                 value={password2}
                 onChange={onChange}
                 type="text"
-                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                className="border rounded-lg px-3 py-2 mt-1 mb-2 text-sm w-full"
               />
             </div>
 
@@ -303,6 +343,16 @@ const Profile = (props) => {
                 required
               />
             </div>
+            
+  <div className="flex">
+              <label className="font-semibold text-sm text-gray-600 pb-1 block">Add image :</label>
+                <input
+                  className="w-full h-full py-2 file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
+                  accept="image/*"
+                  type="file"
+                  onChange={convertToBase64}
+                />
+  </div>
 
             <div className="flex justify-end mt-7">
               {/* <button

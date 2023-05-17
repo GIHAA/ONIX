@@ -280,7 +280,21 @@ name="driver"
 <input  id="no" name="no" value={no} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
-
+<select
+id="driver"
+name="driver"
+                        value={driver}
+                        onChange={onChange}
+                        className="mb-4 block rounded-3xl py-2.5 px-5 w-[50vh] text-sm text-gray-900 bg-[#E4EBF7] border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#FF9F00]"
+                        required
+                      >
+                        <option value="">Select Driver</option>
+                        {NameOptons.map((supplier) => (
+                          <option key={supplier.name} value={supplier.name}>
+                            {supplier.name} {supplier.type}
+                          </option>
+                        ))}
+                      </select>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Delivery Date</label>
 <input  id="delivery_date" name="delivery_date" value={delivery_date} onChange={onChange} type="date"   min={new Date().toISOString().split('T')[0]} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />

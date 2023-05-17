@@ -178,9 +178,9 @@ If you are new to our store, we glad to have you as member.
                 name="dob"
                 value={dob}
                 onChange={onChange}
-                
+                max={new Date().toISOString().split('T')[0]}
                 type="date"
-                className="border rounded-lg px-3 py-2 mt-1  mb-5 text-sm w-[500px]"
+                className="border rounded-lg px-3 py-5 mt-1  mb-5 text-sm w-[500px]"
               />
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">

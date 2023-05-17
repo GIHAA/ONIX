@@ -162,7 +162,6 @@ const User = () => {
       <th className="p-3">Quantity</th>
       {/* <th className="p-3">category</th>
       <th className="p-3">qty</th> */}
-            <th className="p-3">Status</th>
       <th className="p-3">action</th>
       </tr>
   </thead>
@@ -180,7 +179,7 @@ const User = () => {
                             <td className="p-3 w-[150px]">{item.quantity}</td>
                             {/* <td className="p-3 w-[250px]">{item.category}</td>
                             <td className="p-3">{item.qty}</td> */}
-                          <td className="p-3 w-[150px]">{item.status}</td>
+            
                             <td className="p-3">
                             <div className="flex ml-12">
                                 <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
@@ -195,6 +194,13 @@ const User = () => {
                                 onClick={() => onDelete(item._id)}>
                                 <img src={deleteImg} alt="" className="w-4 h-4 mr-2 mt-1" />
                                   Delete
+                                </button>
+
+                                <button className="flex w-[200px] px-5 py-1 mr-5 bg-[#12a661] text-white font-semibold hover:bg-[#0c7343] rounded-xl "
+                                onFocus={()=>setFormData({...formData , supplier:item.supplier })}
+                                onClick={() =>  setShowCreateModal(true)}>
+                      
+                                  Make Supplier order
                                 </button>
                               </div>
                             </td>
@@ -225,7 +231,7 @@ const User = () => {
         <div className="fixed inset-0 z-50  overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white w-[500px] rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Add New stockorders
+              Add New Supplier orders
             </h2>
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="orderid">stockorder ID</label>
@@ -282,7 +288,7 @@ name="supplier"
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-lg font-bold mb-4 ">
-              Edit stockorders
+              Edit Supplier Order
             </h2>
             <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="orderid">stockorder ID</label>
 <input type="text" id="orderid" name="orderid" value={orderid} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>

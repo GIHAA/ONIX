@@ -18,7 +18,7 @@ const Users = () => {
         name : "",
         email : "",
         password : "",
-        role : "customer",
+        role : "driver",
         image : "",
     })
     const [showEditModal, setShowEditModal] = useState(false);
@@ -270,7 +270,7 @@ const Users = () => {
               />
 
 
-              <select name="role" onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
+              <select name="role" onChange={onChange} defaultValue="driver" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
   <option value="driver">Driver</option>
   <option value="accountant">Accountant</option>
   <option value="humanResourcesManager">Human Resources Manager</option>

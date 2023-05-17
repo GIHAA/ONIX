@@ -18,7 +18,7 @@ const Users = () => {
     const [ data , setData ] = useState([])
     const [formData, setFormData] = useState({
       name: user.name,
-      date: "",
+      date: new Date(),
       phone: "",
       location: "",
       items: "",
@@ -218,7 +218,7 @@ const Users = () => {
                                 <button className="flex w-[120px] px-5 py-1 mr-5 bg-[#d11818] text-white font-semibold hover:bg-[#760d0d] rounded-xl "
                                 onClick={() => onDelete(items._id)}>
                                 <img src={deleteImg} alt="" className="w-4 h-4 mr-2 mt-1" />
-                                  Delete
+                                  Cancel
                                 </button>
                               </div>
                             </td>

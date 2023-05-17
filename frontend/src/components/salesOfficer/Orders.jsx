@@ -252,9 +252,9 @@ const Users = () => {
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block">Name</label>
 <input id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
-
+{/* 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Date</label>
-<input id="date" name="date" value={date} onChange={onChange} type="date"  min={new Date().toISOString().split('T')[0]} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+<input id="date" name="date" value={date} onChange={onChange} type="date"  min={new Date().toISOString().split('T')[0]} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" /> */}
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Phone</label>
 <input id="phone" name="phone" value={phone} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />

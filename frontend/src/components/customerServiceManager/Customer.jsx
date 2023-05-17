@@ -138,8 +138,8 @@ const Users = () => {
     };
 
     if (!isNumberAndTenDigit(phone)) {
-      toast.error("Please enter a valid phone number")
-      return
+      toast.error("Please enter a valid phone number");
+      return;
     }
 
     const newFormData = { ...formData, image: image };
@@ -258,8 +258,8 @@ const Users = () => {
       </div>
 
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-3 px-8">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-3 px-8 h-[600px] overflow-auto">
             <label className=" font-semibold text-sm text-gray-600 block">
               Name
             </label>
@@ -353,17 +353,19 @@ const Users = () => {
               type="text"
               className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]"
             />
-            <label className="font-semibold text-sm text-gray-600 block">
-              Add a Profile Picture
-            </label>
-            <input
-              className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
-              accept="image/*"
-              type="file"
-              onChange={convertToBase64}
-            />
+<div>
+              <label className="font-semibold text-sm text-gray-600 block">
+                Add a Profile Picture
+              </label>
+              <input
+                className="w-full h-full py-2 pb-[50px] file:rounded-full file:h-[45px] file:w-[130px] file:bg-secondary file:text-white "
+                accept="image/*"
+                type="file"
+                onChange={convertToBase64}
+              />
+</div>
 
-            <div className="flex">
+            <div className="flex md-6">
               <button className="" onClick={() => setShowCreateModal(false)}>
                 Close
               </button>
@@ -414,7 +416,7 @@ const Users = () => {
               onChange={convertToBase64}
             />
 
-            <div className="flex">
+            <div className="flex ">
               <button className="" onClick={() => setShowEditModal(false)}>
                 Close
               </button>

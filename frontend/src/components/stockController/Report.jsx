@@ -181,7 +181,7 @@ const Report = () => {
               <PHeader />
 
               <h1 className="text-[30px] font-semibold ml-[150px] mt-5">
-                Sale Officer Reports
+                Stock Controller Reports
               </h1>
 
               <div className="col grid-cols-1">
