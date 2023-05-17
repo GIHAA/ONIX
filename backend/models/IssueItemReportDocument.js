@@ -69,7 +69,7 @@ module.exports=(issueItem)=>{
     
     #project span {
       color: #5D6975;
-      text-align: right;
+      text-align: left;
       width: 52px;
       margin-right: 10px;
       display: inline-block;
@@ -103,7 +103,7 @@ module.exports=(issueItem)=>{
     }
     
     table th {
-      padding: 1px 1px;
+      padding: 1px 2px;
       color: #5D6975;
       border-bottom: 1px solid #C1CED9;
       white-space: nowrap;        
@@ -162,27 +162,23 @@ module.exports=(issueItem)=>{
   <div id="logo">
     <img src=".../frontend/src/components/Layouts/Images/Onex_logo.png">
   </div>
-  <h1><b>ONEX Bookshop (PVT)</b></h1>
+
   <h1>Inventory Details</h1>
 
-  <div id="company" class="clearfix">
-    <div>ONEX Bookshop PVT LMT</div>
-    <div>Walivita Road<br /> No 12,Waliwita Malabe</div>
-    <div>0272226088</div>
-    <div><a href="mailto:company@example.com">onex_book4u@gmail.com</a></div>
-  </div>
+
   <div id="project">
-    <div><span>Position</span>Stock Controller</div>
-    <div><span>Name</span>Asanka Ranaweera</div>
-   
-    <div><span>EMAIL</span> <a href="mailto:john@example.com">asankapranaweera@gmail.com</a></div>
-    <div><span>DATE</span>${`${today}`}</div>
+    <h2>ONEX BookShop</h2>
+    <h3><span>Position :</span>Stock Controller</h3>
+    <h3><span>Email  : </span><a href="mailto:john@example.com">info@ONEXbookshop.com</a></h3>
+    <h3><span>Date  : </span>${`${today}`}</h3>
    
   </div>
+
 </header>
 <main>
+<hr></hr>
   <table>
-    <thead>
+    <thead class="tHeader">
       <tr>
         <th class="service">ID</th>
         <th class="desc">Item Name</th>
