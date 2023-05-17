@@ -1,4 +1,4 @@
-a.aa:link, a.aa:visited {
+/* a.aa:link, a.aa:visited {
   background-color: #080C39;
   color: white;
   padding: 6px 20px;
@@ -35,14 +35,14 @@ a.aa:hover, a.aa:active {
   background-color: rgb(242, 234, 234);
   color: rgb(10, 6, 6);
   font-weight: 700;
-}
+} */
 
 
 
 /* table */
 
 
-.tdButton{
+/* .tdButton{
   background-color:whitesmoke;
   width: 8%;
  
@@ -94,5 +94,5 @@ font-size: small;
   margin-top: 150px;
   margin-right: 210px;
   
-}
+} */
 

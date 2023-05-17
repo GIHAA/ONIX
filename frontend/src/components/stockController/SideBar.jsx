@@ -67,7 +67,16 @@ Supplier order
   className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
 >
     
-    Manage issue items
+  Manage issue items
+</NavLink>
+
+<NavLink
+  to="/all_categories"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+  Category
 </NavLink>
 
 <NavLink
@@ -80,6 +89,15 @@ Supplier order
 </NavLink>
 
 
+{/* <NavLink
+  to="/"
+  activeClassName="active"
+  className="link bg-[#2E4960] flex justify-start pl-6 font-semibold text-white text-[19px] h-[50px] block text-center mb-7 mx-auto  items-center"
+>
+    
+    My Activities 
+
+</NavLink> */}
 
 {/* <NavLink
   to="/quotation"

@@ -92,7 +92,7 @@ const AdminSidebar = ({item}) => {
               </Link>
             </li>
 
-            <li className="text-[20px] font-semibold">
+            {/* <li className="text-[20px] font-semibold">
               <Link
                 to="/all_categories"
                 className="block py-2 pl-3 pr-4  text-secondary rounded hover:text-gray-800 md:bg-transparent md:p-0 "
@@ -108,7 +108,7 @@ const AdminSidebar = ({item}) => {
               >
                 Reports
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div

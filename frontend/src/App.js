@@ -110,26 +110,20 @@ function App() {
             }
           />
 
-          <Route path="/getAllItems" element={<AllIssueItems />} />
-          <Route
-            path="/add_IssueItem"
-            element={
-              <Adminlayout>
-                <AddIssueItem />
-              </Adminlayout>
-            }
-          />
-          <Route
-            path="/update_IssueItem/:id"
-            element={
-              <Adminlayout>
-                <UpdateIssueItems />
-              </Adminlayout>
-            }
-          />
-          <Route path="/inventry_dashboard" element={<DashboardInventry />} />
-          <Route path="/Home_Page" element={<HomePageCustomer />} />
-          <Route path="/ItemView/:id" element={<ItemView />} />
+
+
+        <Route path="/add" element={<AddCategory/>}/>
+        <Route path="/all_categories" element={<AllCategory/>} /> 
+        <Route path="/update/:id" element={<UpdateCategory/>}/>
+        <Route path="/inventryReport"element={<InventryReport/>}/>
+
+        <Route path="/getAllItems"element={<AllIssueItems/>}/>
+        <Route path="/add_IssueItem" element={<AddIssueItem/>} />
+        <Route path="/update_IssueItem/:id" element={<UpdateIssueItems/>} />
+        <Route path="/inventry_dashboard" element={<DashboardInventry/>} />
+        <Route path="/Home_Page" element={<HomePageCustomer/>}/>
+        <Route path="/ItemView/:id" element={<ItemView/>}/>
+
         </Routes>
       </Router>
       <ToastContainer />

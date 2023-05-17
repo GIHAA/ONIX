@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import PHeader from "../common/PHeader";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion"
 
 export default function ItemView() {
   const { user } = useSelector((state) => state.auth);
@@ -126,10 +127,10 @@ export default function ItemView() {
       <div className="w-full  h-full bg-white shadow-lg rounded-xl ">
         <PHeader />
 
-        <div className="flex flex-wrap ml-28 mt-16 p-10">
-          <div className="bg-gray-300 border-8 border-blue-900 rounded-xl p-7 mr-32 mt-1 text-center text-2xl font-bold">
+        <div className="flex flex-wrap ml-28 mt-6 p-10">
+          <div className="bg-gray-300 border-8 border-gray-400 rounded-xl p-12 mr-32 mt-1 text-center text-2xl font-bold">
             <label>
-              <img
+              <motion.img whileHover={{ scale: 1.8}}
                 src={`http://localhost:8080${item.Image}`}
                 className="w-60 h-90"
               />
@@ -147,20 +148,26 @@ export default function ItemView() {
                 </label>
               </div>
 
-              {/* <div ><input className="bg-gray-300 w-28 text-2xl line-through" value={prices}/>
-         <input className="bg-gray-300  text-1xl mt-1" value={discounts}/></div> */}
-              <div className="mt-4 ">
-                Discription
-                <label className="block mb-4 text-2xl mt-3">
-                  {item.Inventry_Item_Description}
-                </label>
-              </div>
+              <div ><input className="bg-gray-300 w-28 text-2xl line-through" value={prices}/>
+         <input className="bg-gray-300  text-md mt-1" value={discounts}/></div>
+          
               <div>
                 <label className="block mb-6 mt-4 text-2xl">
                   Rs.{" "}
-                  {(item.Inventry_Item_Price *
-                    (100 - item.Inventry_Item_Discount)) /
-                    100}
+                  {(item.Inventry_Item_Price * (100 - item.Inventry_Item_Discount)) /   100}
+                </label>
+              </div>
+
+              <div className="mt-2 bg-gray-200 w-[620px] rounded-xl ">
+               <label className=" text-gray-700 ml-6">Description</label> 
+                <label className="block text-sm mt-3 text-gray-500 ml-8">
+                  Language   :  {item.Inventry_Item_Language}
+                </label>
+                <label className=" text-sm text-gray-500 ml-8">
+                      Author   :  {item.Inventry_Item_Author}
+                </label>
+                <label className="block mb-4 text-sm text-gray-500 ml-8 pb-2 ">
+                  {item.Inventry_Item_Description}
                 </label>
               </div>
 
@@ -205,7 +212,7 @@ export default function ItemView() {
                 onClick={onSubmit}
                 className="bg-[#2E4960] p-3 w-[150px] text-white hover:bg-[#0012] text-sm rounded-md"
               >
-                Add to Order
+               Buy Now
               </button>
             </div>
           </div>
