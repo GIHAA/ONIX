@@ -21,7 +21,7 @@ const Users = () => {
       items: "",
       noi: "",
       reason: "temp",
-      status: "",
+      status: "ready",
       type: "physical"
     });
     const [ filteredData , setFilteredData ] = useState([])
@@ -205,7 +205,7 @@ const Users = () => {
                                   ID
                                 </button>
 
-                                <button onClick={() => { setFormData(items); setShowEditModal(true); setId(items._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                                <button onClick={() => { setFormData({ ...items, status:"ready"}); setShowEditModal(true); setId(items._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                   <span
                                   className="flex">
                                   <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
