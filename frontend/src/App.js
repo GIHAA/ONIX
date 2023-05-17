@@ -36,8 +36,8 @@ import ItemView from "./components/Page/ItemView";
 
 import StockOrder from "./components/stockController/StockOrder";
 import Salary from "./components/accountant/Salary";
-import Report from "./components/salesOfficer/Report"
-import scReport from "./components/stockController/Report"
+import SoReport from "./components/salesOfficer/Report"
+import ScReport from "./components/stockController/Report"
 
 function App() {
   return (
@@ -74,8 +74,8 @@ function App() {
 
           <Route path="/salary" element={<Salary />} />
 
-          <Route path="/soreport" element={<soReport />} />
-          <Route path="/screport" element={<scReport />} />
+          <Route path="/soreport" element={<SoReport />} />
+          <Route path="/screport" element={<ScReport />} />
 
           <Route
             path="/add"

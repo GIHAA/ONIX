@@ -103,7 +103,7 @@ export default PortalHandler;
 // done report - csm customer list -- 16 ( evening )
 // done report - hr attendace list 
 // done report - accountant salary report -- 16 ( evening )
-//  report - cs suppiler list -- 16 ( evening )
+// report - cs suppiler list -- 16 ( evening )
 // report - cs stock order -- 16 ( evening )
-// on report - so orders -- 16 ( evening )
-// report - deliveries -- 16 ( evening )
+// done report - so orders -- 16 ( evening )
+// done report - deliveries -- 16 ( evening )
