@@ -106,7 +106,7 @@ export default function AllIssueItems(){
         <SideBar />
         <div class="w-full  h-full bg-white shadow-lg rounded-xl ">
           <PHeader />
-          <AdminSideMenu />
+          {/* <AdminSideMenu /> */}
           <div class="container" className="ItemList">
             <h2 class="m-5 text-3xl font-bold ">Issue Item List....</h2>
             <br />

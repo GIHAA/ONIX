@@ -149,7 +149,7 @@ export default function AddIssueItem(){
            
           <PHeader />
           
-          <AdminSideMenu />
+          {/* <AdminSideMenu /> */}
 
 
 <div className="p-8">
