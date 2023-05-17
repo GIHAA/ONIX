@@ -10,6 +10,13 @@ const viewOrder = asyncHandler(async (req, res) => {
     order? res.status(201).json(order) : res.status(400).json({message : "Error"})
 })
 
+const viewIDOrder = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const order = await Order.find({ _id :id})
+
+  order? res.status(201).json(order) : res.status(400).json({message : "Error"})
+})
+
 const addOrder = asyncHandler(async (req, res) => {
     const { name, date , phone , location , items , noi , reason , status , type , price} = req.body
     
@@ -74,5 +81,6 @@ module.exports = {
   addOrder,
   viewOrder,
   updateOrder,
-  deleteOrder
+  deleteOrder,
+  viewIDOrder
 }

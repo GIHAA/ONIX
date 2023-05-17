@@ -18,6 +18,7 @@ const Salary = () => {
         month : "",
         salary : "",
         othours : "",
+        role: "driver"
     })
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -58,6 +59,7 @@ const onSearch = (e) => {
         month : "",
         salary : "",
         othours : "",
+        role: "driver"
       })
       axios.get("http://localhost:8080/api/salary/")
       .then((res) => {
@@ -141,6 +143,7 @@ const onSearch = (e) => {
   <thead className=" bg-[#2E4960] text-white sticky top-0">
       <tr>
       <th className="p-3">Name</th>
+      <th className="p-3">Role</th>
       <th className="p-3">Month</th>
       <th className="p-3">Basic Salary</th>
       <th className="p-3">OThours</th>
@@ -158,6 +161,7 @@ const onSearch = (e) => {
                           <>
                           <tr className="hover:bg-[#efeeee] border-[2px]">
                             <td className="p-3 w-[350px]">{item.name}</td>
+                            <td className="p-3 w-[350px]">{item.role}</td>
                             <td className="p-3 w-[350px]">{item.month}</td>
                             <td className="p-3 w-[150px]">{item.salary}</td>
                             <td className="p-3 w-[150px]">{item.othours}</td>
@@ -167,7 +171,7 @@ const onSearch = (e) => {
                           
                             <td className="p-3">
                             <div className="flex ml-12">
-                                <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                                <button onClick={() => {setShowEditModal(true); setId(item._id); setFormData(item) }} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                   <span
                                   className="flex">
                                   <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
@@ -216,6 +220,17 @@ const onSearch = (e) => {
 <input  id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
 
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Role</label>
+<select name="role" onChange={onChange} defaultValue="driver" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
+  <option value="driver">Driver</option>
+  <option value="accountant">Accountant</option>
+  <option value="humanResourcesManager">Human Resources Manager</option>
+  <option value="salesOfficer">Sales Officer</option>
+  <option value="systemAdminstrator">System Administrator</option>
+  <option value="stockController">Stock Controller</option>
+  <option value="customerServiceManager">Customer Service Manager</option>
+</select>
+
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Month</label>
 <input  id="month"  min={new Date().toISOString().split('T')[0]} name="month" value={month} onChange={onChange} type="date" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
 
@@ -249,6 +264,18 @@ const onSearch = (e) => {
             
             <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Name</label>
 <input  id="name" name="name" value={name} onChange={onChange} type="text" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+
+
+<label className="font-semibold text-sm text-gray-600 pb-1 block">Add Role</label>
+<select name="role" onChange={onChange} defaultValue="driver" className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
+  <option value="driver">Driver</option>
+  <option value="accountant">Accountant</option>
+  <option value="humanResourcesManager">Human Resources Manager</option>
+  <option value="salesOfficer">Sales Officer</option>
+  <option value="systemAdminstrator">System Administrator</option>
+  <option value="stockController">Stock Controller</option>
+  <option value="customerServiceManager">Customer Service Manager</option>
+</select>
 
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block">Add Month</label>

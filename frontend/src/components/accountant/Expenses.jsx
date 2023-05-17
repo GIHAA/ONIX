@@ -89,7 +89,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
         const res = axios.post("http://localhost:8080/api/expenses/", formData).then((res) => {
           toast.success("Expenses  added successfully")
           setFormData({})
-        }).catch(err => toast.error("failed to add deliveries"))
+        }).catch(err => toast.error("failed to add Expenses"))
       
         
 
@@ -164,7 +164,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
                           
                             <td className="p-3">
                             <div className="flex ml-12">
-                                <button onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                                <button onClick={() => {setShowEditModal(true); setId(item._id); setFormData({...item , invoiceno: ""}) }} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                   <span
                                   className="flex">
                                   <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
@@ -216,7 +216,7 @@ const [ searchTerm , setSearchTerm ] = useState('')
 <input type="text" id="description" name="description" value={description} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Date">Date</label>
-<input type="date"  min={new Date().toISOString().split('T')[0]} id="date" name="date" value={date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
+<input type="date"   max={new Date().toISOString().split('T')[0]} id="date" name="date" value={date} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>
 
 <label className="font-semibold text-sm text-gray-600 pb-1 block" htmlFor="Remarks">Remarks</label>
 <input type="text" id="Remarks" name="Remarks" value={Remarks} onChange={onChange} className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required/>

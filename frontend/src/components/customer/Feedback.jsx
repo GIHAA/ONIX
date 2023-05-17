@@ -24,6 +24,10 @@ const Feedback = () => {
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [ id , setId ] = useState("")
     const { about, details } = formData;
+    const [ target ,settraget] = useState({})
+
+        const [ filteredData , setFilteredData ] = useState([])
+    const [ searchTerm , setSearchTerm ] = useState('')
 
 
     useEffect(()=>{
@@ -79,6 +83,19 @@ const Feedback = () => {
        
     }
 
+    const onSearch = (e) => {
+
+      const searchQuery = e.target.value.toLowerCase();
+      const filteredResults = data.filter((item) => 
+          item.about.toLowerCase().includes(searchQuery) ||
+          item.details.toLowerCase().includes(searchQuery)
+      );
+      setFilteredData(filteredResults);
+      setSearchTerm(searchQuery);
+  }
+
+
+
   return (
     <>
       <div className="flex scroll-smooth">
@@ -96,6 +113,11 @@ const Feedback = () => {
 
                 <h1 className="text-[30px] font-semibold ml-[150px] mt-5">Feedback </h1>
 
+                <div className="ml-[150px] ">
+                <input className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-[500px]" type="text" placeholder="Search..." value={searchTerm} onChange={onSearch} />
+            </div>
+          
+             
                 <button onClick={() => setShowCreateModal(true)} className="ml-[150px] mt-5 items-center px-5 py-1 mr-5 bg-[#2E4960] text-white font-semibold hover:bg-[#1b3348] rounded-xl">ADD</button>
                 <table className=" mx-auto mt-[50px] w-[850px] h-[300px] ml-[150px]  ">
 
@@ -112,7 +134,7 @@ const Feedback = () => {
 </thead>
 
 <tbody  className="bg-white text-center border-black ">
-{data.filter(item => item.name === user.name).map((item) => {
+{filteredData.filter(item => item.name === user.name).map((item) => {
                       return(
 
                         <>
@@ -128,7 +150,7 @@ const Feedback = () => {
                         
                           <td className="p-3">
                           <div className="flex ml-12">
-                              <button  onClick={() => {setShowEditModal(true); setId(item._id);}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
+                              <button  onClick={() => {setShowEditModal(true); setId(item._id); setFormData(item)}} className=" items-center px-5 py-1 mr-5 bg-[#2E4960] w-[100px] text-white font-semibold hover:bg-[#1b3348] rounded-xl">
                                 <span
                                 className="flex">
                                 <img src={editImg} alt="" className="w-4 h-4 mr-2 mt-1" />
